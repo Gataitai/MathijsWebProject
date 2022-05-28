@@ -2,29 +2,46 @@ package io.gate.mathijswebproject.Models.Grid;
 
 import io.gate.mathijswebproject.Models.Enums.Position;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Grid {
-    private Map<Position, Map<Position, GridArea>> grid;
+    private List<GridArea> grid;
 
     public Grid(){
-        Map<Position, Map<Position, GridArea>> rows = new LinkedHashMap<>();
+        List<GridArea> gridAreas = new ArrayList<>();
+
         for(Position row : Position.values()){
-            Map<Position, GridArea> columns = new LinkedHashMap<>();
             for(Position column : Position.values()){
-                columns.put(column, new GridArea());
+                GridArea gridArea = new GridArea();
+                gridArea.setRow(row);
+                gridArea.setColumn(column);
+                gridAreas.add(gridArea);
             }
-            rows.put(row, columns);
         }
-        this.grid = rows;
+        this.grid = gridAreas;
     }
 
-    public Map<Position, Map<Position, GridArea>> getGrid(){
-        return grid;
+    public List<GridArea> getGrid(){
+        return this.grid;
     }
+
+//    private Map<Position, Map<Position, GridArea>> grid;
+//
+//    public Grid(){
+//        Map<Position, Map<Position, GridArea>> rows = new LinkedHashMap<>();
+//        for(Position row : Position.values()){
+//            Map<Position, GridArea> columns = new LinkedHashMap<>();
+//            for(Position column : Position.values()){
+//                columns.put(column, new GridArea());
+//            }
+//            rows.put(row, columns);
+//        }
+//        this.grid = rows;
+//    }
+//
+//    public Map<Position, Map<Position, GridArea>> getGrid(){
+//        return grid;
+//    }
 
 //    private List<Tuple<Position, List<Tuple<Position, GridArea>>>> grid;
 //
