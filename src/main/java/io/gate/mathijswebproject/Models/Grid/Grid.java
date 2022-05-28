@@ -2,28 +2,45 @@ package io.gate.mathijswebproject.Models.Grid;
 
 import io.gate.mathijswebproject.Models.Enums.Position;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-public class Grid{
-    private Rows grid;
+public class Grid {
+    private Map<Position, Map<Position, GridArea>> grid;
 
-    //grid is basically rows, but I wanted it to be called grid
-    public Grid() {
-        this.grid = new Rows();
+    public Grid(){
+        Map<Position, Map<Position, GridArea>> rows = new LinkedHashMap<>();
+        for(Position row : Position.values()){
+            Map<Position, GridArea> columns = new LinkedHashMap<>();
+            for(Position column : Position.values()){
+                columns.put(column, new GridArea());
+            }
+            rows.put(row, columns);
+        }
+        this.grid = rows;
     }
 
-    public Rows getGrid() {
+    public Map<Position, Map<Position, GridArea>> getGrid(){
         return grid;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder text = new StringBuilder();
-
-        for(Map.Entry<Position, Columns> entry : grid.getRows().entrySet()){
-            Position key = entry.getKey();
-            text.append("LinkedHashMap: " + key.toString() + " ");
-        }
-        return text.toString();
-    }
+//    private List<Tuple<Position, List<Tuple<Position, GridArea>>>> grid;
+//
+//    public Grid(){
+//        List<Tuple<Position, List<Tuple<Position, GridArea>>>> rows = new LinkedList<>();
+//        for(Position row : Position.values()){
+//            List<Tuple<Position, GridArea>> columns = new LinkedList<>();
+//            for(Position column : Position.values()){
+//                columns.add(new Tuple<>(column, new GridArea()));
+//            }
+//            rows.add(new Tuple<>(row, columns));
+//        }
+//        this.grid = rows;
+//    }
+//
+//    public List<Tuple<Position, List<Tuple<Position, GridArea>>>> getGrid(){
+//        return grid;
+//    }
 }

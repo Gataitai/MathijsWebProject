@@ -1,8 +1,6 @@
 package io.gate.mathijswebproject.Controllers;
 
-import io.gate.mathijswebproject.Data.GridDataProvider;
 import io.gate.mathijswebproject.Models.Grid.Grid;
-import io.gate.mathijswebproject.Models.Grid.TestGrid;
 import io.gate.mathijswebproject.Services.GridService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +18,7 @@ public class GridController {
     }
 
     @GetMapping()
-    public TestGrid gridIndex(){
+    public Grid gridIndex(){
         return gridService.getGridService();
     }
 

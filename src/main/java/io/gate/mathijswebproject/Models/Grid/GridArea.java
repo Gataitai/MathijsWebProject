@@ -1,8 +1,10 @@
 package io.gate.mathijswebproject.Models.Grid;
 
+import io.gate.mathijswebproject.Models.Enums.Position;
+
 import java.awt.*;
 
-public class GridArea {
+public class GridArea{
     private Color color;
     private String userName;
 

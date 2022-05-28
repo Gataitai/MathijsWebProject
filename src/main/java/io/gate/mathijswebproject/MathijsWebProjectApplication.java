@@ -1,6 +1,5 @@
 package io.gate.mathijswebproject;
 
-import io.gate.mathijswebproject.Models.Grid.Grid;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

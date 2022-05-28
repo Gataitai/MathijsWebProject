@@ -1,7 +1,7 @@
 package io.gate.mathijswebproject.Services;
 
 import io.gate.mathijswebproject.Data.GridDataProvider;
-import io.gate.mathijswebproject.Models.Grid.TestGrid;
+import io.gate.mathijswebproject.Models.Grid.Grid;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,7 +11,7 @@ public class GridService {
         new GridDataProvider();
     }
 
-    public TestGrid getGridService(){
+    public Grid getGridService(){
         return GridDataProvider.grid;
     }
 }
