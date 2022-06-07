@@ -11,7 +11,6 @@ public enum Position {
     H,
     I,
     J,
-    K,
-    L
+    K
 }
 

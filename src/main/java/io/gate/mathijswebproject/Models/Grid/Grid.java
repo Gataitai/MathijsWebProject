@@ -8,13 +8,13 @@ public class Grid {
     private List<GridArea> grid;
 
     public Grid(){
-        List<GridArea> gridAreas = new ArrayList<>();
+        List<GridArea> gridAreas = new LinkedList<>();
 
         for(Position row : Position.values()){
             for(Position column : Position.values()){
                 GridArea gridArea = new GridArea();
-                gridArea.setRow(row);
-                gridArea.setColumn(column);
+                gridArea.setRow(row.toString());
+                gridArea.setColumn(column.toString());
                 gridAreas.add(gridArea);
             }
         }
@@ -25,39 +25,23 @@ public class Grid {
         return this.grid;
     }
 
-//    private Map<Position, Map<Position, GridArea>> grid;
-//
-//    public Grid(){
-//        Map<Position, Map<Position, GridArea>> rows = new LinkedHashMap<>();
-//        for(Position row : Position.values()){
-//            Map<Position, GridArea> columns = new LinkedHashMap<>();
-//            for(Position column : Position.values()){
-//                columns.put(column, new GridArea());
+    public void updateGrid(GridArea newGridArea){
+//        for(GridArea gridArea : grid){
+//            if(gridArea.getRow().equals(newGridArea.getRow()) && gridArea.getColumn().equals(newGridArea.getColumn())){
+//                int index = grid.indexOf(gridArea);
+//                grid.set(index, newGridArea);
+//                return grid;
 //            }
-//            rows.put(row, columns);
 //        }
-//        this.grid = rows;
-//    }
-//
-//    public Map<Position, Map<Position, GridArea>> getGrid(){
-//        return grid;
-//    }
+//        return null;
 
-//    private List<Tuple<Position, List<Tuple<Position, GridArea>>>> grid;
-//
-//    public Grid(){
-//        List<Tuple<Position, List<Tuple<Position, GridArea>>>> rows = new LinkedList<>();
-//        for(Position row : Position.values()){
-//            List<Tuple<Position, GridArea>> columns = new LinkedList<>();
-//            for(Position column : Position.values()){
-//                columns.add(new Tuple<>(column, new GridArea()));
-//            }
-//            rows.add(new Tuple<>(row, columns));
-//        }
-//        this.grid = rows;
-//    }
-//
-//    public List<Tuple<Position, List<Tuple<Position, GridArea>>>> getGrid(){
-//        return grid;
-//    }
+        //stream version
+        int index = grid.indexOf(grid.stream()
+                .filter(gridArea -> gridArea.getRow()
+                        .equals(newGridArea.getRow()) && gridArea.getColumn()
+                        .equals(newGridArea.getColumn())).findAny()
+                .orElse(null));
+        grid.set(index, newGridArea);
+    }
+
 }
