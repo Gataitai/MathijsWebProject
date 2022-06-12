@@ -1,6 +1,7 @@
 package io.gate.mathijswebproject.Models.Grid;
 
 import io.gate.mathijswebproject.Models.Enums.Position;
+import io.gate.mathijswebproject.Models.Person.Person;
 
 import java.awt.*;
 import java.util.Random;
@@ -8,20 +9,20 @@ import java.util.Random;
 public class GridArea{
     String row;
     String column;
-    private Color color;
-    private String userName;
+    private String color;
+    private Person person;
 
     public GridArea(){
         this.color = randomColor();
-        this.userName = "NoUser";
     }
-    private Color randomColor(){
-        Random rng = new Random();
-        float r = rng.nextFloat();
-        float g = rng.nextFloat();
-        float b = rng.nextFloat();
+    private String randomColor(){
+        Random random = new Random();
 
-        return new Color(r, g, b);
+        int nextInt = random.nextInt(0xffffff + 1);
+
+        String colorCode = String.format("#%06x", nextInt);
+
+        return colorCode;
     }
     public void setColumn(String column) {
         this.column = column;
@@ -29,18 +30,17 @@ public class GridArea{
     public void setRow(String row) {
         this.row = row;
     }
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.person.setUserName(userName);
     }
     public String getColor() {
-        String hex = String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
-        return hex;
+        return this.color;
     }
     public String getUserName() {
-        return userName;
+        return this.person.getUserName();
     }
     public String getColumn() {
         return column;

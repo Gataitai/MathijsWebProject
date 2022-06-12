@@ -26,5 +26,4 @@ public class GridController {
         gridService.update(newGridArea);
         return ResponseEntity.ok(gridService.getGridService());
     }
-
 }
