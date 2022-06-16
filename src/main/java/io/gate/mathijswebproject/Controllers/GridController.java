@@ -1,8 +1,8 @@
 package io.gate.mathijswebproject.Controllers;
 
-import io.gate.mathijswebproject.Models.Grid.Grid;
-import io.gate.mathijswebproject.Models.Grid.GridArea;
-import io.gate.mathijswebproject.Services.GridService;
+import io.gate.mathijswebproject.model.grid.Grid;
+import io.gate.mathijswebproject.model.grid.Cell;
+import io.gate.mathijswebproject.service.GridService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +22,8 @@ public class GridController {
     }
 
     @PutMapping()
-    public ResponseEntity<Grid> update(@RequestBody GridArea newGridArea){
-        gridService.update(newGridArea);
+    public ResponseEntity<Grid> update(@RequestBody Cell newCell){
+        gridService.update(newCell);
         return ResponseEntity.ok(gridService.getGridService());
     }
 }

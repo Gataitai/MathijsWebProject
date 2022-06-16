@@ -1,4 +1,4 @@
-package io.gate.mathijswebproject.Models.Enums;
+package io.gate.mathijswebproject.model.enums;
 
 public enum Position {
     A,
@@ -11,6 +11,11 @@ public enum Position {
     H,
     I,
     J,
-    K
+    K,
+    L,
+    M,
+    N,
+    O,
+    P
 }
 
