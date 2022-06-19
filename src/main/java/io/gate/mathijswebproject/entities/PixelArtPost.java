@@ -23,21 +23,21 @@ public class PixelArtPost {
     @OneToMany
     private List<Comment> comments;
 
+    public PixelArtPost() {
+
+    }
+
     public PixelArtPost(Grid grid, Person person) throws JsonProcessingException {
         this.pixelArtAsJSON = Grid.convertGridToJSON(grid);
         this.person = person;
-    }
-
-    public PixelArtPost() {
-
     }
 
     public long getId() {
         return id;
     }
 
-    public String getPixelArtAsJSON() {
-        return pixelArtAsJSON;
+    public Grid getPixelArt() throws JsonProcessingException {
+        return Grid.convertJSONToGrid(pixelArtAsJSON);
     }
 
     public Person getUser() {
