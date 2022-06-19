@@ -1,10 +1,11 @@
-package io.gate.mathijswebproject.model.person;
+package io.gate.mathijswebproject.entities;
+
+import io.gate.mathijswebproject.models.grid.Grid;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,22 +13,25 @@ public class Person {
     private long id;
     @Column
     private String userName;
-    @Column
-    private LocalDateTime creationDate;
 
+    @OneToMany
+    private List<PixelArtPost> pixelArtPosts;
+
+    @OneToMany
+    private List<Comment> comments;
+
+    public Person(String userName) {
+        this.userName = userName;
+    }
+
+    public Person() {
+    }
 
     public String getUserName() {
         return userName;
     }
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public void setCreationDate() {
-        this.creationDate = LocalDateTime.now();
     }
 }

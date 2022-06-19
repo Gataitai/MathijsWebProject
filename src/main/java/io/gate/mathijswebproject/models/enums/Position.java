@@ -1,4 +1,4 @@
-package io.gate.mathijswebproject.model.enums;
+package io.gate.mathijswebproject.models.enums;
 
 public enum Position {
     A,

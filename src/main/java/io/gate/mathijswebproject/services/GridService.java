@@ -1,8 +1,8 @@
-package io.gate.mathijswebproject.service;
+package io.gate.mathijswebproject.services;
 
 import io.gate.mathijswebproject.data.GridDataProvider;
-import io.gate.mathijswebproject.model.grid.Grid;
-import io.gate.mathijswebproject.model.grid.Cell;
+import io.gate.mathijswebproject.models.grid.Grid;
+import io.gate.mathijswebproject.models.grid.Cell;
 import org.springframework.stereotype.Service;
 
 @Service

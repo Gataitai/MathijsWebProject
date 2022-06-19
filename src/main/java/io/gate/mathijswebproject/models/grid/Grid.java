@@ -1,20 +1,12 @@
-package io.gate.mathijswebproject.model.grid;
+package io.gate.mathijswebproject.models.grid;
 
-import io.gate.mathijswebproject.model.enums.Position;
-
-import javax.persistence.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.gate.mathijswebproject.models.enums.Position;
 import java.util.*;
 
-@Entity
-@Table
 public class Grid {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column()
-    private Long id;
 
-    @Column
-    @OneToMany
     private List<Cell> grid;
 
     public Grid(){
@@ -42,7 +34,18 @@ public class Grid {
                         .equals(newCell.getRow()) && gridArea.getColumn()
                         .equals(newCell.getColumn())).findAny()
                 .orElse(null));
-        grid.set(index, newCell);
+
+        this.grid.set(index, newCell);
+    }
+
+    public static Grid convertJSONToGrid(String json) throws JsonProcessingException {
+        ObjectMapper om = new ObjectMapper();
+        return om.readValue(json, Grid.class);
+    }
+
+    public static String convertGridToJSON(Grid grid) throws JsonProcessingException {
+        ObjectMapper om = new ObjectMapper();
+        return om.writeValueAsString(grid);
     }
 
 }

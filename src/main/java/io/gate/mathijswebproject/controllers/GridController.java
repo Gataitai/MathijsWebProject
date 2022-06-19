@@ -1,8 +1,8 @@
-package io.gate.mathijswebproject.Controllers;
+package io.gate.mathijswebproject.controllers;
 
-import io.gate.mathijswebproject.model.grid.Grid;
-import io.gate.mathijswebproject.model.grid.Cell;
-import io.gate.mathijswebproject.service.GridService;
+import io.gate.mathijswebproject.models.grid.Grid;
+import io.gate.mathijswebproject.models.grid.Cell;
+import io.gate.mathijswebproject.services.GridService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
