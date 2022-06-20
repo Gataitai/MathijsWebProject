@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController()
-@RequestMapping("/person")
+@RequestMapping("/posts")
 public class PixelArtPostController {
     private PixelArtPostService pixelArtPostService;
 

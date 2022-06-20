@@ -27,7 +27,7 @@ public class Grid {
         return this.grid;
     }
 
-    public void updateGrid(Cell newCell){
+    public void updateGridCell(Cell newCell){
         //stream version
         int index = grid.indexOf(grid.stream()
                 .filter(gridArea -> gridArea.getRow()
@@ -36,6 +36,18 @@ public class Grid {
                 .orElse(null));
 
         this.grid.set(index, newCell);
+    }
+
+    public void updateGrid(Grid newGrid){
+        for (Cell newCell : newGrid.getGrid()) {
+            int index = grid.indexOf(grid.stream()
+                    .filter(gridArea -> gridArea.getRow()
+                            .equals(newCell.getRow()) && gridArea.getColumn()
+                            .equals(newCell.getColumn())).findAny()
+                    .orElse(null));
+
+            this.grid.set(index, newCell);
+        }
     }
 
     public static Grid convertJSONToGrid(String json) throws JsonProcessingException {

@@ -9,7 +9,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController()
-@RequestMapping("/person")
+@RequestMapping("/people")
 public class PersonController {
     private PersonService personService;
 
