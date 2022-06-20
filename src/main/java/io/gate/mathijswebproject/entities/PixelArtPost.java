@@ -15,6 +15,9 @@ public class PixelArtPost {
     private long id;
 
     @Column
+    private String title;
+
+    @Column
     private String pixelArtAsJSON;
 
     @ManyToOne
@@ -27,7 +30,8 @@ public class PixelArtPost {
 
     }
 
-    public PixelArtPost(Grid grid, Person person) throws JsonProcessingException {
+    public PixelArtPost(String title, Grid grid, Person person) throws JsonProcessingException {
+        this.title = title;
         this.pixelArtAsJSON = Grid.convertGridToJSON(grid);
         this.person = person;
     }
@@ -35,6 +39,8 @@ public class PixelArtPost {
     public long getId() {
         return id;
     }
+
+    public String getTitle() { return this.title; }
 
     public Grid getPixelArt() throws JsonProcessingException {
         return Grid.convertJSONToGrid(pixelArtAsJSON);

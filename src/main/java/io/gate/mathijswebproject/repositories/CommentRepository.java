@@ -11,6 +11,6 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
 
     List<Comment> findAllByPersonId(long id);
 
-    List<Comment> findAllByArtPostId(long id);
+    List<Comment> findAllByPixelArtPostId(long id);
 
 }

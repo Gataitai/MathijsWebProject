@@ -12,5 +12,5 @@ public interface PixelArtPostRepository  extends CrudRepository<PixelArtPost, Lo
     @Override
     List<PixelArtPost> findAll();
 
-    List<PixelArtPost> findAllByName();
+    List<PixelArtPost> findAllByTitle(String title);
 }

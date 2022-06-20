@@ -13,6 +13,6 @@ public interface PersonRepository  extends CrudRepository<Person, Long> {
 
     List<Person> findAllByName(String name);
 
-    Person findPersonByName(String name);
+    Person findPersonById(long id);
 
 }

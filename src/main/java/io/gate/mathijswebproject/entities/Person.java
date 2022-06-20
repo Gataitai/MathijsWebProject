@@ -1,7 +1,5 @@
 package io.gate.mathijswebproject.entities;
 
-import io.gate.mathijswebproject.models.grid.Grid;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,7 +10,7 @@ public class Person {
     @Column
     private long id;
     @Column
-    private String userName;
+    private String name;
 
     @OneToMany
     private List<PixelArtPost> pixelArtPosts;
@@ -20,18 +18,18 @@ public class Person {
     @OneToMany
     private List<Comment> comments;
 
-    public Person(String userName) {
-        this.userName = userName;
+    public Person(String name) {
+        this.name = name;
     }
 
     public Person() {
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String userName) {
+        this.name = userName;
     }
 }

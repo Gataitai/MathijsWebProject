@@ -15,6 +15,9 @@ public class Comment {
     @ManyToOne
     private Person person;
 
+    @ManyToOne
+    private PixelArtPost pixelArtPost;
+
     public Comment(String text) {
         this.text = text;
     }
