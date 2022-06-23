@@ -14,9 +14,7 @@ public class Grid {
 
         for(Position row : Position.values()){
             for(Position column : Position.values()){
-                Cell cell = new Cell();
-                cell.setRow(row.toString());
-                cell.setColumn(column.toString());
+                Cell cell = new Cell(row.toString(), column.toString());
                 cells.add(cell);
             }
         }

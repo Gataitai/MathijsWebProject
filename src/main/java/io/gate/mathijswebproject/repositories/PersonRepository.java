@@ -10,9 +10,5 @@ import java.util.List;
 public interface PersonRepository  extends CrudRepository<Person, Long> {
     @Override
     List<Person> findAll();
-
     List<Person> findAllByName(String name);
-
-    Person findPersonById(long id);
-
 }

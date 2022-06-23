@@ -1,9 +1,27 @@
 package io.gate.mathijswebproject.models.grid;
 
+import java.awt.*;
+import java.util.Random;
+
 public class Cell{
     private String row;
     private String column;
     private String color;
+
+    public Cell(){
+
+    }
+    public Cell(String row, String column) {
+        this.row = row;
+        this.column = column;
+        this.color = randomHexColor();
+    }
+
+    private String randomHexColor(){
+        Random random = new Random();
+        int nextInt = random.nextInt(0xffffff + 1);
+        return String.format("#%06x", nextInt);
+    }
 
     public void setColumn(String column) {
         this.column = column;

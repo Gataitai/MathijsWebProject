@@ -8,14 +8,14 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private long id;
+    private Long id;
     @Column
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "person")
     private List<PixelArtPost> pixelArtPosts;
 
-    @OneToMany
+    @OneToMany(mappedBy = "person")
     private List<Comment> comments;
 
     public Person(String name) {
@@ -24,6 +24,7 @@ public class Person {
 
     public Person() {
     }
+    public Long getId() { return id; }
 
     public String getName() {
         return name;

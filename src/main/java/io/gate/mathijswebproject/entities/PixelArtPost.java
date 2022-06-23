@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.gate.mathijswebproject.models.grid.Grid;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,13 +18,14 @@ public class PixelArtPost {
     @Column
     private String title;
 
-    @Column
+    @Column(length = 11018)
     private String pixelArtAsJSON;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
-    @OneToMany
+    @OneToMany(mappedBy = "person")
     private List<Comment> comments;
 
     public PixelArtPost() {
@@ -45,7 +47,6 @@ public class PixelArtPost {
     public Grid getPixelArt() throws JsonProcessingException {
         return Grid.convertJSONToGrid(pixelArtAsJSON);
     }
-
     public Person getUser() {
         return person;
     }
@@ -53,4 +54,14 @@ public class PixelArtPost {
     public List<Comment> getComments() {
         return comments;
     }
+
+    public static List<PixelArtPost> makePixelArtPosts() throws JsonProcessingException {
+        List<PixelArtPost> posts = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            posts.add(new PixelArtPost("testTitle", new Grid(), new Person("testPerson")));
+        }
+        return posts;
+    }
+
+
 }

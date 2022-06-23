@@ -2,6 +2,7 @@ package io.gate.mathijswebproject.controllers;
 
 import io.gate.mathijswebproject.entities.Person;
 import io.gate.mathijswebproject.services.PersonService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,14 +18,23 @@ public class PersonController {
         this.personService = personService;
     }
 
-//    @GetMapping()
-//    public List<Person> personIndex(){
-//        return personService.getPersons();
-//    }
-//
-//    @PutMapping()
-//    public ResponseEntity<Person> update(@RequestBody Person newPerson){
-//        personService.update(newPerson);
-//        return ResponseEntity.ok(personService.getPersons);
-//    }
+    @GetMapping()
+    public List<Person> personIndex(){
+        return personService.getPeople();
+    }
+    @GetMapping("/{name}")
+    public List<Person> getByName(@PathVariable String name){
+        return personService.getPeopleByName(name);
+    }
+    @PostMapping()
+    public Person post(@RequestBody Person newPerson){ return personService.savePerson(newPerson);}
+    @PutMapping()
+    public Person update(@RequestBody Person updatedPerson){
+        return personService.savePerson(updatedPerson);
+    }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void Delete(@PathVariable Long id){
+        personService.deletePerson(id);
+    }
 }
