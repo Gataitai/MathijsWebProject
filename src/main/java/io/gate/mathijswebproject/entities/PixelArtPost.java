@@ -48,7 +48,7 @@ public class PixelArtPost {
         return person;
     }
 
-    public Grid getPixelArt() throws JsonProcessingException {
+    public Grid getPixelArtAsJSON() throws JsonProcessingException {
         return Grid.convertJSONToGrid(pixelArtAsJSON);
     }
     public List<Comment> getComments() {
@@ -59,8 +59,8 @@ public class PixelArtPost {
         this.title = title;
     }
 
-    public void setPixelArtAsJSON(String pixelArt){
-        this.pixelArtAsJSON = pixelArt;
+    public void setPixelArtAsJSON(Grid pixelArt) throws JsonProcessingException {
+        this.pixelArtAsJSON = Grid.convertGridToJSON(pixelArt);
     }
 
     public void setPerson(Person person) {

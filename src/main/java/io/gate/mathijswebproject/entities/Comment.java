@@ -36,6 +36,14 @@ public class Comment {
         return text;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public PixelArtPost getPixelArtPost() {
+        return pixelArtPost;
+    }
+
     public void setText(String text) {
         this.text = text;
     }
