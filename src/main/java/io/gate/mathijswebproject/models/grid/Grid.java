@@ -11,43 +11,53 @@ public class Grid {
 
     public Grid(){
         List<Cell> cells = new LinkedList<>();
-
-        for(Position row : Position.values()){
-            for(Position column : Position.values()){
-                Cell cell = new Cell(row.toString(), column.toString());
-                cells.add(cell);
-            }
+        for (int i = 0; i < 256; i++) {
+            Cell cell = new Cell(String.valueOf(i));
+            cells.add(cell);
         }
         this.grid = cells;
     }
+
+//    public Grid(String[] image){
+//        List<Cell> cells = new LinkedList<>();
+//
+//        int imageCounter = 0;
+//        for (int i = 0; i < Position.values().length; i++) {
+//            for (int j = 0; j < Position.values().length; j++) {
+//                String row = Position.values()[i].toString();
+//                String column = Position.values()[j].toString();
+//                cells.add(new Cell(row, column, image[imageCounter]));
+//                imageCounter++;
+//            }
+//        }
+//    }
 
     public List<Cell> getGrid(){
         return this.grid;
     }
 
-    public void updateGridCell(Cell newCell){
-        //stream version
-        int index = grid.indexOf(grid.stream()
-                .filter(gridArea -> gridArea.getRow()
-                        .equals(newCell.getRow()) && gridArea.getColumn()
-                        .equals(newCell.getColumn())).findAny()
-                .orElse(null));
+//    public void updateGridCell(Cell newCell){
+//        //stream version
+//        int index = grid.indexOf(grid.stream()
+//                .filter(gridArea -> gridArea.getRow()
+//                        .equals(newCell.getRow()) && gridArea.getColumn()
+//                        .equals(newCell.getColumn())).findAny()
+//                .orElse(null));
+//
+//        this.grid.set(index, newCell);
+//    }
 
-        this.grid.set(index, newCell);
-    }
-
-    public void updateGrid(Grid newGrid){
-        for (Cell newCell : newGrid.getGrid()) {
-            int index = grid.indexOf(grid.stream()
-                    .filter(gridArea -> gridArea.getRow()
-                            .equals(newCell.getRow()) && gridArea.getColumn()
-                            .equals(newCell.getColumn())).findAny()
-                    .orElse(null));
-
-            this.grid.set(index, newCell);
-        }
-    }
-
+//    public void updateGrid(Grid newGrid){
+//        for (Cell newCell : newGrid.getGrid()) {
+//            int index = grid.indexOf(grid.stream()
+//                    .filter(gridArea -> gridArea.getRow()
+//                            .equals(newCell.getRow()) && gridArea.getColumn()
+//                            .equals(newCell.getColumn())).findAny()
+//                    .orElse(null));
+//
+//            this.grid.set(index, newCell);
+//        }
+//    }
     public static Grid convertJSONToGrid(String json) throws JsonProcessingException {
         ObjectMapper om = new ObjectMapper();
         return om.readValue(json, Grid.class);

@@ -4,41 +4,32 @@ import java.awt.*;
 import java.util.Random;
 
 public class Cell{
-    private String row;
-    private String column;
+    private String id;
     private String color;
 
     public Cell(){
 
     }
-    public Cell(String row, String column) {
-        this.row = row;
-        this.column = column;
+    public Cell(String id) {
+        this.id = id;
         this.color = randomHexColor();
     }
-
     private String randomHexColor(){
         Random random = new Random();
         int nextInt = random.nextInt(0xffffff + 1);
         return String.format("#%06x", nextInt);
     }
-
-    public void setColumn(String column) {
-        this.column = column;
-    }
-    public void setRow(String row) {
-        this.row = row;
-    }
-    public void setColor(String color) {
-        this.color = color;
+    public String getId() {
+        return this.id;
     }
     public String getColor() {
         return this.color;
     }
-    public String getColumn() {
-        return column;
+
+    public void setId(String id) {
+        this.id = id;
     }
-    public String getRow() {
-        return row;
+    public void setColor(String color) {
+        this.color = color;
     }
 }

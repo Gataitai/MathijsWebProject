@@ -44,24 +44,38 @@ public class PixelArtPost {
 
     public String getTitle() { return this.title; }
 
-    public Grid getPixelArt() throws JsonProcessingException {
-        return Grid.convertJSONToGrid(pixelArtAsJSON);
-    }
     public Person getUser() {
         return person;
     }
 
+    public Grid getPixelArt() throws JsonProcessingException {
+        return Grid.convertJSONToGrid(pixelArtAsJSON);
+    }
     public List<Comment> getComments() {
         return comments;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPixelArtAsJSON(String pixelArt){
+        this.pixelArtAsJSON = pixelArt;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     public static List<PixelArtPost> makePixelArtPosts() throws JsonProcessingException {
         List<PixelArtPost> posts = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            posts.add(new PixelArtPost("testTitle", new Grid(), new Person("testPerson")));
+        for (int i = 0; i < 10; i++) {
+            posts.add(new PixelArtPost("testTitle" + i, new Grid(), new Person("testPerson" + i)));
         }
         return posts;
     }
-
-
 }

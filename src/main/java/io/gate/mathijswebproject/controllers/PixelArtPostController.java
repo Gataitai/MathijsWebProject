@@ -23,11 +23,16 @@ public class PixelArtPostController {
     public List<PixelArtPost> pixelArtPostIndex(){
         return pixelArtPostService.getAllPixelArtPosts();
     }
+    @GetMapping("/{id}")
+    public PixelArtPost pixelArtById(@PathVariable Long id){
+        return pixelArtPostService.getPixelArtPostById(id);
+    }
 
     @PutMapping()
-    public PixelArtPost update(@RequestBody PixelArtPost pixelArtPost){
-        return pixelArtPostService.savePost(pixelArtPost);
+    public PixelArtPost update(@RequestBody PixelArtPost newPost){
+        return pixelArtPostService.savePost(newPost);
     }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void Delete(@PathVariable Long id){
