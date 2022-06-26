@@ -1,5 +1,8 @@
 package io.gate.mathijswebproject.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,10 +17,12 @@ public class Comment {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "person_id", nullable = false)
+    @JsonIgnore
     private Person person;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "pixelartpost_id", nullable = false)
+    @JsonIgnore
     private PixelArtPost pixelArtPost;
 
     public Comment(String text) {

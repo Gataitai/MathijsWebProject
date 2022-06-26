@@ -1,5 +1,7 @@
 package io.gate.mathijswebproject.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.gate.mathijswebproject.models.grid.Grid;
 

@@ -22,6 +22,10 @@ public class PersonController {
     public List<Person> personIndex(){
         return personService.getPeople();
     }
+    @GetMapping("/{id}")
+    public Person getById(@PathVariable Long id){
+        return personService.getPersonById(id);
+    }
     @GetMapping("/{name}")
     public List<Person> getByName(@PathVariable String name){
         return personService.getPeopleByName(name);

@@ -22,7 +22,7 @@ public class PixelArtPostService {
     public List<PixelArtPost> getAllPixelArtPosts(){
         return this.pixelArtPostRepository.findAll();
     }
-    public List<PixelArtPost> getPixelArtPostsByName(String name){
+    public List<PixelArtPost> getPixelArtPostByTitleName(String name){
         return this.pixelArtPostRepository.findAllByTitle(name);
     }
     public PixelArtPost getPixelArtPostById(Long id){

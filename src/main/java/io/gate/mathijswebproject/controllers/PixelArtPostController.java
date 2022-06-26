@@ -1,11 +1,10 @@
 package io.gate.mathijswebproject.controllers;
 
-import io.gate.mathijswebproject.entities.Person;
+import io.gate.mathijswebproject.entities.Comment;
 import io.gate.mathijswebproject.entities.PixelArtPost;
-import io.gate.mathijswebproject.services.PersonService;
+import io.gate.mathijswebproject.services.CommentService;
 import io.gate.mathijswebproject.services.PixelArtPostService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,9 +27,18 @@ public class PixelArtPostController {
         return pixelArtPostService.getPixelArtPostById(id);
     }
 
-    @PutMapping()
-    public PixelArtPost update(@RequestBody PixelArtPost newPost){
+    @GetMapping("/{name}")
+    public List<PixelArtPost> pixelArtByTitleName(@PathVariable String name){
+        return pixelArtPostService.getPixelArtPostByTitleName(name);
+    }
+    @PostMapping()
+    public PixelArtPost Post(@RequestBody PixelArtPost newPost){
         return pixelArtPostService.savePost(newPost);
+    }
+
+    @PutMapping()
+    public PixelArtPost update(@RequestBody PixelArtPost updatedPost){
+        return pixelArtPostService.savePost(updatedPost);
     }
 
     @DeleteMapping("/{id}")

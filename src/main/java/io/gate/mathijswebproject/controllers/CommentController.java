@@ -23,9 +23,8 @@ public class CommentController {
     }
 
     @PostMapping()
-    @GetMapping()
-    public List<Comment> CommentsIndex(){
-        return commentService.getComments();
+    public Comment post(@RequestBody Comment newComment){
+        return commentService.saveComment(newComment);
     }
 
     @PutMapping()
