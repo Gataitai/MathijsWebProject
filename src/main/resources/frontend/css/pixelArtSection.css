@@ -1,0 +1,43 @@
+
+
+.pixelArt {
+    display: grid; 
+    grid-template-rows: repeat(16, 1fr);
+    grid-template-columns: repeat(16, 1fr);
+}
+
+.pixel {
+    padding: 50%;
+    transition: all .2s ease-in-out;
+}
+
+.pixel:hover{
+    transform: scale(1.2);
+    background: red;
+}
+
+.pixelArtContainer {
+    padding: 2rem;
+}
+
+.pixelArtContainer .commentButton {
+    float: right;
+    background-color: #4CAF50;
+    color: white;
+    width: 3.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    transition: all .1s ease-in-out;
+}
+
+.pixelArtContainer .commentButton:hover {
+    transform: scale(1.05);
+}
+
+/* for phone screens */
+@media screen and (max-width: 600px) {
+    .pixelArtCard {
+        width: 80vw;
+    }
+}

@@ -1,0 +1,31 @@
+.personChip{
+    height: 2rem;
+    font-size: 1rem;
+    line-height: 3rem;
+}
+
+.personChip img{
+    float: left;
+    margin: 0 0.5rem 0 -1rem;
+    height: 3rem;
+    width: 50px;
+    border-radius: 0.5rem;
+}   
+
+.editButton{
+    float: right;
+    border: none;
+    background-color: rgba(208, 208, 208, 0.696);
+    color: rgb(70, 70, 70);
+    width: 3.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    transition: all .1s ease-in-out;
+}
+
+.editButton:hover{
+    border-radius: 0.5rem;
+    transform: scale(1.05);
+}

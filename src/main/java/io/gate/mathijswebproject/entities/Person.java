@@ -44,6 +44,12 @@ public class Person {
 
     public void setPhotoId(String photoId) { this.photoId = photoId; }
 
+    /**
+     * makes a random number between 1 and 10
+     * the frontend has a folder with with names from 1 to 10 in png format.
+     * the frontend will add .png after the number so it gets a random photo.
+     * @return
+     */
     private int randomPhotoId(){
         Random random = new Random();
         return random.nextInt(10 - 1 + 1) + 1;
