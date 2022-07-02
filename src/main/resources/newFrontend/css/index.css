@@ -1,0 +1,50 @@
+body{
+    display: grid;
+    grid-template-areas:
+    "nav nav"
+    "art info"
+    "foot foot";
+    gap: 1rem;
+}
+
+nav{
+    grid-area: nav;
+}
+
+footer{
+    grid-area: foot;
+    padding: 0.5rem;
+    margin-top: 3rem;
+    background-color: rgb(235, 233, 233);
+    text-align: center;
+}
+
+footer p{
+    display: block;
+    color: rgb(98, 98, 98);
+    text-align: center;
+    text-decoration: none;
+  }
+
+.pixelArtList{
+    grid-area: art;
+    display: grid;
+    justify-content: right;
+    gap: 1rem;
+}
+
+.pixelArtList .card {
+    width: 40vw;
+}
+
+.userInfo{
+    grid-area: info;    
+}
+
+.userInfo .userInfoContainer{
+    display: grid;
+    justify-content: left;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 2rem;
+}

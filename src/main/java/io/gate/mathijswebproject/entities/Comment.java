@@ -2,6 +2,8 @@ package io.gate.mathijswebproject.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import io.gate.mathijswebproject.views.Views;
 
 import javax.persistence.*;
 
@@ -11,17 +13,21 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
+    @JsonView(Views.Public.class)
     private long id;
+
     @Column
+    @JsonView(Views.Public.class)
     private String text;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "person_id", nullable = false)
-    @JsonIgnore
     private Person person;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "pixelartpost_id", nullable = false)
-    @JsonIgnore
     private PixelArtPost pixelArtPost;
+
     public Comment(String text) {
         this.text = text;
     }
