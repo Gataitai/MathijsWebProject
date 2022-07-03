@@ -1,8 +1,10 @@
 package io.gate.mathijswebproject.controllers;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import io.gate.mathijswebproject.entities.Comment;
 import io.gate.mathijswebproject.entities.Person;
 import io.gate.mathijswebproject.services.CommentService;
+import io.gate.mathijswebproject.views.Views;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,7 @@ public class CommentController {
     }
 
     @GetMapping()
+    @JsonView(Views.Public.class)
     public List<Comment> commentsIndex(){
         return commentService.getComments();
     }

@@ -15,21 +15,26 @@ public class Comment {
     @Column
     @JsonView(Views.Public.class)
     private long id;
-
     @Column
     @JsonView(Views.Public.class)
     private String text;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     @JoinColumn(name = "person_id", nullable = false)
+    @JsonView(Views.Public.class)
     private Person person;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     @JoinColumn(name = "pixelartpost_id", nullable = false)
+    @JsonView(Views.Internal.class)
     private PixelArtPost pixelArtPost;
-
-    public Comment(String text) {
+    public Comment(String text, Person person) {
         this.text = text;
+        this.person = person;
+    }
+
+    public Comment(String text, Person person, PixelArtPost pixelArtPost) {
+        this.text = text;
+        this.person = person;
+        this.pixelArtPost = pixelArtPost;
     }
     public Comment() {
     }

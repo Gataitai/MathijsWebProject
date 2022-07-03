@@ -1,57 +1,67 @@
 package io.gate.mathijswebproject.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import io.gate.mathijswebproject.views.Views;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Random;
 
 @Entity
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
+    @JsonView(Views.Public.class)
     private Long id;
     @Column
-    private String photoId;
+    @JsonView(Views.Public.class)
+    private String photoLink;
     @Column
+    @JsonView(Views.Public.class)
     private String name;
 
     @OneToMany(mappedBy = "person")
+    @JsonView(Views.Internal.class)
     private List<PixelArtPost> pixelArtPosts;
 
     @OneToMany(mappedBy = "person")
+    @JsonView(Views.Internal.class)
     private List<Comment> comments;
 
     public Person(String name) {
         this.name = name;
-        this.photoId = String.valueOf(randomPhotoId());
+        this.photoLink = "https://cdn.discordapp.com/attachments/605115690931847172/992802154437943356/8.png";
     }
-
-    public Person() {
+    public Person(){
     }
-    public Long getId() { return id; }
-
-    public String getPhotoId() {return photoId; }
-    public String getName() {
-        return name;
+    public Long getId(){
+        return this.id;
     }
-
-    public void setName(String userName) {
+    public String getPhotoLink(){
+        return this.photoLink;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public List<PixelArtPost> getPixelArtPosts() {
+        return this.pixelArtPosts;
+    }
+    public List<Comment> getComments(){
+        return this.comments;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public void setName(String userName){
         this.name = userName;
     }
-
-    public void setPhotoId(String photoId) { this.photoId = photoId; }
-
-    /**
-     * makes a random number between 1 and 10
-     * the frontend has a folder with with names from 1 to 10 in png format.
-     * the frontend will add .png after the number so it gets a random photo.
-     * @return
-     */
-    private int randomPhotoId(){
-        Random random = new Random();
-        return random.nextInt(10 - 1 + 1) + 1;
+    public void setPhotoLink(String photoLink){
+        this.photoLink = photoLink;
+    }
+    public void setPixelArtPosts(List<PixelArtPost> pixelArtPosts) {
+        this.pixelArtPosts = pixelArtPosts;
+    }
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

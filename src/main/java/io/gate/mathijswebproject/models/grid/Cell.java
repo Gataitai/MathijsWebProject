@@ -1,12 +1,16 @@
 package io.gate.mathijswebproject.models.grid;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import io.gate.mathijswebproject.views.Views;
+
 import java.awt.*;
 import java.util.Random;
 
 public class Cell{
+    @JsonView(Views.Public.class)
     private String id;
+    @JsonView(Views.Public.class)
     private String color;
-
     public Cell(){
 
     }
@@ -25,7 +29,6 @@ public class Cell{
     public String getColor() {
         return this.color;
     }
-
     public void setId(String id) {
         this.id = id;
     }
