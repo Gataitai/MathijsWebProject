@@ -13,18 +13,18 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Id.class)
     private long id;
     @Column
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Comment.class)
     private String text;
     @ManyToOne()
     @JoinColumn(name = "person_id", nullable = false)
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Comment.class)
     private Person person;
     @ManyToOne()
     @JoinColumn(name = "pixelartpost_id", nullable = false)
-    @JsonView(Views.Internal.class)
+    @JsonView(Views.Comment.class)
     private PixelArtPost pixelArtPost;
     public Comment(String text, Person person) {
         this.text = text;

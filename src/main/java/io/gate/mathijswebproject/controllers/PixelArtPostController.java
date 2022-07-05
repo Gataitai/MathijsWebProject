@@ -21,17 +21,17 @@ public class PixelArtPostController {
         this.pixelArtPostService = pixelArtPostService;
     }
     @GetMapping()
-    @JsonView(Views.Public.class)
+    @JsonView(Views.PixelArtPost.class)
     public List<PixelArtPost> pixelArtPostIndex(){
         return pixelArtPostService.getAllPixelArtPosts();
     }
     @GetMapping("/{id}")
-    @JsonView(Views.Public.class)
+    @JsonView(Views.PixelArtPost.class)
     public PixelArtPost pixelArtById(@PathVariable Long id){
         return pixelArtPostService.getPixelArtPostById(id);
     }
     @GetMapping("/{name}")
-    @JsonView(Views.Public.class)
+    @JsonView(Views.PixelArtPost.class)
     public List<PixelArtPost> pixelArtByTitleName(@PathVariable String name){
         return pixelArtPostService.getPixelArtPostByTitleName(name);
     }

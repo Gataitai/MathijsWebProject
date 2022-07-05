@@ -1,8 +1,12 @@
 package io.gate.mathijswebproject.views;
 
 public class Views {
-    public static class Public{
+    public static class Id{
     }
-    public static class Internal extends Public {
+    public static class Comment extends Id{
+    }
+    public static class Person extends Id {
+    }
+    public static class PixelArtPost extends Id{
     }
 }

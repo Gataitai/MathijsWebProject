@@ -1,4 +1,4 @@
-package io.gate.mathijswebproject.models.grid;
+package io.gate.mathijswebproject.models;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,7 +8,7 @@ import io.gate.mathijswebproject.views.Views;
 import java.util.*;
 
 public class Grid {
-    @JsonView(Views.Public.class)
+    @JsonView(Views.PixelArtPost.class)
     private List<Cell> grid;
 
     public Grid(){

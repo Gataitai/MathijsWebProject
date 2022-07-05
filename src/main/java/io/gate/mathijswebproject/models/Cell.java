@@ -1,4 +1,4 @@
-package io.gate.mathijswebproject.models.grid;
+package io.gate.mathijswebproject.models;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import io.gate.mathijswebproject.views.Views;
@@ -7,9 +7,9 @@ import java.awt.*;
 import java.util.Random;
 
 public class Cell{
-    @JsonView(Views.Public.class)
+    @JsonView(Views.PixelArtPost.class)
     private String id;
-    @JsonView(Views.Public.class)
+    @JsonView(Views.PixelArtPost.class)
     private String color;
     public Cell(){
 

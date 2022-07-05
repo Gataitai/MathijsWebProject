@@ -21,17 +21,17 @@ public class PersonController {
     }
 
     @GetMapping()
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Person.class)
     public List<Person> getPeople(){
         return personService.getPeople();
     }
     @GetMapping("/{id}")
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Person.class)
     public Person getById(@PathVariable Long id){
         return personService.getPersonById(id);
     }
     @GetMapping("/{name}")
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Person.class)
     public List<Person> getByName(@PathVariable String name){
         return personService.getPeopleByName(name);
     }

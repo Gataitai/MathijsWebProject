@@ -20,7 +20,7 @@ public class CommentController {
     }
 
     @GetMapping()
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Comment.class)
     public List<Comment> commentsIndex(){
         return commentService.getComments();
     }

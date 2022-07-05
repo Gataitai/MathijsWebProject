@@ -1,15 +1,11 @@
 package io.gate.mathijswebproject.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import io.gate.mathijswebproject.models.grid.Grid;
+import io.gate.mathijswebproject.models.Grid;
 import io.gate.mathijswebproject.views.Views;
 
 import javax.persistence.*;
-import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,20 +15,20 @@ public class PixelArtPost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Id.class)
     private Long id;
     @Column
-    @JsonView(Views.Public.class)
+    @JsonView(Views.PixelArtPost.class)
     private String title;
     @Column(length = 11018)
-    @JsonView(Views.Public.class)
+    @JsonView(Views.PixelArtPost.class)
     private String pixelArtAsJSON;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "person_id", nullable = false)
-    @JsonView(Views.Public.class)
+    @JsonView(Views.PixelArtPost.class)
     private Person person;
     @OneToMany(mappedBy = "pixelArtPost")
-    @JsonView(Views.Public.class)
+    @JsonView(Views.PixelArtPost.class)
     private List<Comment> comments;
     public PixelArtPost() {
     }
