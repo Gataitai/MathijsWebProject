@@ -15,26 +15,25 @@ import java.util.List;
 @RestController()
 @RequestMapping("/posts")
 public class PixelArtPostController {
-    private PixelArtPostService pixelArtPostService;
+
+    private final PixelArtPostService pixelArtPostService;
 
     private PixelArtPostController(PixelArtPostService pixelArtPostService){
         this.pixelArtPostService = pixelArtPostService;
     }
+
     @GetMapping()
-    @JsonView(Views.PixelArtPost.class)
+    @JsonView(Views.Public.class)
     public List<PixelArtPost> pixelArtPostIndex(){
         return pixelArtPostService.getAllPixelArtPosts();
     }
+
     @GetMapping("/{id}")
-    @JsonView(Views.PixelArtPost.class)
+    @JsonView(Views.Public.class)
     public PixelArtPost pixelArtById(@PathVariable Long id){
         return pixelArtPostService.getPixelArtPostById(id);
     }
-    @GetMapping("/{name}")
-    @JsonView(Views.PixelArtPost.class)
-    public List<PixelArtPost> pixelArtByTitleName(@PathVariable String name){
-        return pixelArtPostService.getPixelArtPostByTitleName(name);
-    }
+
     @PostMapping()
     public PixelArtPost Post(@RequestBody PixelArtPost newPost){
         return pixelArtPostService.savePost(newPost);

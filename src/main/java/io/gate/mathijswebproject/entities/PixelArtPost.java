@@ -15,21 +15,25 @@ public class PixelArtPost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    @JsonView(Views.Id.class)
+    @JsonView(Views.Public.class)
     private Long id;
+
     @Column
-    @JsonView(Views.PixelArtPost.class)
+    @JsonView(Views.Public.class)
     private String title;
+
     @Column(length = 11018)
-    @JsonView(Views.PixelArtPost.class)
+    @JsonView(Views.Public.class)
     private String pixelArtAsJSON;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "person_id", nullable = false)
-    @JsonView(Views.PixelArtPost.class)
+    @JsonView(Views.Public.class)
     private Person person;
+
     @OneToMany(mappedBy = "pixelArtPost")
-    @JsonView(Views.PixelArtPost.class)
     private List<Comment> comments;
+
     public PixelArtPost() {
     }
     public PixelArtPost(String title, Grid grid, Person person) throws JsonProcessingException {
@@ -37,6 +41,7 @@ public class PixelArtPost {
         this.pixelArtAsJSON = Grid.convertGridToJSON(grid);
         this.person = person;
     }
+
     public Long getId() {
         return id;
     }

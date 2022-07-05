@@ -18,19 +18,16 @@ import java.util.Optional;
 
 @Service
 public class PixelArtPostService {
-    private PixelArtPostRepository pixelArtPostRepository;
-    private CommentRepository commentRepository;
-    private PersonRepository personRepository;
+    private final PixelArtPostRepository pixelArtPostRepository;
+
     public PixelArtPostService(PixelArtPostRepository pixelArtPostRepository, CommentRepository commentRepository, PersonRepository personRepository) throws JsonProcessingException {
         this.pixelArtPostRepository = pixelArtPostRepository;
-        this.commentRepository = commentRepository;
-        this.personRepository = personRepository;
         this.pixelArtPostRepository.saveAll(PixelArtPost.makePixelArtPosts());
         //making test comments;
         for (int i = 1; i < 11; i++) {
-            PixelArtPost post = getPixelArtPostById(Long.valueOf(i));
+            PixelArtPost post = getPixelArtPostById((long) i);
 
-            Optional<Person> optionalPerson = personRepository.findById(Long.valueOf(i));
+            Optional<Person> optionalPerson = personRepository.findById((long) i);
 
             Person person = new Person();
             person.setId(optionalPerson.get().getId());
@@ -46,15 +43,19 @@ public class PixelArtPostService {
     public List<PixelArtPost> getAllPixelArtPosts(){
         return this.pixelArtPostRepository.findAll();
     }
+
     public List<PixelArtPost> getPixelArtPostByTitleName(String name){
         return this.pixelArtPostRepository.findAllByTitle(name);
     }
+
     public PixelArtPost getPixelArtPostById(Long id){
         return this.pixelArtPostRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found!"));
     }
+
     public PixelArtPost savePost(PixelArtPost pixelArtPost){
         return this.pixelArtPostRepository.save(pixelArtPost);
     }
+
     public void deletePost(Long id){
         this.pixelArtPostRepository.delete(getPixelArtPostById(id));
     }

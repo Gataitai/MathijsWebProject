@@ -11,21 +11,21 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    @JsonView(Views.Id.class)
+    @JsonView(Views.Public.class)
     private Long id;
+
     @Column
-    @JsonView(Views.Person.class)
+    @JsonView(Views.Public.class)
     private String photoLink;
+
     @Column
-    @JsonView(Views.Person.class)
+    @JsonView(Views.Public.class)
     private String name;
 
     @OneToMany(mappedBy = "person")
-    @JsonView(Views.Person.class)
     private List<PixelArtPost> pixelArtPosts;
 
     @OneToMany(mappedBy = "person")
-    @JsonView(Views.Person.class)
     private List<Comment> comments;
 
     public Person(String name) {

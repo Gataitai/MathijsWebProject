@@ -24,12 +24,15 @@ public class CommentService {
     public List<Comment> allCommentsFromPixelArtPostById(Long id){
         return this.commentRepository.findAllByPixelArtPostId(id);
     }
+
     public List<Comment> allCommentsFromPersonById(Long id){
         return this.commentRepository.findAllByPersonId(id);
     }
+
     public Comment saveComment(Comment comment){
         return  this.commentRepository.save(comment);
     }
+
     public void deleteComment(Long id){
         this.commentRepository.delete(getCommentById(id));
     }

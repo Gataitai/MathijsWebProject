@@ -14,15 +14,23 @@ import java.util.List;
 @RestController()
 @RequestMapping("/comments")
 public class CommentController {
+
     private CommentService commentService;
+
     public CommentController(CommentService commentService){
         this.commentService = commentService;
     }
 
     @GetMapping()
-    @JsonView(Views.Comment.class)
+    @JsonView(Views.Public.class)
     public List<Comment> commentsIndex(){
         return commentService.getComments();
+    }
+
+    @GetMapping("post/{id}")
+    @JsonView(Views.Public.class)
+    public List<Comment> commentsByPixelArtId(@PathVariable Long id){
+        return commentService.allCommentsFromPixelArtPostById(id);
     }
 
     @PostMapping()

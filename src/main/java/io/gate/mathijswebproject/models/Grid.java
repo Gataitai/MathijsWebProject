@@ -8,7 +8,7 @@ import io.gate.mathijswebproject.views.Views;
 import java.util.*;
 
 public class Grid {
-    @JsonView(Views.PixelArtPost.class)
+    @JsonView(Views.Public.class)
     private List<Cell> grid;
 
     public Grid(){

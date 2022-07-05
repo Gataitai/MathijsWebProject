@@ -7,9 +7,9 @@ import java.awt.*;
 import java.util.Random;
 
 public class Cell{
-    @JsonView(Views.PixelArtPost.class)
+    @JsonView(Views.Public.class)
     private String id;
-    @JsonView(Views.PixelArtPost.class)
+    @JsonView(Views.Public.class)
     private String color;
     public Cell(){
 
