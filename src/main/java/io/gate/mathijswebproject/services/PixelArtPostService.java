@@ -44,8 +44,12 @@ public class PixelArtPostService {
         return this.pixelArtPostRepository.findAll();
     }
 
-    public List<PixelArtPost> getPixelArtPostByTitleName(String name){
-        return this.pixelArtPostRepository.findAllByTitle(name);
+    public List<PixelArtPost> getPixelArtPostByTitleName(String title){
+        return this.pixelArtPostRepository.findAllByTitle(title);
+    }
+
+    public List<PixelArtPost> getPixelArtPostByPersonName(String name){
+        return this.pixelArtPostRepository.findAllByPersonName(name);
     }
 
     public PixelArtPost getPixelArtPostById(Long id){

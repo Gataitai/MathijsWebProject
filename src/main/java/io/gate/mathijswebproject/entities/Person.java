@@ -37,30 +37,39 @@ public class Person {
     public Long getId(){
         return this.id;
     }
+
     public String getPhotoLink(){
         return this.photoLink;
     }
+
     public String getName(){
         return this.name;
     }
+
     public List<PixelArtPost> getPixelArtPosts() {
         return this.pixelArtPosts;
     }
+
     public List<Comment> getComments(){
         return this.comments;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public void setName(String userName){
         this.name = userName;
     }
+
     public void setPhotoLink(String photoLink){
         this.photoLink = photoLink;
     }
+
     public void setPixelArtPosts(List<PixelArtPost> pixelArtPosts) {
         this.pixelArtPosts = pixelArtPosts;
     }
+
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }

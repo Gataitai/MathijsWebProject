@@ -34,6 +34,18 @@ public class PixelArtPostController {
         return pixelArtPostService.getPixelArtPostById(id);
     }
 
+    @GetMapping("/title")
+    @JsonView(Views.Public.class)
+    public List<PixelArtPost> pixelArtByTitle(@RequestParam String title){
+        return pixelArtPostService.getPixelArtPostByTitleName(title);
+    }
+
+    @GetMapping("/person")
+    @JsonView(Views.Public.class)
+    public List<PixelArtPost> pixelArtByPersonName(@RequestParam String name){
+        return pixelArtPostService.getPixelArtPostByPersonName(name);
+    }
+
     @PostMapping()
     public PixelArtPost Post(@RequestBody PixelArtPost newPost){
         return pixelArtPostService.savePost(newPost);

@@ -11,5 +11,8 @@ import java.util.List;
 public interface PixelArtPostRepository  extends CrudRepository<PixelArtPost, Long> {
     @Override
     List<PixelArtPost> findAll();
+
     List<PixelArtPost> findAllByTitle(String title);
+
+    List<PixelArtPost> findAllByPersonName(String name);
 }

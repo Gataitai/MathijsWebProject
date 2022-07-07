@@ -11,6 +11,8 @@ import java.util.List;
 public interface CommentRepository extends CrudRepository<Comment, Long> {
     @Override
     List<Comment> findAll();
+
     List<Comment> findAllByPersonId(Long id);
+
     List<Comment> findAllByPixelArtPostId(Long id);
 }

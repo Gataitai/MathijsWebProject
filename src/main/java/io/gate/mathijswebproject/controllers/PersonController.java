@@ -33,9 +33,9 @@ public class PersonController {
         return personService.getPersonById(id);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/name")
     @JsonView(Views.Public.class)
-    public List<Person> getByName(@PathVariable String name){
+    public List<Person> getByName(@RequestParam String name){
         return personService.getPeopleByName(name);
     }
 
