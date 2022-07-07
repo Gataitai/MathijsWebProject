@@ -36,6 +36,7 @@ public class PixelArtPost {
 
     public PixelArtPost() {
     }
+
     public PixelArtPost(String title, Grid grid, Person person) throws JsonProcessingException {
         this.title = title;
         this.pixelArtAsJSON = Grid.convertGridToJSON(grid);
@@ -55,6 +56,7 @@ public class PixelArtPost {
     public Grid getPixelArtAsJSON() throws JsonProcessingException {
         return Grid.convertJSONToGrid(pixelArtAsJSON);
     }
+
     public List<Comment> getComments() {
         return comments;
     }
@@ -74,6 +76,7 @@ public class PixelArtPost {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
     public void setComment(Comment comment){
         this.comments.add(comment);
     }
@@ -81,7 +84,7 @@ public class PixelArtPost {
     public static List<PixelArtPost> makePixelArtPosts() throws JsonProcessingException {
         List<PixelArtPost> posts = new ArrayList<>();
         for (int i = 1; i < 11; i++) {
-            PixelArtPost newPost = new PixelArtPost("testTitle" + i, new Grid(), new Person("testPerson" + i));
+            PixelArtPost newPost = new PixelArtPost("testTitle" + i, new Grid(), new Person("testPerson" + i, "https://cdn.discordapp.com/attachments/605115690931847172/992802154437943356/8.png"));
             posts.add(newPost);
         }
         return posts;

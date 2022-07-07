@@ -28,12 +28,14 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Comment> comments;
 
-    public Person(String name) {
-        this.name = name;
-        this.photoLink = "https://cdn.discordapp.com/attachments/605115690931847172/992802154437943356/8.png";
-    }
     public Person(){
     }
+
+    public Person(String name, String photoLink) {
+        this.name = name;
+        this.photoLink = photoLink;
+    }
+
     public Long getId(){
         return this.id;
     }
