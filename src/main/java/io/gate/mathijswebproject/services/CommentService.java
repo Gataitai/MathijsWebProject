@@ -10,15 +10,19 @@ import java.util.List;
 @Service
 public class CommentService {
     private final CommentRepository commentRepository;
+
     public CommentService(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
     }
+
     public List<Comment> getComments(){
         return this.commentRepository.findAll();
     }
+
     public Comment getCommentById(Long id){
         return this.commentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Comment with id " + id + " not found!"));
     }
+
     public List<Comment> allCommentsFromPixelArtPostById(Long id){
         return this.commentRepository.findAllByPixelArtPostId(id);
     }

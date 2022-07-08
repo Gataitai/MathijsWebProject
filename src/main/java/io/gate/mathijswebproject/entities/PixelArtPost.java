@@ -31,7 +31,7 @@ public class PixelArtPost {
     @JsonView(Views.Public.class)
     private Person person;
 
-    @OneToMany(mappedBy = "pixelArtPost")
+    @OneToMany(mappedBy = "pixelArtPost", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
     public PixelArtPost() {
@@ -49,7 +49,7 @@ public class PixelArtPost {
 
     public String getTitle() { return this.title; }
 
-    public Person getUser() {
+    public Person getPerson() {
         return person;
     }
 
@@ -62,23 +62,33 @@ public class PixelArtPost {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        if(title != null){
+            this.title = title;
+        }
     }
 
     public void setPixelArtAsJSON(Grid pixelArt) throws JsonProcessingException {
-        this.pixelArtAsJSON = Grid.convertGridToJSON(pixelArt);
+        if(pixelArt != null){
+            this.pixelArtAsJSON = Grid.convertGridToJSON(pixelArt);
+        }
     }
 
     public void setPerson(Person person) {
-        this.person = person;
+        if(person != null){
+            this.person = person;
+        }
     }
 
     public void setComments(List<Comment> comments) {
-        this.comments = comments;
+        if(comments != null){
+            this.comments = comments;
+        }
     }
 
     public void setComment(Comment comment){
-        this.comments.add(comment);
+        if(comment != null){
+            this.comments.add(comment);
+        }
     }
 
     public static List<PixelArtPost> makePixelArtPosts() throws JsonProcessingException {

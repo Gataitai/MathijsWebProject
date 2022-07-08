@@ -14,8 +14,7 @@ import java.util.List;
 @RestController()
 @RequestMapping("/people")
 public class PersonController {
-
-    private PersonService personService;
+    private final PersonService personService;
 
     private PersonController(PersonService personService){
         this.personService = personService;
@@ -40,11 +39,13 @@ public class PersonController {
     }
 
     @PostMapping()
+    @JsonView(Views.Public.class)
     public Person post(@RequestBody Person newPerson){ return personService.savePerson(newPerson);}
 
-    @PutMapping()
-    public Person update(@RequestBody Person updatedPerson){
-        return personService.savePerson(updatedPerson);
+    @PutMapping("/{id}")
+    @JsonView(Views.Public.class)
+    public Person update(@PathVariable Long id, @RequestBody Person updatedPerson){
+        return personService.updatePerson(id, updatedPerson);
     }
 
     @DeleteMapping("/{id}")

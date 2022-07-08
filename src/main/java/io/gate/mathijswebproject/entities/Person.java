@@ -22,10 +22,10 @@ public class Person {
     @JsonView(Views.Public.class)
     private String name;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PixelArtPost> pixelArtPosts;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
     public Person(){
@@ -61,11 +61,15 @@ public class Person {
     }
 
     public void setName(String userName){
-        this.name = userName;
+        if(userName != null){
+            this.name = userName;
+        }
     }
 
     public void setPhotoLink(String photoLink){
-        this.photoLink = photoLink;
+        if(photoLink != null){
+            this.photoLink = photoLink;
+        }
     }
 
     public void setPixelArtPosts(List<PixelArtPost> pixelArtPosts) {

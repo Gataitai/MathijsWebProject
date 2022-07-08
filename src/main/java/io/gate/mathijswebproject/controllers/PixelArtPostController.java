@@ -1,6 +1,7 @@
 package io.gate.mathijswebproject.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.gate.mathijswebproject.entities.Comment;
 import io.gate.mathijswebproject.entities.PixelArtPost;
 import io.gate.mathijswebproject.services.CommentService;
@@ -47,13 +48,15 @@ public class PixelArtPostController {
     }
 
     @PostMapping()
+    @JsonView(Views.Public.class)
     public PixelArtPost Post(@RequestBody PixelArtPost newPost){
         return pixelArtPostService.savePost(newPost);
     }
 
-    @PutMapping()
-    public PixelArtPost update(@RequestBody PixelArtPost updatedPost){
-        return pixelArtPostService.savePost(updatedPost);
+    @PutMapping("/{id}")
+    @JsonView(Views.Public.class)
+    public PixelArtPost update(@PathVariable Long id,@RequestBody PixelArtPost updatedPost) throws JsonProcessingException {
+        return pixelArtPostService.updatePost(id, updatedPost);
     }
 
     @DeleteMapping("/{id}")

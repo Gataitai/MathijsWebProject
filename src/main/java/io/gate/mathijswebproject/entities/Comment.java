@@ -53,14 +53,20 @@ public class Comment {
     }
 
     public void setText(String text) {
-        this.text = text;
+        if(text != null){
+            this.text = text;
+        }
     }
 
     public void setPerson(Person person) {
-        this.person = person;
+        if(person != null){
+            this.person = person;
+        }
     }
 
     public void setPixelArtPost(PixelArtPost pixelArtPost) {
-        this.pixelArtPost = pixelArtPost;
+        if(pixelArtPost != null){
+            this.pixelArtPost = pixelArtPost;
+        }
     }
 }

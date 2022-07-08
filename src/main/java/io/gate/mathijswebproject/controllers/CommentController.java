@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/comments")
 public class CommentController {
 
-    private CommentService commentService;
+    private final CommentService commentService;
 
     public CommentController(CommentService commentService){
         this.commentService = commentService;
@@ -34,11 +34,13 @@ public class CommentController {
     }
 
     @PostMapping()
+    @JsonView(Views.Public.class)
     public Comment post(@RequestBody Comment newComment){
         return commentService.saveComment(newComment);
     }
 
     @PutMapping()
+    @JsonView(Views.Public.class)
     public Comment update(@RequestBody Comment updatedComment){
         return commentService.saveComment(updatedComment);
     }

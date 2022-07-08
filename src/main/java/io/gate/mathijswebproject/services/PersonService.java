@@ -32,6 +32,13 @@ public class PersonService {
         return this.personRepository.save(person);
     }
 
+    public Person updatePerson(Long id, Person updatedPerson){
+        Person p = getPersonById(id);
+        p.setName(updatedPerson.getName());
+        p.setPhotoLink(updatedPerson.getPhotoLink());
+        return this.personRepository.save(p);
+    }
+
     public void deletePerson(Long id){
         this.personRepository.delete(getPersonById(id));
     }

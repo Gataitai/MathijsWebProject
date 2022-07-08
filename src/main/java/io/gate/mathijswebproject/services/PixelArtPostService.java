@@ -28,13 +28,7 @@ public class PixelArtPostService {
             PixelArtPost post = getPixelArtPostById((long) i);
 
             Optional<Person> optionalPerson = personRepository.findById((long) i);
-
-            Person person = new Person();
-            person.setId(optionalPerson.get().getId());
-            person.setPhotoLink(optionalPerson.get().getPhotoLink());
-            person.setName(optionalPerson.get().getName());
-            person.setPixelArtPosts(optionalPerson.get().getPixelArtPosts());
-            person.setComments(optionalPerson.get().getComments());
+            Person person = optionalPerson.orElse(new Person());
 
             Comment comment = new Comment("Commenting on myself. From: " + person.getName(), person, post);
             commentRepository.save(comment);
@@ -57,6 +51,13 @@ public class PixelArtPostService {
     }
 
     public PixelArtPost savePost(PixelArtPost pixelArtPost){
+        return this.pixelArtPostRepository.save(pixelArtPost);
+    }
+
+    public PixelArtPost updatePost(Long id, PixelArtPost updatedPost) throws JsonProcessingException {
+        PixelArtPost pixelArtPost = getPixelArtPostById(id);
+        pixelArtPost.setTitle(updatedPost.getTitle());
+        pixelArtPost.setPixelArtAsJSON(updatedPost.getPixelArtAsJSON());
         return this.pixelArtPostRepository.save(pixelArtPost);
     }
 
