@@ -37,10 +37,10 @@ public class PixelArtPost {
     public PixelArtPost() {
     }
 
-    public PixelArtPost(String title, Grid grid, Person person) throws JsonProcessingException {
+    public PixelArtPost(String title, Grid grid, Person person){
         this.title = title;
-        this.pixelArtAsJSON = Grid.convertGridToJSON(grid);
         this.person = person;
+        setPixelArtAsJSON(grid);
     }
 
     public Long getId() {
@@ -53,11 +53,8 @@ public class PixelArtPost {
         return person;
     }
 
-    public Grid getPixelArtAsJSON() throws JsonProcessingException {
-        if(this.pixelArtAsJSON != null){
-            return Grid.convertJSONToGrid(this.pixelArtAsJSON);
-        }
-        return null;
+    public Grid getPixelArtAsJSON(){
+        return Grid.convertJSONToGrid(this.pixelArtAsJSON);
     }
 
     public List<Comment> getComments() {
@@ -70,7 +67,7 @@ public class PixelArtPost {
         }
     }
 
-    public void setPixelArtAsJSON(Grid pixelArt) throws JsonProcessingException {
+    public void setPixelArtAsJSON(Grid pixelArt){
         if(pixelArt != null){
             this.pixelArtAsJSON = Grid.convertGridToJSON(pixelArt);
         }
@@ -94,7 +91,7 @@ public class PixelArtPost {
         }
     }
 
-    public static List<PixelArtPost> makePixelArtPosts() throws JsonProcessingException {
+    public static List<PixelArtPost> makePixelArtPosts(){
         List<PixelArtPost> posts = new ArrayList<>();
         for (int i = 1; i < 11; i++) {
             PixelArtPost newPost = new PixelArtPost("testTitle" + i, new Grid(), new Person("testPerson" + i, "https://cdn.discordapp.com/attachments/605115690931847172/992802154437943356/8.png"));

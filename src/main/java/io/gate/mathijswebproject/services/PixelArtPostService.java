@@ -20,7 +20,7 @@ import java.util.Optional;
 public class PixelArtPostService {
     private final PixelArtPostRepository pixelArtPostRepository;
 
-    public PixelArtPostService(PixelArtPostRepository pixelArtPostRepository, CommentRepository commentRepository, PersonRepository personRepository) throws JsonProcessingException {
+    public PixelArtPostService(PixelArtPostRepository pixelArtPostRepository, CommentRepository commentRepository, PersonRepository personRepository){
         this.pixelArtPostRepository = pixelArtPostRepository;
         this.pixelArtPostRepository.saveAll(PixelArtPost.makePixelArtPosts());
         //making test comments;
@@ -54,7 +54,7 @@ public class PixelArtPostService {
         return this.pixelArtPostRepository.save(pixelArtPost);
     }
 
-    public PixelArtPost updatePixelArtPost(Long id, PixelArtPost updatedPost) throws JsonProcessingException {
+    public PixelArtPost updatePixelArtPost(Long id, PixelArtPost updatedPost){
         PixelArtPost pixelArtPost = getPixelArtPostById(id);
         pixelArtPost.setTitle(updatedPost.getTitle());
         pixelArtPost.setPixelArtAsJSON(updatedPost.getPixelArtAsJSON());

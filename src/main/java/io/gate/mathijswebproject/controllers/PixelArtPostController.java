@@ -55,7 +55,7 @@ public class PixelArtPostController {
 
     @PutMapping("/{id}")
     @JsonView(Views.Public.class)
-    public PixelArtPost update(@PathVariable Long id, @RequestBody PixelArtPost updatedPost) throws JsonProcessingException {
+    public PixelArtPost update(@PathVariable Long id, @RequestBody PixelArtPost updatedPost){
         return pixelArtPostService.updatePixelArtPost(id, updatedPost);
     }
 

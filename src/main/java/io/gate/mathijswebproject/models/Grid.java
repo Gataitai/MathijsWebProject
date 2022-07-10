@@ -2,6 +2,7 @@ package io.gate.mathijswebproject.models;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.gate.mathijswebproject.views.Views;
 
@@ -24,14 +25,26 @@ public class Grid {
         return this.grid;
     }
 
-    public static Grid convertJSONToGrid(String json) throws JsonProcessingException {
-        ObjectMapper om = new ObjectMapper();
-        return om.readValue(json, Grid.class);
+    public static Grid convertJSONToGrid(String json){
+        if(json != null){
+            try{
+                ObjectMapper om = new ObjectMapper();
+                return om.readValue(json, Grid.class);
+            } catch (JsonProcessingException e) {
+                System.err.println(e);
+            }
+        }
+        return null;
     }
 
-    public static String convertGridToJSON(Grid grid) throws JsonProcessingException {
-        ObjectMapper om = new ObjectMapper();
-        return om.writeValueAsString(grid);
+    public static String convertGridToJSON(Grid grid){
+        try {
+            ObjectMapper om = new ObjectMapper();
+            return om.writeValueAsString(grid);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }
