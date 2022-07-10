@@ -5,7 +5,6 @@ import io.gate.mathijswebproject.exceptions.ResourceNotFoundException;
 import io.gate.mathijswebproject.repositories.PersonRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

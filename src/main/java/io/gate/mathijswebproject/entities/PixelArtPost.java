@@ -54,7 +54,10 @@ public class PixelArtPost {
     }
 
     public Grid getPixelArtAsJSON() throws JsonProcessingException {
-        return Grid.convertJSONToGrid(pixelArtAsJSON);
+        if(this.pixelArtAsJSON != null){
+            return Grid.convertJSONToGrid(this.pixelArtAsJSON);
+        }
+        return null;
     }
 
     public List<Comment> getComments() {

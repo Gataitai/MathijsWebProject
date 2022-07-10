@@ -57,6 +57,7 @@ public class PixelArtPostService {
     public PixelArtPost updatePixelArtPost(Long id, PixelArtPost updatedPost) throws JsonProcessingException {
         PixelArtPost pixelArtPost = getPixelArtPostById(id);
         pixelArtPost.setTitle(updatedPost.getTitle());
+        pixelArtPost.setPixelArtAsJSON(updatedPost.getPixelArtAsJSON());
         return this.pixelArtPostRepository.save(pixelArtPost);
     }
 

@@ -40,7 +40,9 @@ public class PersonController {
 
     @PostMapping()
     @JsonView(Views.Public.class)
-    public Person post(@RequestBody Person newPerson){ return personService.savePerson(newPerson);}
+    public Person post(@RequestBody Person newPerson){
+        return personService.savePerson(newPerson);
+    }
 
     @PutMapping("/{id}")
     @JsonView(Views.Public.class)
