@@ -50,18 +50,18 @@ public class PixelArtPostController {
     @PostMapping()
     @JsonView(Views.Public.class)
     public PixelArtPost Post(@RequestBody PixelArtPost newPost){
-        return pixelArtPostService.savePost(newPost);
+        return pixelArtPostService.savePixelArtPost(newPost);
     }
 
     @PutMapping("/{id}")
     @JsonView(Views.Public.class)
-    public PixelArtPost update(@PathVariable Long id,@RequestBody PixelArtPost updatedPost) throws JsonProcessingException {
-        return pixelArtPostService.updatePost(id, updatedPost);
+    public PixelArtPost update(@PathVariable Long id, @RequestBody PixelArtPost updatedPost) throws JsonProcessingException {
+        return pixelArtPostService.updatePixelArtPost(id, updatedPost);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void Delete(@PathVariable Long id){
-        pixelArtPostService.deletePost(id);
+        pixelArtPostService.deletePixelArtPost(id);
     }
 }

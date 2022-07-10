@@ -50,18 +50,17 @@ public class PixelArtPostService {
         return this.pixelArtPostRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found!"));
     }
 
-    public PixelArtPost savePost(PixelArtPost pixelArtPost){
+    public PixelArtPost savePixelArtPost(PixelArtPost pixelArtPost){
         return this.pixelArtPostRepository.save(pixelArtPost);
     }
 
-    public PixelArtPost updatePost(Long id, PixelArtPost updatedPost) throws JsonProcessingException {
+    public PixelArtPost updatePixelArtPost(Long id, PixelArtPost updatedPost) throws JsonProcessingException {
         PixelArtPost pixelArtPost = getPixelArtPostById(id);
         pixelArtPost.setTitle(updatedPost.getTitle());
-        pixelArtPost.setPixelArtAsJSON(updatedPost.getPixelArtAsJSON());
         return this.pixelArtPostRepository.save(pixelArtPost);
     }
 
-    public void deletePost(Long id){
+    public void deletePixelArtPost(Long id){
         this.pixelArtPostRepository.delete(getPixelArtPostById(id));
     }
 }

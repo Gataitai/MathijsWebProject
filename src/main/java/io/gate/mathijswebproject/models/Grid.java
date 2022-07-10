@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Grid {
     @JsonView(Views.Public.class)
-    private List<Cell> grid;
+    private final List<Cell> grid;
 
     public Grid(){
         List<Cell> cells = new LinkedList<>();
