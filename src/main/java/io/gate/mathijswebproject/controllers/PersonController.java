@@ -1,7 +1,9 @@
 package io.gate.mathijswebproject.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import io.gate.mathijswebproject.entities.Comment;
 import io.gate.mathijswebproject.entities.Person;
+import io.gate.mathijswebproject.entities.PixelArtPost;
 import io.gate.mathijswebproject.services.PersonService;
 import io.gate.mathijswebproject.views.Views;
 import org.springframework.http.HttpStatus;
@@ -40,7 +42,7 @@ public class PersonController {
 
     @PostMapping()
     @JsonView(Views.Public.class)
-    public Person post(@RequestBody Person newPerson){
+    public Person postPerson(@RequestBody Person newPerson){
         return personService.savePerson(newPerson);
     }
 

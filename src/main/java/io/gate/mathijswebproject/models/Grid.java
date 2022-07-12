@@ -2,7 +2,6 @@ package io.gate.mathijswebproject.models;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.gate.mathijswebproject.views.Views;
 

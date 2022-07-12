@@ -1,6 +1,5 @@
 package io.gate.mathijswebproject.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.gate.mathijswebproject.entities.Comment;
 import io.gate.mathijswebproject.entities.Person;
 import io.gate.mathijswebproject.entities.PixelArtPost;
@@ -8,11 +7,8 @@ import io.gate.mathijswebproject.exceptions.ResourceNotFoundException;
 import io.gate.mathijswebproject.repositories.CommentRepository;
 import io.gate.mathijswebproject.repositories.PersonRepository;
 import io.gate.mathijswebproject.repositories.PixelArtPostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +16,14 @@ import java.util.Optional;
 public class PixelArtPostService {
     private final PixelArtPostRepository pixelArtPostRepository;
 
-    public PixelArtPostService(PixelArtPostRepository pixelArtPostRepository, CommentRepository commentRepository, PersonRepository personRepository){
+    private final PersonRepository personRepository;
+
+    private final PersonService personService;
+
+    public PixelArtPostService(PixelArtPostRepository pixelArtPostRepository, CommentRepository commentRepository, PersonRepository personRepository, PersonRepository personRepository1, PersonService personService){
         this.pixelArtPostRepository = pixelArtPostRepository;
+        this.personRepository = personRepository1;
+        this.personService = personService;
         this.pixelArtPostRepository.saveAll(PixelArtPost.makePixelArtPosts());
         //making test comments;
         for (int i = 1; i < 11; i++) {
@@ -50,7 +52,9 @@ public class PixelArtPostService {
         return this.pixelArtPostRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found!"));
     }
 
-    public PixelArtPost savePixelArtPost(PixelArtPost pixelArtPost){
+    public PixelArtPost savePixelArtPost(Long id, PixelArtPost pixelArtPost){
+        Person person = personService.getPersonById(id);
+        pixelArtPost.setPerson(person);
         return this.pixelArtPostRepository.save(pixelArtPost);
     }
 

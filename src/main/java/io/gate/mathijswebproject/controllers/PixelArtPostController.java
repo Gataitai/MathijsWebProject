@@ -47,10 +47,10 @@ public class PixelArtPostController {
         return pixelArtPostService.getPixelArtPostByPersonName(name);
     }
 
-    @PostMapping()
+    @PostMapping("/person/{id}")
     @JsonView(Views.Public.class)
-    public PixelArtPost Post(@RequestBody PixelArtPost newPost){
-        return pixelArtPostService.savePixelArtPost(newPost);
+    public PixelArtPost postPixelArtPost(@PathVariable Long id, @RequestBody PixelArtPost newPost){
+        return pixelArtPostService.savePixelArtPost(id, newPost);
     }
 
     @PutMapping("/{id}")

@@ -27,22 +27,22 @@ public class CommentController {
         return commentService.getComments();
     }
 
-    @GetMapping("post/{id}")
+    @GetMapping("/post/{id}")
     @JsonView(Views.Public.class)
-    public List<Comment> commentsByPixelArtId(@PathVariable Long id){
+    public List<Comment> commentsByPixelArtPostId(@PathVariable Long id){
         return commentService.allCommentsFromPixelArtPostById(id);
     }
 
-    @PostMapping()
+    @PostMapping("/post/{postId}/person/{personId}")
     @JsonView(Views.Public.class)
-    public Comment post(@RequestBody Comment newComment){
-        return commentService.saveComment(newComment);
+    public Comment post(@PathVariable Long postId, @PathVariable Long personId,@RequestBody Comment newComment){
+        return commentService.saveComment(postId, personId, newComment);
     }
 
-    @PutMapping()
+    @PutMapping("/{id}")
     @JsonView(Views.Public.class)
-    public Comment update(@RequestBody Comment updatedComment){
-        return commentService.saveComment(updatedComment);
+    public Comment update(@PathVariable Long id, @RequestBody Comment updatedComment){
+        return commentService.updateComment(id, updatedComment);
     }
 
     @DeleteMapping("/{id}")
