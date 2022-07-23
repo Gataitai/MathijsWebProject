@@ -1,44 +1,37 @@
-function pixelArtPostCard(post){
-    const id = post[0];
-    const title = post[1];
-    const pixelArtPostAsJson = post[2];
-    const person = post[3];
+function chooseMePersonCard(personJSON){
 
     let card = document.createElement("div");
     card.classList.add("card");
 
+    let img = document.createElement("img");
+    img.src="pictures/1.png";
+
     let cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
 
-    let pixelArt = pixelArt(pixelArtPostAsJson);
-
-    let cardTitle = document.createElement("h5");
+    let cardTitle = document.createElement("h1");
     cardTitle.classList.add("card-title");
+    cardTitle.appendChild(document.createTextNode(personJSON.name));
 
     let btn = document.createElement("a");
-    btn.classList.add("btn btn-primary");
+    btn.classList.add("btn");
+    btn.classList.add("btn-primary");
+    btn.appendChild(document.createTextNode("Choose me"));
+    btn.href="";
 
-    cardBody.appendChild(pixelArt);
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(btn);
 
+    card.appendChild(img);
     card.appendChild(cardBody);
 
     return card;
 }
-
-function pixelArt(pixelArtPostAsJson){
-    let pixelArt = document.createElement("div");
-    pixelArt.classList.add("pixelArt");
-
-    for(let pxl of pixelArtPostAsJson.grid){
-
-        let pixel = document.createElement("div");
-        pixel.classList.add("pixel");
-        pixel.style.backgroundColor = pxl.color;
-
-        pixelArt.appendChild(pixel);
-    }
-
-    return pixelArt;
-}
+/* <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> */

@@ -1,9 +1,9 @@
-const URL = 'http://localhost:8080/posts'
+const URL_POSTS = 'http://localhost:8080/posts'
 
 getAllPosts();
 
 async function getAllPosts(){
-    const response = await fetch(URL);
+    const response = await fetch(URL_POSTS);
     const json = await response.json();
 
     let pixelArtPostSection = document.getElementById("pixelArtPostSection");

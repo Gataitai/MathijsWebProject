@@ -34,14 +34,13 @@ footer p{
 }
 
 .pixelArtPostSection .card {
-    width: 40vw;
+    width: 30vw;
 }
 
-.peopleSection{
+.personSection{
     grid-area: info;    
 }
-
-.peopleSection .peopleSectionContainer{
+.personSection .personSectionContainer{
     display: grid;
     justify-content: left;
     position: -webkit-sticky;
