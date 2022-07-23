@@ -26,22 +26,22 @@ footer p{
     text-decoration: none;
   }
 
-.pixelArtList{
+.pixelArtPostSection{
     grid-area: art;
     display: grid;
     justify-content: right;
     gap: 1rem;
 }
 
-.pixelArtList .card {
+.pixelArtPostSection .card {
     width: 40vw;
 }
 
-.userInfo{
+.peopleSection{
     grid-area: info;    
 }
 
-.userInfo .userInfoContainer{
+.peopleSection .peopleSectionContainer{
     display: grid;
     justify-content: left;
     position: -webkit-sticky;

@@ -12,7 +12,7 @@ getAllPosts()
         let pixelArtPosts = document.getElementById("pixelArtPostsSection");
         let pixelArtCard = document.createElement("div");
         pixelArtCard.classList.add("card");
-    
+
         let pixelArt = document.createElement("div");
         pixelArt.classList.add("pixelArt");
         
