@@ -1,4 +1,4 @@
-import { chooseMePersonCard } from "./card.js";
+
 
 let modal = document.getElementById("modal");
 
