@@ -7,7 +7,7 @@ async function newSelectPersonForm(){
     let modalHeader = document.createElement("div");
     modalHeader.classList.add("modal-header");
 
-    let title = newTitle("Choose me");
+    let title = newTitle("Choose a person");
     modalHeader.appendChild(title);
 
     let modalBody = document.createElement("div");

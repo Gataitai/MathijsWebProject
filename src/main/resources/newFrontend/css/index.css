@@ -30,7 +30,7 @@ footer p{
     grid-area: art;
     display: grid;
     justify-content: right;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .pixelArtPostSection .card {

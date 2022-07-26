@@ -92,9 +92,20 @@ public class PixelArtPost {
     }
 
     public static List<PixelArtPost> makePixelArtPosts(){
+        List<String> links = new ArrayList<>();
+        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277877247017001/1.png");
+        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277877599346699/2.png");
+        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277878027173898/3.png");
+        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277878446592040/4.png");
+        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277878861832242/5.png");
+        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277879285452851/6.png");
+        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277879696498698/7.png");
+        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277879960748152/8.png");
+        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277880480825364/9.png");
+        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277880766046309/10.png");
         List<PixelArtPost> posts = new ArrayList<>();
         for (int i = 1; i < 11; i++) {
-            PixelArtPost newPost = new PixelArtPost("testTitle" + i, new Grid(), new Person("testPerson" + i, "https://cdn.discordapp.com/attachments/605115690931847172/992802154437943356/8.png"));
+            PixelArtPost newPost = new PixelArtPost("TestTitle" + i, new Grid(), new Person("TestPerson" + i, links.get(i-1)));
             posts.add(newPost);
         }
         return posts;

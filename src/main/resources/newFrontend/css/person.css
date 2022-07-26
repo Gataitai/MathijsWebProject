@@ -2,6 +2,11 @@
     width: 20rem;
 }
 
-.smallPersonImage{
+.mediumPersonImage{
     width: 7rem;
+}
+
+.smallPersonImage{
+    width: 2rem;
+    border-radius: 15%;
 }

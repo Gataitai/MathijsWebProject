@@ -53,5 +53,3 @@ window.onclick = function(event) {
     }
   }
 }
-
-  
