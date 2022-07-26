@@ -6,5 +6,11 @@ async function getAllPosts(){
     return json;
 }
 
+async function getPostById(id){
+    const response = await fetch(URL_POSTS + "/" + id);
+    const json = await response.json();
+    return json;
+}
+
 
 

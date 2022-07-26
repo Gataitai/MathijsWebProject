@@ -10,6 +10,10 @@ function changeCurrentPerson(personJSON){
     closeModal();
 }
 
+function changeCurrentPixelArtPost(id){
+    sessionStorage.setItem('currentPixelArtPost', id);
+}
+
 async function makePixelArtPostCards(){
     let pixelArtPostSection = document.getElementById("pixelArtPostSection");
     for(let post of await getAllPosts()){

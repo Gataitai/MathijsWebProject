@@ -78,7 +78,7 @@ function newPixelArtPostCard(post){
   img.classList.add("smallPersonImage");
   img.src=post.person.photoLink;
   cardHeader.appendChild(img);
-  cardHeader.appendChild(document.createTextNode(" " + post.person.name));
+  cardHeader.appendChild(document.createTextNode(post.person.name));
 
   let cardBody = document.createElement("div");
   cardBody.classList.add("card-body");
@@ -99,6 +99,8 @@ function newPixelArtPostCard(post){
   let title = newTitle(post.title);
 
   let btn = newbutton("Go to post");
+  btn.addEventListener('click', () => changeCurrentPixelArtPost(post.id));
+  btn.href="pixelArtPost.html";
 
   cardBody.appendChild(pixelArt);
   cardBody.appendChild(title);
