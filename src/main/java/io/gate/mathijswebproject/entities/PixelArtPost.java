@@ -37,7 +37,7 @@ public class PixelArtPost {
     public PixelArtPost() {
     }
 
-    public PixelArtPost(String title, Grid grid, Person person){
+    public PixelArtPost(String title, Grid grid, Person person) {
         this.title = title;
         this.person = person;
         setPixelArtAsJSON(grid);
@@ -47,13 +47,15 @@ public class PixelArtPost {
         return id;
     }
 
-    public String getTitle() { return this.title; }
+    public String getTitle() {
+        return this.title;
+    }
 
     public Person getPerson() {
         return person;
     }
 
-    public Grid getPixelArtAsJSON(){
+    public Grid getPixelArtAsJSON() {
         return Grid.convertJSONToGrid(this.pixelArtAsJSON);
     }
 
@@ -62,36 +64,36 @@ public class PixelArtPost {
     }
 
     public void setTitle(String title) {
-        if(title != null){
+        if (title != null) {
             this.title = title;
         }
     }
 
-    public void setPixelArtAsJSON(Grid pixelArt){
-        if(pixelArt != null){
+    public void setPixelArtAsJSON(Grid pixelArt) {
+        if (pixelArt != null) {
             this.pixelArtAsJSON = Grid.convertGridToJSON(pixelArt);
         }
     }
 
     public void setPerson(Person person) {
-        if(person != null){
+        if (person != null) {
             this.person = person;
         }
     }
 
     public void setComments(List<Comment> comments) {
-        if(comments != null){
+        if (comments != null) {
             this.comments = comments;
         }
     }
 
-    public void setComment(Comment comment){
-        if(comment != null){
+    public void setComment(Comment comment) {
+        if (comment != null) {
             this.comments.add(comment);
         }
     }
 
-    public static List<PixelArtPost> makePixelArtPosts(){
+    public static List<PixelArtPost> makePixelArtPosts() {
         List<String> links = new ArrayList<>();
         links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277877247017001/1.png");
         links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277877599346699/2.png");
@@ -105,7 +107,7 @@ public class PixelArtPost {
         links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277880766046309/10.png");
         List<PixelArtPost> posts = new ArrayList<>();
         for (int i = 1; i < 11; i++) {
-            PixelArtPost newPost = new PixelArtPost("TestTitle" + i, new Grid(), new Person("TestPerson" + i, links.get(i-1)));
+            PixelArtPost newPost = new PixelArtPost("TestTitle" + i, new Grid(), new Person("TestPerson" + i, links.get(i - 1)));
             posts.add(newPost);
         }
         return posts;

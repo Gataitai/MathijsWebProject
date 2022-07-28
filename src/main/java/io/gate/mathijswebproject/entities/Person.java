@@ -28,7 +28,7 @@ public class Person {
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
-    public Person(){
+    public Person() {
     }
 
     public Person(String name, String photoLink) {
@@ -36,15 +36,15 @@ public class Person {
         this.photoLink = photoLink;
     }
 
-    public Long getId(){
+    public Long getId() {
         return this.id;
     }
 
-    public String getPhotoLink(){
+    public String getPhotoLink() {
         return this.photoLink;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
@@ -52,7 +52,7 @@ public class Person {
         return this.pixelArtPosts;
     }
 
-    public List<Comment> getComments(){
+    public List<Comment> getComments() {
         return this.comments;
     }
 
@@ -60,14 +60,14 @@ public class Person {
         this.id = id;
     }
 
-    public void setName(String userName){
-        if(userName != null){
+    public void setName(String userName) {
+        if (userName != null) {
             this.name = userName;
         }
     }
 
-    public void setPhotoLink(String photoLink){
-        if(photoLink != null){
+    public void setPhotoLink(String photoLink) {
+        if (photoLink != null) {
             this.photoLink = photoLink;
         }
     }

@@ -17,37 +17,37 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    public CommentController(CommentService commentService){
+    public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }
 
     @GetMapping()
     @JsonView(Views.Public.class)
-    public List<Comment> commentsIndex(){
+    public List<Comment> commentsIndex() {
         return commentService.getComments();
     }
 
     @GetMapping("/post/{id}")
     @JsonView(Views.Public.class)
-    public List<Comment> commentsByPixelArtPostId(@PathVariable Long id){
+    public List<Comment> commentsByPixelArtPostId(@PathVariable Long id) {
         return commentService.allCommentsFromPixelArtPostById(id);
     }
 
     @PostMapping("/post/{postId}/person/{personId}")
     @JsonView(Views.Public.class)
-    public Comment post(@PathVariable Long postId, @PathVariable Long personId,@RequestBody Comment newComment){
+    public Comment post(@PathVariable Long postId, @PathVariable Long personId, @RequestBody Comment newComment) {
         return commentService.saveComment(postId, personId, newComment);
     }
 
     @PutMapping("/{id}")
     @JsonView(Views.Public.class)
-    public Comment update(@PathVariable Long id, @RequestBody Comment updatedComment){
+    public Comment update(@PathVariable Long id, @RequestBody Comment updatedComment) {
         return commentService.updateComment(id, updatedComment);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void Delete(@PathVariable Long id){
+    public void Delete(@PathVariable Long id) {
         commentService.deleteComment(id);
     }
 }

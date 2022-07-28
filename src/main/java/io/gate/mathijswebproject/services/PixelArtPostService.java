@@ -20,7 +20,7 @@ public class PixelArtPostService {
 
     private final PersonService personService;
 
-    public PixelArtPostService(PixelArtPostRepository pixelArtPostRepository, CommentRepository commentRepository, PersonRepository personRepository, PersonRepository personRepository1, PersonService personService){
+    public PixelArtPostService(PixelArtPostRepository pixelArtPostRepository, CommentRepository commentRepository, PersonRepository personRepository, PersonRepository personRepository1, PersonService personService) {
         this.pixelArtPostRepository = pixelArtPostRepository;
         this.personRepository = personRepository1;
         this.personService = personService;
@@ -36,36 +36,37 @@ public class PixelArtPostService {
             commentRepository.save(comment);
         }
     }
-    public List<PixelArtPost> getAllPixelArtPosts(){
+
+    public List<PixelArtPost> getAllPixelArtPosts() {
         return this.pixelArtPostRepository.findAll();
     }
 
-    public List<PixelArtPost> getPixelArtPostByTitleName(String title){
+    public List<PixelArtPost> getPixelArtPostByTitleName(String title) {
         return this.pixelArtPostRepository.findAllByTitle(title);
     }
 
-    public List<PixelArtPost> getPixelArtPostByPersonName(String name){
+    public List<PixelArtPost> getPixelArtPostByPersonName(String name) {
         return this.pixelArtPostRepository.findAllByPersonName(name);
     }
 
-    public PixelArtPost getPixelArtPostById(Long id){
+    public PixelArtPost getPixelArtPostById(Long id) {
         return this.pixelArtPostRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found!"));
     }
 
-    public PixelArtPost savePixelArtPost(Long id, PixelArtPost pixelArtPost){
+    public PixelArtPost savePixelArtPost(Long id, PixelArtPost pixelArtPost) {
         Person person = personService.getPersonById(id);
         pixelArtPost.setPerson(person);
         return this.pixelArtPostRepository.save(pixelArtPost);
     }
 
-    public PixelArtPost updatePixelArtPost(Long id, PixelArtPost updatedPost){
+    public PixelArtPost updatePixelArtPost(Long id, PixelArtPost updatedPost) {
         PixelArtPost pixelArtPost = getPixelArtPostById(id);
         pixelArtPost.setTitle(updatedPost.getTitle());
         pixelArtPost.setPixelArtAsJSON(updatedPost.getPixelArtAsJSON());
         return this.pixelArtPostRepository.save(pixelArtPost);
     }
 
-    public void deletePixelArtPost(Long id){
+    public void deletePixelArtPost(Long id) {
         this.pixelArtPostRepository.delete(getPixelArtPostById(id));
     }
 }
