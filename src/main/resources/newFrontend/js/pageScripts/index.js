@@ -16,6 +16,7 @@ function changeCurrentPixelArtPost(id) {
 
 async function makePixelArtPostCards() {
     let pixelArtPostSection = document.getElementById("pixelArtPostSection");
+    pixelArtPostSection.replaceChildren();
     for (let post of await getAllPosts()) {
         let card = newPixelArtPostCard(post);
         pixelArtPostSection.appendChild(card);
