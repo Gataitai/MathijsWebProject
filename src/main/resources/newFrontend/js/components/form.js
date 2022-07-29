@@ -1,4 +1,4 @@
-async function newSelectPersonForm(){
+async function newSelectPersonForm() {
     let modalContent = document.createElement("div")
     modalContent.classList.add("modal-content");
     modalContent.classList.add("modal-dialog");
@@ -13,7 +13,7 @@ async function newSelectPersonForm(){
     let modalBody = document.createElement("div");
     modalBody.classList.add("modal-body");
 
-    for(let person of await getAllPeople()){
+    for (let person of await getAllPeople()) {
         let personCard = newPickPersonCard(person);
         modalBody.appendChild(personCard);
     }

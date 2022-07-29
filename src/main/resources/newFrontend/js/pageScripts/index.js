@@ -1,7 +1,7 @@
 newSelectPersonForm();
 makePixelArtPostCards();
 
-function changeCurrentPerson(personJSON){
+function changeCurrentPerson(personJSON) {
     let personContainer = document.getElementById("personSectionContainer");
     personContainer.replaceChildren();
     personContainer.appendChild(newCurrentPersonCard(personJSON));
@@ -10,13 +10,13 @@ function changeCurrentPerson(personJSON){
     closeModal();
 }
 
-function changeCurrentPixelArtPost(id){
+function changeCurrentPixelArtPost(id) {
     sessionStorage.setItem('currentPixelArtPost', id);
 }
 
-async function makePixelArtPostCards(){
+async function makePixelArtPostCards() {
     let pixelArtPostSection = document.getElementById("pixelArtPostSection");
-    for(let post of await getAllPosts()){
+    for (let post of await getAllPosts()) {
         let card = newPixelArtPostCard(post);
         pixelArtPostSection.appendChild(card);
     }

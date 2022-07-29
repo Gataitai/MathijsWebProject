@@ -6,35 +6,35 @@ let body = document.getElementById("body");
 let isNonClosable = false;
 
 const animation = [
-    { transform: 'scale(1)' },
-    { transform: 'scale(1.05)' },
-    { transform: 'scale(1)' }
-  ];
- 
+  { transform: 'scale(1)' },
+  { transform: 'scale(1.05)' },
+  { transform: 'scale(1)' }
+];
+
 const animationTiming = {
-    duration: 70,
-    iterations: 1,
+  duration: 70,
+  iterations: 1,
 }
 
-function openModal(content){
-    modal.replaceChildren();
-    modal.appendChild(content);
-  
-    modal.style.display = "block";
-    document.body.classList.add("stop-scrolling");
-}
-  
-function openNonClosableModal(content){
-    isNonClosable = true;
-    modal.replaceChildren();
-    modal.appendChild(content);
+function openModal(content) {
+  modal.replaceChildren();
+  modal.appendChild(content);
 
-    modal.style.display = "block";
-    document.body.classList.add("stop-scrolling");
+  modal.style.display = "block";
+  document.body.classList.add("stop-scrolling");
 }
 
-function closeModal(){
-  if(isNonClosable === true){
+function openNonClosableModal(content) {
+  isNonClosable = true;
+  modal.replaceChildren();
+  modal.appendChild(content);
+
+  modal.style.display = "block";
+  document.body.classList.add("stop-scrolling");
+}
+
+function closeModal() {
+  if (isNonClosable === true) {
     isNonClosable = false;
   }
   modal.style.display = "none";
@@ -42,14 +42,18 @@ function closeModal(){
   document.body.classList.remove("stop-scrolling");
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target === modal) {
-    if(isNonClosable === true){
+    if (isNonClosable === true) {
       // when user clicks outside show animation
       modal.animate(animation, animationTiming);
     }
-    else{
+    else {
       closeModal();
     }
   }
 }
+
+// document.querySelector(document).ready(function() {
+//   document.querySelector(".child2").css("max-height", (document.querySelector(".parent").height()-document.querySelector(".child1").height()));
+// });

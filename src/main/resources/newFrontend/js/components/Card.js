@@ -1,31 +1,31 @@
 
-function newCurrentPersonCard(personJSON){
+function newCurrentPersonCard(personJSON) {
 
-    let card = document.createElement("div");
-    card.classList.add("card");
+  let card = document.createElement("div");
+  card.classList.add("card");
 
-    let img = document.createElement("img");
-    img.classList.add("personImage");
-    img.src=personJSON.photoLink;
+  let img = document.createElement("img");
+  img.classList.add("personImage");
+  img.src = personJSON.photoLink;
 
-    let cardBody = document.createElement("div");
-    cardBody.classList.add("card-body");
+  let cardBody = document.createElement("div");
+  cardBody.classList.add("card-body");
 
-    let cardTitle = newTitle(personJSON.name);
+  let cardTitle = newTitle(personJSON.name);
 
-    let btn = newbutton("Change person")
-    btn.addEventListener('click', () => newSelectPersonForm());
+  let btn = newbutton("Change person")
+  btn.addEventListener('click', () => newSelectPersonForm());
 
-    cardBody.appendChild(cardTitle);
-    cardBody.appendChild(btn);
+  cardBody.appendChild(cardTitle);
+  cardBody.appendChild(btn);
 
-    card.appendChild(img);
-    card.appendChild(cardBody);
+  card.appendChild(img);
+  card.appendChild(cardBody);
 
-    return card;
+  return card;
 }
 
-function newPickPersonCard(personJSON){
+function newPickPersonCard(personJSON) {
 
   let card = document.createElement("div");
   card.classList.add("card");
@@ -43,7 +43,7 @@ function newPickPersonCard(personJSON){
   let img = document.createElement("img");
   img.classList.add("rounded-start");
   img.classList.add("mediumPersonImage");
-  img.src=personJSON.photoLink;
+  img.src = personJSON.photoLink;
   col1.appendChild(img);
 
   let cardBody = document.createElement("div");
@@ -66,7 +66,7 @@ function newPickPersonCard(personJSON){
   return card;
 }
 
-function newPixelArtPostCard(post){
+function newPixelArtPostCard(post) {
 
   let card = document.createElement("div");
   card.classList.add("card");
@@ -76,7 +76,7 @@ function newPixelArtPostCard(post){
 
   let img = document.createElement("img");
   img.classList.add("smallPersonImage");
-  img.src=post.person.photoLink;
+  img.src = post.person.photoLink;
   cardHeader.appendChild(img);
   cardHeader.appendChild(document.createTextNode(post.person.name));
 
@@ -87,20 +87,20 @@ function newPixelArtPostCard(post){
   pixelArt.classList.add("pixelArt");
   pixelArt.classList.add("mb-3")
 
-  for(let pxl of post.pixelArtAsJSON.grid){
+  for (let pxl of post.pixelArtAsJSON.grid) {
 
-      let pixel = document.createElement("div");
-      pixel.classList.add("pixel");
-      pixel.style.backgroundColor = pxl.color;
+    let pixel = document.createElement("div");
+    pixel.classList.add("pixel");
+    pixel.style.backgroundColor = pxl.color;
 
-      pixelArt.appendChild(pixel);
+    pixelArt.appendChild(pixel);
   }
 
   let title = newTitle(post.title);
 
   let btn = newbutton("Go to post");
   btn.addEventListener('click', () => changeCurrentPixelArtPost(post.id));
-  btn.href="pixelArtPost.html";
+  btn.href = "pixelArtPost.html";
 
   cardBody.appendChild(pixelArt);
   cardBody.appendChild(title);
@@ -110,4 +110,9 @@ function newPixelArtPostCard(post){
   card.appendChild(cardBody);
 
   return card;
+}
+
+function newPixelArtPostCommentSectionCard(post, comments) {
+  let card = document.createElement("div");
+  card.classList.add("card");
 }
