@@ -1,4 +1,4 @@
-function newbutton(text) {
+function newButton(text) {
     let btn = document.createElement("a");
     btn.classList.add("btn");
     btn.classList.add("btn-primary");

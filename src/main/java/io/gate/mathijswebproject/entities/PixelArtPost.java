@@ -1,11 +1,12 @@
 package io.gate.mathijswebproject.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.gate.mathijswebproject.models.Grid;
 import io.gate.mathijswebproject.views.Views;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,10 @@ public class PixelArtPost {
     @Column
     @JsonView(Views.Public.class)
     private Long id;
+
+    @Column
+    @JsonView(Views.Public.class)
+    private LocalDate postDate;
 
     @Column
     @JsonView(Views.Public.class)
@@ -35,9 +40,11 @@ public class PixelArtPost {
     private List<Comment> comments;
 
     public PixelArtPost() {
+        this.postDate = LocalDate.now();
     }
 
     public PixelArtPost(String title, Grid grid, Person person) {
+        this.postDate = LocalDate.now();
         this.title = title;
         this.person = person;
         setPixelArtAsJSON(grid);
@@ -45,6 +52,10 @@ public class PixelArtPost {
 
     public Long getId() {
         return id;
+    }
+
+    public LocalDate getPostDate() {
+        return this.postDate;
     }
 
     public String getTitle() {

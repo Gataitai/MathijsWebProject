@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import io.gate.mathijswebproject.views.Views;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -13,6 +15,10 @@ public class Comment {
     @Column
     @JsonView(Views.Public.class)
     private long id;
+
+    @Column
+    @JsonView(Views.Public.class)
+    private LocalDate commentDate;
 
     @Column
     @JsonView(Views.Public.class)
@@ -28,9 +34,11 @@ public class Comment {
     private PixelArtPost pixelArtPost;
 
     public Comment() {
+        this.commentDate = LocalDate.now();
     }
 
     public Comment(String text, Person person, PixelArtPost pixelArtPost) {
+        this.commentDate = LocalDate.now();
         this.text = text;
         this.person = person;
         this.pixelArtPost = pixelArtPost;
@@ -38,6 +46,10 @@ public class Comment {
 
     public long getId() {
         return id;
+    }
+
+    public LocalDate getCommentDate() {
+        return this.commentDate;
     }
 
     public String getText() {
