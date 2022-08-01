@@ -32,7 +32,7 @@ public class PixelArtPostService {
             Optional<Person> optionalPerson = personRepository.findById((long) i);
             Person person = optionalPerson.orElse(new Person());
 
-            Comment comment = new Comment("Commenting on myself. From: " + person.getName(), person, post);
+            Comment comment = new Comment("Commenting on myself.", person, post);
             commentRepository.save(comment);
         }
     }

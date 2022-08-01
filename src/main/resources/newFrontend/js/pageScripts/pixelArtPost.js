@@ -1,6 +1,11 @@
-makePixelArtPostCard();
+makePixelArtPostCommentSectionCard();
 
-async function makePixelArtPostCard() {
+function scrollDown(){
+    let commentSection= document.getElementById("commentSection");
+    commentSection.scrollTo(0, commentSection.scrollHeight);
+}
+
+async function makePixelArtPostCommentSectionCard() {
     let pixelArtPostSection = document.getElementById("pixelArtPostSection");
 
     let id = sessionStorage.getItem('currentPixelArtPost');
@@ -11,18 +16,30 @@ async function makePixelArtPostCard() {
     let card = newPixelArtPostCommentSectionCard(post, comments);
 
     pixelArtPostSection.appendChild(card);
+    scrollDown()
 }
 
 async function sendComment(){
     let input = document.getElementById("commentInput");
 
-    let postId = sessionStorage.getItem('currentPixelArtPost');
-    let userId = sessionStorage.getItem("currentUserId");
+    if (typeof input.value === 'string' && input.value.length === 0) {
+        input.classList.add("is-invalid");
+    } else {
+        let commentSection= document.getElementById("commentSection");
+        input.classList.remove("is-invalid");
 
-    let comment = {
-        text : "test"
-    };
-
-    let response = await postComment(comment, postId, userId);
-    console.log(response);
+        let postId = sessionStorage.getItem('currentPixelArtPost');
+        let userId = sessionStorage.getItem("currentUserId");
+    
+        let comment = {
+            text : input.value
+        };
+    
+        let response = await postComment(comment, postId, userId);
+        commentSection.appendChild(newComment(response));
+    
+        scrollDown();
+    
+        input.value = '';
+    }
 }

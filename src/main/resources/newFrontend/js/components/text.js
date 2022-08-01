@@ -12,3 +12,20 @@ function newDate(date){
     text.appendChild(document.createTextNode(new Date(date).toLocaleDateString(Location)));
     return text;
 }
+
+function newComment(cmt){
+    let comment = document.createElement("div");
+    comment.classList.add("mb-2");
+    
+    let img = document.createElement("img");
+    img.classList.add("smallPersonImage");
+    img.src = cmt.person.photoLink;
+
+    comment.appendChild(img);
+    comment.appendChild(document.createTextNode(cmt.person.name + ": " + cmt.text));
+
+    let date = newDate(cmt.commentDate);
+
+    comment.appendChild(date);
+    return comment;
+}

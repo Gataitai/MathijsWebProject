@@ -12,5 +12,3 @@ async function getPostById(id) {
     return json;
 }
 
-
-
