@@ -114,6 +114,52 @@ function newPixelArtPostCard(post) {
   return card;
 }
 
+function newEmptyPersonCard(){
+  let card = document.createElement("div");
+  card.classList.add("card");
+
+  let img = document.createElement("img");
+  img.classList.add("personImage");
+  img.src = "pictures/questionMark.png";
+  card.appendChild(img);
+
+  let cardBody = document.createElement("div");
+  cardBody.classList.add("card-body");
+
+  let title = document.createElement("h5");
+  title.classList.add("card-title");
+  title.classList.add("placeholder-glow");
+  
+  let line1 = document.createElement("a");
+  line1.classList.add("btn");
+  line1.classList.add("btn-secondary");
+  line1.classList.add("disabled");
+  line1.classList.add("placeholder");
+  line1.classList.add("col-2");
+
+  let line2 = document.createElement("a");
+  line2.classList.add("btn");
+  line2.classList.add("btn-secondary");
+  line2.classList.add("disabled");
+  line2.classList.add("placeholder");
+  line2.classList.add("col-6");
+  line2.classList.add("m-2");
+  title.appendChild(line1);
+  title.appendChild(line2);
+  cardBody.appendChild(title);
+
+  let line3 = document.createElement("a");
+  line3.classList.add("btn");
+  line3.classList.add("btn-primary");
+  line3.classList.add("disabled");
+  line3.classList.add("placeholder");
+  line3.classList.add("col-4");
+  cardBody.appendChild(line3);
+  
+  card.appendChild(cardBody);
+  return card;
+}
+
 function newPixelArtPostCommentSectionCard(post, comments) {
   let card = document.createElement("div");
   card.classList.add("card");
@@ -149,22 +195,10 @@ function newPixelArtPostCommentSectionCard(post, comments) {
   let cardBody = document.createElement("div");
   cardBody.classList.add("card-body");
   cardBody.classList.add("commentSection");
+  cardBody.id = "commentSection";
 
   for(let cmt of comments){
-    let comment = document.createElement("div");
-    comment.classList.add("mb-2");
-    
-    let img = document.createElement("img");
-    img.classList.add("smallPersonImage");
-    img.src = cmt.person.photoLink;
-
-    comment.appendChild(img);
-    comment.appendChild(document.createTextNode(cmt.person.name + ": " + cmt.text));
-
-    let date = newDate(cmt.commentDate);
-
-    comment.appendChild(date);
-    
+    let comment = newComment(cmt);
     cardBody.appendChild(comment);
   }
 
