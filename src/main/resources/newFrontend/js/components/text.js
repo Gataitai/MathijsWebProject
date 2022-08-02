@@ -14,18 +14,30 @@ function newDate(date){
 }
 
 function newComment(cmt){
+
+    function newCommentArea(node){
+        let area = document.createElement("div");
+        area.classList.add("commentArea");
+        area.appendChild(node);
+        return area;
+    }
+
     let comment = document.createElement("div");
+    comment.id = cmt.id;
+    comment.classList.add("comment");
     comment.classList.add("mb-2");
+
+    comment.appendChild(newCommentArea(newSmallPersonImage(cmt.person.photoLink)));
+    comment.appendChild(newCommentArea(document.createTextNode(cmt.person.name + ": " + cmt.text)));
+
+    let icon = document.createElement("i");
+    icon.classList.add("bi");
+    icon.classList.add("bi-three-dots");
+    icon.style.cursor = "pointer";
+    icon.addEventListener('click', () => commentForm(cmt.id));
     
-    let img = document.createElement("img");
-    img.classList.add("smallPersonImage");
-    img.src = cmt.person.photoLink;
+    comment.appendChild(newCommentArea(newDate(cmt.commentDate)));
+    comment.appendChild(newCommentArea(icon));
 
-    comment.appendChild(img);
-    comment.appendChild(document.createTextNode(cmt.person.name + ": " + cmt.text));
-
-    let date = newDate(cmt.commentDate);
-
-    comment.appendChild(date);
     return comment;
 }

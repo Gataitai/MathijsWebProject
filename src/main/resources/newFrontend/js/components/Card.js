@@ -76,6 +76,7 @@ function newPixelArtPostCard(post) {
 
   let img = document.createElement("img");
   img.classList.add("smallPersonImage");
+  img.classList.add("me-2");
   img.src = post.person.photoLink;
   cardHeader.appendChild(img);
   cardHeader.appendChild(document.createTextNode(post.person.name));
@@ -170,6 +171,7 @@ function newPixelArtPostCommentSectionCard(post, comments) {
 
   let img = document.createElement("img");
   img.classList.add("smallPersonImage");
+  img.classList.add("me-2");
   img.src = post.person.photoLink;
   header.appendChild(img);
   header.appendChild(document.createTextNode(post.person.name));

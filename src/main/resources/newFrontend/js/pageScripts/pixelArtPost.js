@@ -19,6 +19,36 @@ async function makePixelArtPostCommentSectionCard() {
     scrollDown()
 }
 
+function commentForm(id){
+    let modalContent = document.createElement("div")
+    modalContent.classList.add("modal-content");
+    modalContent.classList.add("modal-dialog");
+
+    let modalHeader = document.createElement("div");
+    modalHeader.classList.add("modal-header");
+
+    let title = newTitle("Comment options");
+    modalHeader.appendChild(title);
+
+    let modalBody = document.createElement("div");
+    modalBody.classList.add("modal-body");
+
+    let editBtn = newYellowButton("Edit comment");
+    editBtn.classList.add("col-12");
+    editBtn.classList.add("mb-2");
+
+    let deleteBtn = newRedButton("Delete comment");
+    deleteBtn.classList.add("col-12");
+
+    modalBody.appendChild(editBtn);
+    modalBody.appendChild(deleteBtn);
+
+    modalContent.appendChild(modalHeader);
+    modalContent.appendChild(modalBody);
+
+    openModal(modalContent);
+}
+
 async function sendComment(){
     let input = document.getElementById("commentInput");
 

@@ -2,3 +2,32 @@
     height: 65vh;
     overflow-y: scroll;
 }
+
+.comment{
+    display: grid;
+    grid-template-areas: 
+    'a b b'
+    'a c d';
+    grid-template-columns: 3rem 1fr;
+}
+
+.commentArea:nth-child(1){
+    grid-area: a;
+}
+
+.commentArea:nth-child(2){
+    grid-area: b;
+    word-break: break-word;
+}
+
+
+.commentArea:nth-child(3){
+    grid-area: c;
+}
+
+
+.commentArea:nth-child(4){
+    grid-area: d;
+}
+
+
