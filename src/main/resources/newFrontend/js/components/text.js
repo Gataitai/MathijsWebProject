@@ -23,7 +23,7 @@ function newComment(cmt){
     }
 
     let comment = document.createElement("div");
-    comment.id = cmt.id;
+    comment.id = "comment" + cmt.id;
     comment.classList.add("comment");
     comment.classList.add("mb-2");
 

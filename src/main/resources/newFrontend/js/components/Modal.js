@@ -16,18 +16,46 @@ const animationTiming = {
   iterations: 1,
 }
 
-function openModal(content) {
+function newModalContent(content, title){
+  let modalContent = document.createElement("div")
+  modalContent.classList.add("modal-content");
+  modalContent.classList.add("modal-dialog");
+
+  let modalHeader = document.createElement("div");
+  modalHeader.classList.add("modal-header");
+
+  let modalTitle = newTitle(title);
+  modalHeader.appendChild(modalTitle);
+
+  let modalBody = document.createElement("div");
+  modalBody.classList.add("modal-body");
+  modalBody.appendChild(content);
+
+  modalContent.appendChild(modalHeader);
+  modalContent.appendChild(modalBody);
+
+  return modalContent;
+}
+
+function newModalContentScrollable(content, title){
+  let modalContent = newModalContent(content, title);
+  modalContent.classList.add("modal-dialog-scrollable");
+
+  return modalContent;
+}
+
+function openModal(content, title) {
   modal.replaceChildren();
-  modal.appendChild(content);
+  modal.appendChild(newModalContent(content, title));
 
   modal.style.display = "block";
   document.body.classList.add("stop-scrolling");
 }
 
-function openNonClosableModal(content) {
+function openNonClosableModal(content, title) {
   isNonClosable = true;
   modal.replaceChildren();
-  modal.appendChild(content);
+  modal.appendChild(newModalContentScrollable(content, title));
 
   modal.style.display = "block";
   document.body.classList.add("stop-scrolling");

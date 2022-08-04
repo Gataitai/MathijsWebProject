@@ -20,33 +20,31 @@ async function makePixelArtPostCommentSectionCard() {
 }
 
 function commentForm(id){
-    let modalContent = document.createElement("div")
-    modalContent.classList.add("modal-content");
-    modalContent.classList.add("modal-dialog");
-
-    let modalHeader = document.createElement("div");
-    modalHeader.classList.add("modal-header");
-
-    let title = newTitle("Comment options");
-    modalHeader.appendChild(title);
-
-    let modalBody = document.createElement("div");
-    modalBody.classList.add("modal-body");
+    let content = document.createElement("div");
 
     let editBtn = newYellowButton("Edit comment");
     editBtn.classList.add("col-12");
     editBtn.classList.add("mb-2");
+    editBtn.addEventListener('click', () => changeComment(id));
 
     let deleteBtn = newRedButton("Delete comment");
     deleteBtn.classList.add("col-12");
+    deleteBtn.addEventListener('click', () => deleteComment(id));
 
-    modalBody.appendChild(editBtn);
-    modalBody.appendChild(deleteBtn);
+    content.appendChild(editBtn);
+    content.appendChild(deleteBtn);
 
-    modalContent.appendChild(modalHeader);
-    modalContent.appendChild(modalBody);
+    openModal(content, "Comment options");
+}
 
-    openModal(modalContent);
+function changeComment(id){
+    closeModal();
+    console.log("changing " + id);
+}
+
+function deleteComment(id){
+    closeModal();
+    console.log("deleting " + id);
 }
 
 async function sendComment(){
