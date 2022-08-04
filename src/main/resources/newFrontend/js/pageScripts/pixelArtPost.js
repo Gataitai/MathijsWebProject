@@ -25,11 +25,11 @@ function commentForm(id){
     let editBtn = newYellowButton("Edit comment");
     editBtn.classList.add("col-12");
     editBtn.classList.add("mb-2");
-    editBtn.addEventListener('click', () => changeComment(id));
+    editBtn.addEventListener('click', () => updateCommentForm(id));
 
-    let deleteBtn = newRedButton("Delete comment");
+    let deleteBtn = newRedButton("Delete comment"); 
     deleteBtn.classList.add("col-12");
-    deleteBtn.addEventListener('click', () => deleteComment(id));
+    deleteBtn.addEventListener('click', () => deleteCommentForm(id));
 
     content.appendChild(editBtn);
     content.appendChild(deleteBtn);
@@ -37,18 +37,40 @@ function commentForm(id){
     openModal(content, "Comment options");
 }
 
-function changeComment(id){
+function updateCommentForm(id){
     closeModal();
-    console.log("changing " + id);
+    sessionStorage.setItem("currentUpdatingComment", id);
+    let content = newCommentInput(updateComment, "Edit comment", "updateCommentInput");
+    openModal(content, "Edit comment")
 }
 
-function deleteComment(id){
+function deleteCommentForm(id){
     closeModal();
     console.log("deleting " + id);
 }
 
+async function updateComment(){
+    let id = sessionStorage.getItem("currentUpdatingComment");
+
+    let input = document.getElementById("updateCommentInput");
+
+    let commentSection= document.getElementById("commentSection");
+
+    let commentObject = {
+        text : input.value
+    };
+
+    let response = await putComment(commentObject, id);
+
+    let comment = document.getElementById("comment" + id);
+    comment.replaceChildren();
+    comment.appendChild(newComment(response));
+
+    closeModal();
+}
+
 async function sendComment(){
-    let input = document.getElementById("commentInput");
+    let input = document.getElementById("postCommentInput");
 
     if (typeof input.value === 'string' && input.value.length === 0) {
         input.classList.add("is-invalid");

@@ -1,7 +1,6 @@
-function newCommentInput() {
+function newCommentInput(action, btnText, inputId) {
     let inputGroup = document.createElement("div");
     inputGroup.classList.add("input-group");
-    inputGroup.id = "inputGroupComment";
 
 
     let inputIcon = document.createElement("i");
@@ -15,11 +14,11 @@ function newCommentInput() {
     let input = document.createElement("input");
     input.type = "text";
     input.classList.add("form-control");
-    input.id = "commentInput";
+    input.id = inputId;
     input.placeholder = "Comment";
 
-    let btn = newButton("Post comment");
-    btn.addEventListener('click', () => sendComment());
+    let btn = newButton(btnText);
+    btn.addEventListener('click', () => action());
 
     inputGroup.appendChild(inputGroupText);
     inputGroup.appendChild(input);
