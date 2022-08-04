@@ -164,7 +164,7 @@ function newEmptyPersonCard(){
 function newPixelArtPostCommentSectionCard(post, comments) {
   let card = document.createElement("div");
   card.classList.add("card");
-  card.style.width = "50vw";
+  card.style.width = "60vw";
 
   let header = document.createElement("div");
   header.classList.add("card-header");
