@@ -6,4 +6,8 @@ async function getAllPeople() {
     return json;
 }
 
-
+async function getPersonById(id) {
+    const response = await fetch(URL_PEOPLE + "/" + id);
+    const json = await response.json();
+    return json;
+}

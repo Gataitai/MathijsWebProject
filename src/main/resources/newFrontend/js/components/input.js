@@ -2,7 +2,6 @@ function newCommentInput(action, btnText, inputId) {
     let inputGroup = document.createElement("div");
     inputGroup.classList.add("input-group");
 
-
     let inputIcon = document.createElement("i");
     inputIcon.classList.add("bi");
     inputIcon.classList.add("bi-chat");
@@ -23,7 +22,7 @@ function newCommentInput(action, btnText, inputId) {
     inputGroup.appendChild(inputGroupText);
     inputGroup.appendChild(input);
     inputGroup.appendChild(btn);
-    inputGroup.appendChild(newCommentValidation("Can't send empty comment."));
+    // inputGroup.appendChild(newCommentValidation("Can't send empty comment."));
     return inputGroup;
 }
 

@@ -1,6 +1,5 @@
 package io.gate.mathijswebproject;
 
-import io.gate.mathijswebproject.services.PixelArtPostService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

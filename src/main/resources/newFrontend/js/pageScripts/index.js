@@ -1,4 +1,4 @@
-newSelectPersonForm();
+personIsChosenCheck();
 makePixelArtPostCards();
 
 
@@ -27,6 +27,19 @@ async function makePixelArtPostCards() {
     for (let post of await getAllPosts()) {
         let card = newPixelArtPostCard(post);
         pixelArtPostSection.appendChild(card);
+    }
+}
+
+async function personIsChosenCheck(){
+    let id = sessionStorage.getItem("currentUserId");
+    if (id === null) {
+        newSelectPersonForm();
+        console.log("not chosen");
+    }
+    else{
+        console.log("chosen " + id);
+        let person = await getPersonById(id);
+        changeCurrentPerson(person);
     }
 }
 

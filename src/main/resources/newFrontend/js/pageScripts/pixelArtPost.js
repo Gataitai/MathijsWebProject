@@ -46,22 +46,25 @@ function updateCommentForm(id){
 
 async function updateComment(){
     let id = sessionStorage.getItem("currentUpdatingComment");
-
     let input = document.getElementById("updateCommentInput");
+    
+    if (typeof input.value === 'string' && input.value.length === 0) {
+        input.classList.add("is-invalid");
+    } else {
+        input.classList.remove("is-invalid");
 
-    let commentSection= document.getElementById("commentSection");
-
-    let commentObject = {
-        text : input.value
-    };
-
-    let response = await putComment(commentObject, id);
-
-    let comment = document.getElementById("comment" + id);
-    comment.replaceChildren();
-    comment.appendChild(newComment(response));
-
-    closeModal();
+        let commentObject = {
+            text : input.value
+        };
+    
+        let response = await putComment(commentObject, id);
+    
+        let comment = document.getElementById("comment" + id);
+        comment.replaceChildren();
+        comment.appendChild(newComment(response));
+    
+        closeModal();
+    }
 }
 
 async function removeComment(id){
