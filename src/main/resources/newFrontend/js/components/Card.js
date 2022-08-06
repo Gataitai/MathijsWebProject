@@ -195,12 +195,15 @@ function newPixelArtPostCommentSectionCard(post, comments) {
   col4.classList.add("col-4");
 
   let cardBody = document.createElement("div");
+  col4.classList.add("col-4");
   cardBody.classList.add("card-body");
   cardBody.classList.add("commentSection");
   cardBody.id = "commentSection";
 
   for(let cmt of comments){
-    let comment = newComment(cmt);
+    let comment = document.createElement("div");
+    comment.id = "comment" + cmt.id;
+    comment.appendChild(newComment(cmt));
     cardBody.appendChild(comment);
   }
 
@@ -212,7 +215,7 @@ function newPixelArtPostCommentSectionCard(post, comments) {
   let cardFooter = document.createElement("div");
   cardFooter.classList.add("card-footer");
 
-  let input = newCommentInput(); 
+  let input = newCommentInput(sendComment, "Post comment", "postCommentInput"); 
   cardFooter.appendChild(input);
 
   card.appendChild(cardFooter);

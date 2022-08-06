@@ -42,4 +42,16 @@ async function putComment(comment, id){
     }
 }
 
+async function deleteComment(id){
+    const config = {
+        method: 'DELETE'
+    }
+    const response = await fetch(URL_COMMENTS + "/" + id, config);
+    if (response.ok) {
+        console.log(response)
+    } else {
+        //
+    }
+}
+
 

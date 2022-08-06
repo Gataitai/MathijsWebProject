@@ -29,7 +29,7 @@ function commentForm(id){
 
     let deleteBtn = newRedButton("Delete comment"); 
     deleteBtn.classList.add("col-12");
-    deleteBtn.addEventListener('click', () => deleteCommentForm(id));
+    deleteBtn.addEventListener('click', () => removeComment(id));
 
     content.appendChild(editBtn);
     content.appendChild(deleteBtn);
@@ -42,11 +42,6 @@ function updateCommentForm(id){
     sessionStorage.setItem("currentUpdatingComment", id);
     let content = newCommentInput(updateComment, "Edit comment", "updateCommentInput");
     openModal(content, "Edit comment")
-}
-
-function deleteCommentForm(id){
-    closeModal();
-    console.log("deleting " + id);
 }
 
 async function updateComment(){
@@ -69,6 +64,13 @@ async function updateComment(){
     closeModal();
 }
 
+async function removeComment(id){
+    deleteComment(id);
+    let comment = document.getElementById("comment" + id);
+    comment.replaceChildren();
+    closeModal();
+}
+
 async function sendComment(){
     let input = document.getElementById("postCommentInput");
 
@@ -81,12 +83,16 @@ async function sendComment(){
         let postId = sessionStorage.getItem('currentPixelArtPost');
         let userId = sessionStorage.getItem("currentUserId");
     
-        let comment = {
+        let commentObject = {
             text : input.value
         };
     
-        let response = await postComment(comment, postId, userId);
-        commentSection.appendChild(newComment(response));
+        let response = await postComment(commentObject, postId, userId);
+
+        let comment = document.createElement("div");
+        comment.id = "comment" + response.id;
+        comment.appendChild(newComment(response));
+        commentSection.appendChild(comment);
     
         scrollDown();
     
