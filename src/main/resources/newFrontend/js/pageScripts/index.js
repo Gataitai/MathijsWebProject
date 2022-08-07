@@ -1,7 +1,6 @@
 personIsChosenCheck();
 makePixelArtPostCards();
 
-
 function changeCurrentPerson(personJSON) {
     let personContainer = document.getElementById("personSectionContainer");
     personContainer.replaceChildren();

@@ -29,10 +29,7 @@ function newComment(cmt){
     comment.appendChild(newCommentArea(newSmallPersonImage(cmt.person.photoLink)));
     comment.appendChild(newCommentArea(document.createTextNode(cmt.person.name + ": " + cmt.text)));
 
-    let icon = document.createElement("i");
-    icon.classList.add("bi");
-    icon.classList.add("bi-three-dots");
-    icon.style.cursor = "pointer";
+    let icon = newOptionsButton();
     icon.addEventListener('click', () => commentForm(cmt.id));
     
     comment.appendChild(newCommentArea(newDate(cmt.commentDate)));

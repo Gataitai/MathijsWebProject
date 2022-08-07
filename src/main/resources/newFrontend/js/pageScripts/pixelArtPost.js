@@ -19,22 +19,26 @@ async function makePixelArtPostCommentSectionCard() {
     scrollDown()
 }
 
+function pixelArtPostForm(id){
+    let content = newOptionButtons(updatePixelArtPostForm, deletePixelArtPostForm, id)
+    openModal(content, "Pixelart options")
+}
+
 function commentForm(id){
-    let content = document.createElement("div");
 
-    let editBtn = newYellowButton("Edit comment");
-    editBtn.classList.add("col-12");
-    editBtn.classList.add("mb-2");
-    editBtn.addEventListener('click', () => updateCommentForm(id));
-
-    let deleteBtn = newRedButton("Delete comment"); 
-    deleteBtn.classList.add("col-12");
-    deleteBtn.addEventListener('click', () => removeComment(id));
-
-    content.appendChild(editBtn);
-    content.appendChild(deleteBtn);
+    let content = newOptionButtons(updateCommentForm, removeComment, id);
 
     openModal(content, "Comment options");
+}
+
+function updatePixelArtPostForm(id){
+    closeModal();
+    openModal(document.createTextNode("update"), "Edit post")
+}
+
+function deletePixelArtPostForm(id){
+    closeModal();
+    openModal(document.createTextNode("delete"), "Delete post")
 }
 
 function updateCommentForm(id){
