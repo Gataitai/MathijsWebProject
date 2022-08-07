@@ -175,6 +175,12 @@ function newPixelArtPostCommentSectionCard(post, comments) {
   img.src = post.person.photoLink;
   header.appendChild(img);
   header.appendChild(document.createTextNode(post.person.name));
+
+  let options = newOptionsButton();
+  options.style.float = "right";
+  options.style.lineHeight = "2rem";
+  options.addEventListener('click', () => pixelArtPostForm(post.id));
+  header.appendChild(options);
   card.appendChild(header);
 
   let row = document.createElement("div");
