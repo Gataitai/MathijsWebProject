@@ -189,6 +189,7 @@ function newPixelArtPostCommentSectionCard(post, comments) {
   let pixelArt = document.createElement("div");
   pixelArt.classList.add("col-8");
   pixelArt.classList.add("pixelArt");
+  pixelArt.id = "pixelArt";
   for(let pxl of post.pixelArtAsJSON.grid){
     let pixel = document.createElement("div");
     pixel.classList.add("pixel");
