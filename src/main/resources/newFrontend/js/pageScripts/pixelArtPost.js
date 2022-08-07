@@ -31,9 +31,12 @@ function commentForm(id){
     openModal(content, "Comment options");
 }
 
-function updatePixelArtPostForm(id){
+async function updatePixelArtPostForm(id){
     closeModal();
-    openModal(document.createTextNode("update"), "Edit post")
+    let pixelartPost = await getPostById(id);
+
+    let content = newPostEditForm(pixelartPost);
+    openModal(content, "Edit post")
 }
 
 function deletePixelArtPostForm(id){
@@ -46,6 +49,33 @@ function updateCommentForm(id){
     sessionStorage.setItem("currentUpdatingComment", id);
     let content = newCommentInput(updateComment, "Edit comment", "updateCommentInput");
     openModal(content, "Edit comment")
+}
+
+function editPixel(id){
+    let pixel = document.getElementById("pixel"+id);
+    let value = document.getElementById("colorPicker").value; 
+    pixel.style.backgroundColor = value;
+    pixel.value = value
+}
+
+async function updatePixlArtPost(pst){
+    pst.title = document.getElementById("pixelArtPostTitle").value;
+    for (let i = 0; i < 256; i++) {
+        let color = document.getElementById("pixel"+i).value;
+        pst.pixelArtAsJSON.grid[i].color = color;
+        pst.pixelArtAsJSON.grid[i].id = i;
+    }
+
+    let response = await putPost(pst, pst.id);
+    let pixelArt = document.getElementById("pixelArt");
+    pixelArt.replaceChildren();
+    for(let pxl of response.pixelArtAsJSON.grid){
+        let pixel = document.createElement("div");
+        pixel.classList.add("pixel");
+        pixel.style.backgroundColor = pxl.color;
+        pixelArt.appendChild(pixel);
+      }
+    closeModal();
 }
 
 async function updateComment(){

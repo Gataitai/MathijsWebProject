@@ -21,7 +21,7 @@ public class PixelArtPost {
 
     @Column
     @JsonView(Views.Public.class)
-    private LocalDate postDate;
+    private LocalDateTime postDate;
 
     @Column
     @JsonView(Views.Public.class)
@@ -40,11 +40,11 @@ public class PixelArtPost {
     private List<Comment> comments;
 
     public PixelArtPost() {
-        this.postDate = LocalDate.now();
+        this.postDate = LocalDateTime.now();
     }
 
     public PixelArtPost(String title, Grid grid, Person person) {
-        this.postDate = LocalDate.now();
+        this.postDate = LocalDateTime.now();
         this.title = title;
         this.person = person;
         setPixelArtAsJSON(grid);
@@ -54,7 +54,7 @@ public class PixelArtPost {
         return id;
     }
 
-    public LocalDate getPostDate() {
+    public LocalDateTime getPostDate() {
         return this.postDate;
     }
 
@@ -108,7 +108,7 @@ public class PixelArtPost {
         List<String> links = new ArrayList<>();
         links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277877247017001/1.png");
         links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277877599346699/2.png");
-        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277878027173898/3.png");
+        links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1005925098848538694/13279342-pack_l.png");
         links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277878446592040/4.png");
         links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277878861832242/5.png");
         links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277879285452851/6.png");

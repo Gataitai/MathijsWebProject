@@ -1,3 +1,28 @@
+function newInput(inputId, inputValue,intputPlaceHolder, inputIcon){
+    let group = document.createElement("div");
+    group.classList.add("input-group");
+
+    let icon = document.createElement("i");
+    icon.classList.add("bi");
+    icon.classList.add(inputIcon);
+
+    let text = document.createElement("span");
+    text.classList.add("input-group-text");
+    text.appendChild(icon);
+
+    let input = document.createElement("input");
+    input.type = "text";
+    input.classList.add("form-control");
+    input.id = inputId;
+    input.placeholder = intputPlaceHolder;
+    input.value = inputValue;
+    
+    group.appendChild(text);
+    group.appendChild(input);
+
+    return group;
+}
+
 function newCommentInput(action, btnText, inputId) {
     let inputGroup = document.createElement("div");
     inputGroup.classList.add("input-group");

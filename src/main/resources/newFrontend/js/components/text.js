@@ -9,7 +9,7 @@ function newTitle(text) {
 function newDate(date){
     let text = document.createElement("p");
     text.classList.add("text-muted");
-    text.appendChild(document.createTextNode(new Date(date).toLocaleDateString(Location)));
+    text.appendChild(document.createTextNode(new Date(date).toLocaleString(Location)));
     return text;
 }
 

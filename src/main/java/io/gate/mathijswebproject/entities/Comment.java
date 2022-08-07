@@ -18,7 +18,7 @@ public class Comment {
 
     @Column
     @JsonView(Views.Public.class)
-    private LocalDate commentDate;
+    private LocalDateTime commentDate;
 
     @Column
     @JsonView(Views.Public.class)
@@ -34,11 +34,11 @@ public class Comment {
     private PixelArtPost pixelArtPost;
 
     public Comment() {
-        this.commentDate = LocalDate.now();
+        this.commentDate = LocalDateTime.now();
     }
 
     public Comment(String text, Person person, PixelArtPost pixelArtPost) {
-        this.commentDate = LocalDate.now();
+        this.commentDate = LocalDateTime.now();
         this.text = text;
         this.person = person;
         this.pixelArtPost = pixelArtPost;
@@ -48,7 +48,7 @@ public class Comment {
         return id;
     }
 
-    public LocalDate getCommentDate() {
+    public LocalDateTime getCommentDate() {
         return this.commentDate;
     }
 
