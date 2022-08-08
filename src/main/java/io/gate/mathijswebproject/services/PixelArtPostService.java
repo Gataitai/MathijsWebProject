@@ -28,13 +28,15 @@ public class PixelArtPostService {
         this.pixelArtPostRepository.saveAll(PixelArtPost.makePixelArtPosts());
         //making test comments;
         for (int i = 1; i < 11; i++) {
-            PixelArtPost post = getPixelArtPostById((long) i);
+            for (int j = 1; j < 11; j++) {
+                PixelArtPost post = getPixelArtPostById((long) i);
 
-            Optional<Person> optionalPerson = personRepository.findById((long) i);
-            Person person = optionalPerson.orElse(new Person());
+                Optional<Person> optionalPerson = personRepository.findById((long) j);
+                Person person = optionalPerson.orElse(new Person());
 
-            Comment comment = new Comment("Commenting on myself.", person, post);
-            commentRepository.save(comment);
+                Comment comment = new Comment("comment" + j, person, post);
+                commentRepository.save(comment);
+            }
         }
     }
 
