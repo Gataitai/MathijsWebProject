@@ -41,7 +41,14 @@ async function updatePixelArtPostForm(id){
 
 function deletePixelArtPostForm(id){
     closeModal();
-    openModal(document.createTextNode("delete"), "Delete post")
+
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.add("btn");
+    deleteButton.classList.add("btn-danger");
+    deleteButton.appendChild(document.createTextNode("Click here to delete"));
+    deleteButton.addEventListener('click', () => deletePixelArtPost(id));
+
+    openModal(deleteButton, "Delete pixelart")
 }
 
 function updateCommentForm(id){
@@ -75,6 +82,12 @@ async function updatePixlArtPost(pst){
         pixel.style.backgroundColor = pxl.color;
         pixelArt.appendChild(pixel);
       }
+    closeModal();
+}
+
+async function deletePixelArtPost(id){
+    deletePost(id);
+    window.location.href = "index.html";
     closeModal();
 }
 
