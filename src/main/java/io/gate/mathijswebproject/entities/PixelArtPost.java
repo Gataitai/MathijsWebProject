@@ -31,7 +31,7 @@ public class PixelArtPost {
     @JsonView(Views.Public.class)
     private String pixelArtAsJSON;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "person_id", nullable = false)
     @JsonView(Views.Public.class)
     private Person person;

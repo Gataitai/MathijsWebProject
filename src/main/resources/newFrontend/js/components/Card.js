@@ -10,14 +10,22 @@ function newCurrentPersonCard(personJSON) {
 
   let cardBody = document.createElement("div");
   cardBody.classList.add("card-body");
+  cardBody.style.display = "grid";
+  cardBody.style.gap = "1rem";
 
   let cardTitle = newTitle(personJSON.name);
 
-  let btn = newButton("Change person")
-  btn.addEventListener('click', () => newSelectPersonForm());
+  let newPostBtn = newButton("New pixelart", "btn-primary");
+  newPostBtn.addEventListener('click', () => newPixelArtPostForm())
+
+  let changePersonBtn = newButton("Log out", "btn-danger");
+  changePersonBtn.addEventListener('click', () => newSelectPersonForm());
+
+
 
   cardBody.appendChild(cardTitle);
-  cardBody.appendChild(btn);
+  cardBody.appendChild(newPostBtn);
+  cardBody.appendChild(changePersonBtn);
 
   card.appendChild(img);
   card.appendChild(cardBody);
@@ -40,10 +48,8 @@ function newPickPersonCard(personJSON) {
   let col2 = document.createElement("div");
   col2.classList.add("col-8");
 
-  let img = document.createElement("img");
+  let img = newMediumPersonImage(personJSON.photoLink);
   img.classList.add("rounded-start");
-  img.classList.add("mediumPersonImage");
-  img.src = personJSON.photoLink;
   col1.appendChild(img);
 
   let cardBody = document.createElement("div");
@@ -52,7 +58,7 @@ function newPickPersonCard(personJSON) {
   let title = newTitle(personJSON.name);
   cardBody.appendChild(title);
 
-  let btn = newButton("Choose me")
+  let btn = newButton("Choose me", "btn-primary")
   btn.addEventListener('click', () => changeCurrentPerson(personJSON));
   cardBody.appendChild(btn);
 
@@ -100,9 +106,8 @@ function newPixelArtPostCard(post) {
   let title = newTitle(post.title);
   let date = newDate(post.postDate);
 
-  let btn = newButton("Go to post");
-  btn.addEventListener('click', () => changeCurrentPixelArtPost(post.id));
-  btn.href = "pixelArtPost.html";
+  let btn = newButton("Go to post", "btn-primary");
+  btn.href = hrefPost(post.id);
 
   cardBody.appendChild(pixelArt);
   cardBody.appendChild(title);

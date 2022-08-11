@@ -41,7 +41,7 @@ function newCommentInput(action, btnText, inputId) {
     input.id = inputId;
     input.placeholder = "Comment";
 
-    let btn = newButton(btnText);
+    let btn = newButton(btnText, "btn-primary");
     btn.addEventListener('click', () => action());
 
     inputGroup.appendChild(inputGroupText);

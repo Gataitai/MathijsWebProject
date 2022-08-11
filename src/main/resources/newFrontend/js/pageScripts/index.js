@@ -10,8 +10,29 @@ function changeCurrentPerson(personJSON) {
     closeModal();
 }
 
-function changeCurrentPixelArtPost(id) {
-    sessionStorage.setItem('currentPixelArtPost', id);
+function newPixelArtPostForm(){
+    let grid = {
+        grid: []
+    };
+
+    for (let i = 0; i < 256; i++){
+        let color = {
+            id: i,
+            color: "#cfcfcf"
+        }
+
+        if(i % 2 === 0) {
+            color.color = "#e8e8e8";
+        }
+
+        grid.grid.push(color);
+    }
+
+    const post = {
+        title: "",
+        pixelArtAsJSON: grid,
+    }
+    openModal(newPostForm(makePixelArtPost,post,"Create new post"), "New post")
 }
 
 function setEmptyPersonCard(){

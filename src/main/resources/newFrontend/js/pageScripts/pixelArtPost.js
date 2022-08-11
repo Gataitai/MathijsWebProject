@@ -8,7 +8,8 @@ function scrollDown(){
 async function makePixelArtPostCommentSectionCard() {
     let pixelArtPostSection = document.getElementById("pixelArtPostSection");
 
-    let id = sessionStorage.getItem('currentPixelArtPost');
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("post")
 
     let post = await getPostById(id);
     let comments = await getCommentsFromPostById(id);
@@ -35,20 +36,21 @@ async function updatePixelArtPostForm(id){
     closeModal();
     let pixelartPost = await getPostById(id);
 
-    let content = newPostEditForm(pixelartPost);
+    let content = newPostForm(updatePixlArtPost,pixelartPost,"Update post");
     openModal(content, "Edit post")
 }
 
 function deletePixelArtPostForm(id){
     closeModal();
 
-    let deleteButton = document.createElement("button");
-    deleteButton.classList.add("btn");
-    deleteButton.classList.add("btn-danger");
-    deleteButton.appendChild(document.createTextNode("Click here to delete"));
+    let content = document.createElement("div");
+    content.style.display = "grid";
+    
+    let deleteButton = newButton("Click here to delete", "btn-danger")
     deleteButton.addEventListener('click', () => deletePixelArtPost(id));
+    content.appendChild(deleteButton);
 
-    openModal(deleteButton, "Delete pixelart")
+    openModal(content, "Delete pixelart")
 }
 
 function updateCommentForm(id){
@@ -63,6 +65,20 @@ function editPixel(id){
     let value = document.getElementById("colorPicker").value; 
     pixel.style.backgroundColor = value;
     pixel.value = value
+}
+
+async function  makePixelArtPost(pst){
+    pst.title = document.getElementById("pixelArtPostTitle").value;
+    for (let i = 0; i < 256; i++) {
+        let color = document.getElementById("pixel"+i).value;
+        pst.pixelArtAsJSON.grid[i].color = color;
+        pst.pixelArtAsJSON.grid[i].id = i;
+    }
+    let personId = sessionStorage.getItem("currentUserId");
+
+    let response = await postPost(pst, personId);
+    window.location.href = hrefPost(response.id);
+    closeModal();
 }
 
 async function updatePixlArtPost(pst){
@@ -130,7 +146,8 @@ async function sendComment(){
         let commentSection= document.getElementById("commentSection");
         input.classList.remove("is-invalid");
 
-        let postId = sessionStorage.getItem('currentPixelArtPost');
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get("post");
         let userId = sessionStorage.getItem("currentUserId");
     
         let commentObject = {

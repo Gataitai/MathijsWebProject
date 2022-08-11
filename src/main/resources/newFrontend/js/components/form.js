@@ -1,4 +1,4 @@
-function newPostEditForm(pst){
+function newPostForm(action, pst, btnText){
 
     let content = document.createElement("div");
     content.style.display = "grid";
@@ -31,11 +31,8 @@ function newPostEditForm(pst){
     colorPicker.setAttribute("id", "colorPicker");
     colorPicker.setAttribute("value", "#F58A8A");
 
-    let submitBtn = document.createElement("button");
-    submitBtn.classList.add("btn");
-    submitBtn.classList.add("btn-primary");
-    submitBtn.appendChild(document.createTextNode("Edit PixelArt"))
-    submitBtn.addEventListener('click', () => updatePixlArtPost(pst))
+    let submitBtn = newButton(btnText, "btn-primary");
+    submitBtn.addEventListener('click', () => action(pst))
 
     content.appendChild(titleInput);
     content.appendChild(pixelArt);

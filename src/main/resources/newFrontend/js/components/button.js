@@ -1,23 +1,7 @@
-function newButton(text) {
+function newButton(text, btnType) {
     let btn = document.createElement("a");
     btn.classList.add("btn");
-    btn.classList.add("btn-primary");
-    btn.appendChild(document.createTextNode(text));
-    return btn;
-}
-
-function newRedButton(text) {
-    let btn = document.createElement("a");
-    btn.classList.add("btn");
-    btn.classList.add("btn-danger");
-    btn.appendChild(document.createTextNode(text));
-    return btn;
-}
-
-function newYellowButton(text) {
-    let btn = document.createElement("a");
-    btn.classList.add("btn");
-    btn.classList.add("btn-warning");
+    btn.classList.add(btnType);
     btn.appendChild(document.createTextNode(text));
     return btn;
 }
@@ -33,12 +17,12 @@ function newOptionsButton() {
 function newOptionButtons(updateAction, deleteAction, id){
     let content = document.createElement("div");
 
-    let editBtn = newYellowButton("Edit");
+    let editBtn = newButton("Edit","btn-warning");
     editBtn.classList.add("col-12");
     editBtn.classList.add("mb-2");
     editBtn.addEventListener('click', () => updateAction(id));
 
-    let deleteBtn = newRedButton("Delete"); 
+    let deleteBtn = newButton("Delete","btn-danger");
     deleteBtn.classList.add("col-12");
     deleteBtn.addEventListener('click', () => deleteAction(id));
 

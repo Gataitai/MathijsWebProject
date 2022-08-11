@@ -9,9 +9,11 @@ import io.gate.mathijswebproject.repositories.PersonRepository;
 import io.gate.mathijswebproject.repositories.PixelArtPostRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PixelArtPostService {
@@ -42,7 +44,8 @@ public class PixelArtPostService {
 
     public List<PixelArtPost> getAllPixelArtPosts() {
         List<PixelArtPost> posts = this.pixelArtPostRepository.findAll();
-        posts.sort(Comparator.comparing(o -> o.getPostDate()));
+        posts.sort(Comparator.comparing(PixelArtPost::getPostDate));
+        Collections.reverse(posts);
         return posts;
     }
 

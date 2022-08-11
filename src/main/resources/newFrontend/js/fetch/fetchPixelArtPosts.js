@@ -12,16 +12,16 @@ async function getPostById(id) {
     return json;
 }
 
-async function postPost(comment, pixelArtPostId, personId){
+async function postPost(post, personId){
     const config = {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(comment)
+        body: JSON.stringify(post)
     }
-    const response = await fetch(URL_POSTS + "/post/" + pixelArtPostId + "/person/" + personId, config);
+    const response = await fetch(URL_POSTS + "/person/" + personId, config);
     if (response.ok) {
         //return json
         return response.json();
@@ -30,14 +30,14 @@ async function postPost(comment, pixelArtPostId, personId){
     }
 }
 
-async function putPost(comment, id){
+async function putPost(post, id){
     const config = {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(comment)
+        body: JSON.stringify(post)
     }
     const response = await fetch(URL_POSTS + "/" + id, config);
     if (response.ok) {
@@ -60,4 +60,6 @@ async function deletePost(id){
     }
 }
 
-
+function hrefPost(id){
+    return "pixelArtPost.html?post="+id;
+}
