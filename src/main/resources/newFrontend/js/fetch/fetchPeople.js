@@ -11,3 +11,7 @@ async function getPersonById(id) {
     const json = await response.json();
     return json;
 }
+
+function hrefPerson(id){
+    return "person.html?person="+id;
+}

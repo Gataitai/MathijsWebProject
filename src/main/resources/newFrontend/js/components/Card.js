@@ -4,31 +4,62 @@ function newCurrentPersonCard(personJSON) {
   let card = document.createElement("div");
   card.classList.add("card");
 
-  let img = document.createElement("img");
-  img.classList.add("personImage");
-  img.src = personJSON.photoLink;
+  let img = newBigPersonImage(personJSON.photoLink, personJSON.id)
+
+  let cardBody = document.createElement("div");
+  cardBody.classList.add("card-body");
+  cardBody.classList.add("d-grid");
+  cardBody.classList.add("gap-3");
+
+  let cardTitle = newTitle(personJSON.name);
+
+  let newPostBtn = newButton("New pixelart", "btn-primary");
+  newPostBtn.addEventListener('click', () => PixelArtPostForm())
+
+  let changePersonBtn = newButton("Log out", "btn-danger");
+  changePersonBtn.addEventListener('click', () => logOut());
+
+  cardBody.appendChild(cardTitle);
+  cardBody.appendChild(newPostBtn);
+  cardBody.appendChild(changePersonBtn);
+
+  let cardFooter = document.createElement("footer");
+  cardFooter.classList.add("card-footer");
+  cardFooter.classList.add("text-muted");
+  cardFooter.classList.add("text-center");
+  cardFooter.appendChild(document.createTextNode("© Copyright Mathijs 2022"))
+
+  card.appendChild(img);
+  card.appendChild(cardBody);
+  card.appendChild(cardFooter);
+
+  return card;
+}
+
+function newPersonInfoCard(personJSON) {
+
+  let card = document.createElement("div");
+  card.classList.add("card");
+
+  let img = newBigPersonImage(personJSON.photoLink, personJSON.id)
 
   let cardBody = document.createElement("div");
   cardBody.classList.add("card-body");
   cardBody.style.display = "grid";
   cardBody.style.gap = "1rem";
 
-  let cardTitle = newTitle(personJSON.name);
-
-  let newPostBtn = newButton("New pixelart", "btn-primary");
-  newPostBtn.addEventListener('click', () => newPixelArtPostForm())
-
-  let changePersonBtn = newButton("Log out", "btn-danger");
-  changePersonBtn.addEventListener('click', () => newSelectPersonForm());
-
-
-
+  let cardTitle = newTitle(personJSON.name+"'s profile");
   cardBody.appendChild(cardTitle);
-  cardBody.appendChild(newPostBtn);
-  cardBody.appendChild(changePersonBtn);
+
+  let cardFooter = document.createElement("footer");
+  cardFooter.classList.add("card-footer");
+  cardFooter.classList.add("text-muted");
+  cardFooter.classList.add("text-center");
+  cardFooter.appendChild(document.createTextNode("© Copyright Mathijs 2022"))
 
   card.appendChild(img);
   card.appendChild(cardBody);
+  card.appendChild(cardFooter);
 
   return card;
 }
@@ -48,7 +79,7 @@ function newPickPersonCard(personJSON) {
   let col2 = document.createElement("div");
   col2.classList.add("col-8");
 
-  let img = newMediumPersonImage(personJSON.photoLink);
+  let img = newMediumPersonImage(personJSON.photoLink, personJSON.id);
   img.classList.add("rounded-start");
   col1.appendChild(img);
 
@@ -80,10 +111,8 @@ function newPixelArtPostCard(post) {
   let cardHeader = document.createElement("div");
   cardHeader.classList.add("card-header");
 
-  let img = document.createElement("img");
-  img.classList.add("smallPersonImage");
+  let img = newSmallPersonImage(post.person.photoLink, post.person.id)
   img.classList.add("me-2");
-  img.src = post.person.photoLink;
   cardHeader.appendChild(img);
   cardHeader.appendChild(document.createTextNode(post.person.name));
 
@@ -120,52 +149,6 @@ function newPixelArtPostCard(post) {
   return card;
 }
 
-function newEmptyPersonCard(){
-  let card = document.createElement("div");
-  card.classList.add("card");
-
-  let img = document.createElement("img");
-  img.classList.add("personImage");
-  img.src = "pictures/questionMark.png";
-  card.appendChild(img);
-
-  let cardBody = document.createElement("div");
-  cardBody.classList.add("card-body");
-
-  let title = document.createElement("h5");
-  title.classList.add("card-title");
-  title.classList.add("placeholder-glow");
-  
-  let line1 = document.createElement("a");
-  line1.classList.add("btn");
-  line1.classList.add("btn-secondary");
-  line1.classList.add("disabled");
-  line1.classList.add("placeholder");
-  line1.classList.add("col-2");
-
-  let line2 = document.createElement("a");
-  line2.classList.add("btn");
-  line2.classList.add("btn-secondary");
-  line2.classList.add("disabled");
-  line2.classList.add("placeholder");
-  line2.classList.add("col-6");
-  line2.classList.add("m-2");
-  title.appendChild(line1);
-  title.appendChild(line2);
-  cardBody.appendChild(title);
-
-  let line3 = document.createElement("a");
-  line3.classList.add("btn");
-  line3.classList.add("btn-primary");
-  line3.classList.add("disabled");
-  line3.classList.add("placeholder");
-  line3.classList.add("col-4");
-  cardBody.appendChild(line3);
-  
-  card.appendChild(cardBody);
-  return card;
-}
-
 function newPixelArtPostCommentSectionCard(post, comments) {
   let card = document.createElement("div");
   card.classList.add("card");
@@ -174,17 +157,15 @@ function newPixelArtPostCommentSectionCard(post, comments) {
   let header = document.createElement("div");
   header.classList.add("card-header");
 
-  let img = document.createElement("img");
-  img.classList.add("smallPersonImage");
+  let img = newSmallPersonImage(post.person.photoLink, post.person.id)
   img.classList.add("me-2");
-  img.src = post.person.photoLink;
   header.appendChild(img);
   header.appendChild(document.createTextNode(post.person.name));
 
   let options = newOptionsButton();
   options.style.float = "right";
   options.style.lineHeight = "2rem";
-  options.addEventListener('click', () => pixelArtPostForm(post.id));
+  options.addEventListener('click', () => pixelArtPostOptionsForm(post.id));
   header.appendChild(options);
   card.appendChild(header);
 
@@ -227,7 +208,11 @@ function newPixelArtPostCommentSectionCard(post, comments) {
   let cardFooter = document.createElement("div");
   cardFooter.classList.add("card-footer");
 
-  let input = newCommentInput(sendComment, "Post comment", "postCommentInput"); 
+  let cmt = {
+    text: ""
+  }
+
+  let input = newCommentInput(sendComment, cmt,"Post comment", "postCommentInput");
   cardFooter.appendChild(input);
 
   card.appendChild(cardFooter);

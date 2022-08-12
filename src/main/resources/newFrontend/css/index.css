@@ -2,29 +2,13 @@ body{
     display: grid;
     grid-template-areas:
     "nav nav"
-    "art info"
-    "foot foot";
+    "art info";
     gap: 1rem;
 }
 
 nav{
     grid-area: nav;
 }
-
-footer{
-    grid-area: foot;
-    padding: 0.5rem;
-    margin-top: 3rem;
-    background-color: rgb(235, 233, 233);
-    text-align: center;
-}
-
-footer p{
-    display: block;
-    color: rgb(98, 98, 98);
-    text-align: center;
-    text-decoration: none;
-  }
 
 .pixelArtPostSection{
     grid-area: art;

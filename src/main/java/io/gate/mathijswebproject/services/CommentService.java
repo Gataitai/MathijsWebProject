@@ -23,10 +23,6 @@ public class CommentService {
         this.pixelArtPostService = pixelArtPostService;
     }
 
-    public List<Comment> getComments() {
-        return this.commentRepository.findAll();
-    }
-
     public Comment getCommentById(Long id) {
         return this.commentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Comment with id " + id + " not found!"));
     }

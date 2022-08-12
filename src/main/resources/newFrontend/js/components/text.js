@@ -26,11 +26,11 @@ function newComment(cmt){
     comment.classList.add("comment");
     comment.classList.add("mb-2");
 
-    comment.appendChild(newCommentArea(newSmallPersonImage(cmt.person.photoLink)));
+    comment.appendChild(newCommentArea(newSmallPersonImage(cmt.person.photoLink, cmt.person.id)));
     comment.appendChild(newCommentArea(document.createTextNode(cmt.person.name + ": " + cmt.text)));
 
     let icon = newOptionsButton();
-    icon.addEventListener('click', () => commentForm(cmt.id));
+    icon.addEventListener('click', () => commentOptionsForm(cmt.id));
     
     comment.appendChild(newCommentArea(newDate(cmt.commentDate)));
     comment.appendChild(newCommentArea(icon));

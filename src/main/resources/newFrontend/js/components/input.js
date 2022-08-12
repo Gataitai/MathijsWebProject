@@ -1,4 +1,4 @@
-function newInput(inputId, inputValue,intputPlaceHolder, inputIcon){
+function newInput(inputId, inputValue, inputPlaceHolder, inputIcon){
     let group = document.createElement("div");
     group.classList.add("input-group");
 
@@ -14,7 +14,7 @@ function newInput(inputId, inputValue,intputPlaceHolder, inputIcon){
     input.type = "text";
     input.classList.add("form-control");
     input.id = inputId;
-    input.placeholder = intputPlaceHolder;
+    input.placeholder = inputPlaceHolder;
     input.value = inputValue;
     
     group.appendChild(text);
@@ -23,7 +23,7 @@ function newInput(inputId, inputValue,intputPlaceHolder, inputIcon){
     return group;
 }
 
-function newCommentInput(action, btnText, inputId) {
+function newCommentInput(action, cmt, btnText, inputId) {
     let inputGroup = document.createElement("div");
     inputGroup.classList.add("input-group");
 
@@ -36,18 +36,18 @@ function newCommentInput(action, btnText, inputId) {
     inputGroupText.appendChild(inputIcon);
 
     let input = document.createElement("input");
+    input.value = cmt.text;
     input.type = "text";
     input.classList.add("form-control");
     input.id = inputId;
     input.placeholder = "Comment";
 
     let btn = newButton(btnText, "btn-primary");
-    btn.addEventListener('click', () => action());
+    btn.addEventListener('click', () => action(cmt));
 
     inputGroup.appendChild(inputGroupText);
     inputGroup.appendChild(input);
     inputGroup.appendChild(btn);
-    // inputGroup.appendChild(newCommentValidation("Can't send empty comment."));
     return inputGroup;
 }
 

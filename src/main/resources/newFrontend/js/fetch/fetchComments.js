@@ -1,9 +1,13 @@
 const URL_COMMENTS = 'http://localhost:8080/comments';
 
+async function getCommentById(id) {
+    const response = await fetch(URL_COMMENTS + "/" + id);
+    return await response.json();
+}
+
 async function getCommentsFromPostById(id) {
     const response = await fetch(URL_COMMENTS + "/post/" + id);
-    const json = await response.json();
-    return json;
+    return await response.json();
 }
 
 async function postComment(comment, pixelArtPostId, personId){

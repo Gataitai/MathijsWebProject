@@ -31,7 +31,7 @@ function newPostForm(action, pst, btnText){
     colorPicker.setAttribute("id", "colorPicker");
     colorPicker.setAttribute("value", "#F58A8A");
 
-    let submitBtn = newButton(btnText, "btn-primary");
+    let submitBtn = newButton(btnText, "btn-success");
     submitBtn.addEventListener('click', () => action(pst))
 
     content.appendChild(titleInput);

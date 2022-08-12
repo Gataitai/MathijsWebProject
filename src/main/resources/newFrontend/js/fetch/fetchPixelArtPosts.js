@@ -12,6 +12,12 @@ async function getPostById(id) {
     return json;
 }
 
+async function getAllPostsByPersonId(id) {
+    const response = await fetch(URL_POSTS + "/person/" + id);
+    const json = await response.json();
+    return json;
+}
+
 async function postPost(post, personId){
     const config = {
         method: 'POST',

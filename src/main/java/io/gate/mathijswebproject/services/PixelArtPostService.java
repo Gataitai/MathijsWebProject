@@ -49,6 +49,13 @@ public class PixelArtPostService {
         return posts;
     }
 
+    public List<PixelArtPost> getPixelArtByPersonId(Long id) {
+        List<PixelArtPost> posts = this.pixelArtPostRepository.findAllByPersonId(id);
+        posts.sort(Comparator.comparing(PixelArtPost::getPostDate));
+        Collections.reverse(posts);
+        return posts;
+    }
+
     public List<PixelArtPost> getPixelArtPostByTitleName(String title) {
         return this.pixelArtPostRepository.findAllByTitle(title);
     }

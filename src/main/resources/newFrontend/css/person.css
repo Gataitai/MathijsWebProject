@@ -1,15 +1,33 @@
-.personImage{
-    width: 20rem;
-    height: 20rem;
+body{
+    display: grid;
+    grid-template-areas:
+    "nav nav"
+    "info art";
+    gap: 1rem;
 }
 
-.mediumPersonImage{
-    width: 7rem;
-    height: 7rem;
+nav{
+    grid-area: nav;
 }
 
-.smallPersonImage{
-    width: 2rem;
-    height: 2rem;
-    border-radius: 15%;
+.pixelArtPostSection{
+    grid-area: art;
+    display: grid;
+    justify-content: left;
+    gap: 2rem;
+}
+
+.pixelArtPostSection .card {
+    width: 30vw;
+}
+
+.personSection{
+    grid-area: info;
+}
+.personSection .personSectionContainer{
+    display: grid;
+    justify-content: right;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 2rem;
 }

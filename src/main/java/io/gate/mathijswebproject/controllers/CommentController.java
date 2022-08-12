@@ -21,10 +21,10 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping()
+    @GetMapping("/{id}")
     @JsonView(Views.Public.class)
-    public List<Comment> commentsIndex() {
-        return commentService.getComments();
+    public Comment commentById(@PathVariable Long id) {
+        return commentService.getCommentById(id);
     }
 
     @GetMapping("/post/{id}")
