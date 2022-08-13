@@ -39,7 +39,7 @@ async function  sendPerson(person){
         personName.classList.add("is-invalid");
     } else if (typeof personPhotoLink.value === 'string' && personPhotoLink.value.length === 0){
         personPhotoLink.classList.add("is-invalid");
-    } else {
+    } else{
         personName.classList.remove("is-invalid");
         personPhotoLink.classList.remove("is-invalid");
 
@@ -58,5 +58,9 @@ function changeCurrentPerson(personJSON) {
 sessionStorage.setItem('currentUserId', personJSON.id);
 window.location.href = "index.html";
 closeModal();
+}
+
+function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
 }
 
