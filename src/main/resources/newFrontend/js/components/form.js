@@ -1,8 +1,8 @@
 function newPostForm(action, pst, btnText){
 
     let content = document.createElement("div");
-    content.style.display = "grid";
-    content.style.gap = "1rem";
+    content.classList.add("d-grid");
+    content.classList.add("gap-3");
 
     let titleInput = newInput("pixelArtPostTitle", pst.title, "Title", "bi-type");
 
@@ -37,6 +37,24 @@ function newPostForm(action, pst, btnText){
     content.appendChild(titleInput);
     content.appendChild(pixelArt);
     content.appendChild(colorPicker);
+    content.appendChild(submitBtn);
+
+    return content;
+}
+
+function newPersonForm(action, person, btnText){
+    let content = document.createElement("div");
+    content.classList.add("d-grid");
+    content.classList.add("gap-3");
+
+    let name = newInput("personName", person.name, "Name", "bi-person");
+    let photo = newInput("personPhotoLink", person.photoLink, "Link to photo", "bi-image");
+
+    let submitBtn = newButton(btnText, "btn-success");
+    submitBtn.addEventListener('click', () => action(person));
+
+    content.appendChild(name);
+    content.appendChild(photo);
     content.appendChild(submitBtn);
 
     return content;

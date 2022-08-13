@@ -37,9 +37,55 @@ function newModalContent(content, title){
   return modalContent;
 }
 
-function newModalContentScrollable(content, title){
-  let modalContent = newModalContent(content, title);
+function newModalContentWithFooter(content, contentFooter, title){
+  let modalContent = document.createElement("div")
+  modalContent.classList.add("modal-content");
+  modalContent.classList.add("modal-dialog");
+
+  let modalHeader = document.createElement("div");
+  modalHeader.classList.add("modal-header");
+
+  let modalTitle = newTitle(title);
+  modalHeader.appendChild(modalTitle);
+
+  let modalBody = document.createElement("div");
+  modalBody.classList.add("modal-body");
+  modalBody.appendChild(content);
+
+  let modalFooter = document.createElement("div");
+  modalFooter.classList.add("modal-footer");
+  modalFooter.appendChild(contentFooter);
+
+  modalContent.appendChild(modalHeader);
+  modalContent.appendChild(modalBody);
+  modalContent.appendChild(modalFooter);
+
+  return modalContent;
+}
+
+function newModalContentScrollable(content, contentFooter, title){
+  let modalContent = document.createElement("div")
+  modalContent.classList.add("modal-content");
+  modalContent.classList.add("modal-dialog");
   modalContent.classList.add("modal-dialog-scrollable");
+
+  let modalHeader = document.createElement("div");
+  modalHeader.classList.add("modal-header");
+
+  let modalTitle = newTitle(title);
+  modalHeader.appendChild(modalTitle);
+
+  let modalBody = document.createElement("div");
+  modalBody.classList.add("modal-body");
+  modalBody.appendChild(content);
+
+  let modalFooter = document.createElement("div");
+  modalFooter.classList.add("modal-footer");
+  modalFooter.appendChild(contentFooter);
+
+  modalContent.appendChild(modalHeader);
+  modalContent.appendChild(modalBody);
+  modalContent.appendChild(modalFooter);
 
   return modalContent;
 }
@@ -52,10 +98,19 @@ function openModal(content, title) {
   document.body.classList.add("stop-scrolling");
 }
 
-function openNonClosableModal(content, title) {
+function openNonClosableModal(content, contentFooter, title) {
   isNonClosable = true;
   modal.replaceChildren();
-  modal.appendChild(newModalContentScrollable(content, title));
+  modal.appendChild(newModalContentScrollable(content, contentFooter, title));
+
+  modal.style.display = "block";
+  document.body.classList.add("stop-scrolling");
+}
+
+function openNonClosableModalShort(content, contentFooter, title) {
+  isNonClosable = true;
+  modal.replaceChildren();
+  modal.appendChild(newModalContentWithFooter(content, contentFooter, title));
 
   modal.style.display = "block";
   document.body.classList.add("stop-scrolling");
@@ -81,7 +136,3 @@ window.onclick = function (event) {
     }
   }
 }
-
-// document.querySelector(document).ready(function() {
-//   document.querySelector(".child2").css("max-height", (document.querySelector(".parent").height()-document.querySelector(".child1").height()));
-// });
