@@ -14,7 +14,7 @@ public interface PixelArtPostRepository  extends CrudRepository<PixelArtPost, Lo
 
     List<PixelArtPost> findAllByPersonId(Long id);
 
-    List<PixelArtPost> findPixelArtPostByTitleContains(String title);
+    List<PixelArtPost> findPixelArtPostByTitleContainsIgnoreCase(String title);
 
     List<PixelArtPost> findAllByPersonName(String name);
 }

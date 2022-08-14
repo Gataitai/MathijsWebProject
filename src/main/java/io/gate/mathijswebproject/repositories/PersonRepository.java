@@ -11,5 +11,5 @@ public interface PersonRepository  extends CrudRepository<Person, Long> {
     @Override
     List<Person> findAll();
 
-    List<Person> findPeopleByNameContains(String name);
+    List<Person> findPeopleByNameContainsIgnoreCase(String name);
 }

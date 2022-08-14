@@ -3,6 +3,7 @@ setPersonIcon();
 async function personSearch(){
     document.getElementById("pixelArtSearch").value = "";
     let personInput = document.getElementById("personSearch");
+
     let content = document.getElementById("searchModal");
     content.replaceChildren();
 
@@ -11,17 +12,50 @@ async function personSearch(){
     }
 
     for (let person of await getPeopleByName(personInput.value)) {
-        console.log(person);
         let img = newMediumPersonImage(person.photoLink);
 
-        let personCard = newSearchCard(img, document.createTextNode(person.name), "Go to profile", hrefPerson, person.id);
+        let personCard = newSearchCard(img, newTitle(person.name), "Go to profile", hrefPerson, person.id);
         content.appendChild(personCard);
     }
 }
 
 async function pixelArtSearch(){
     document.getElementById("personSearch").value = "";
-    let pixelArtInput = document.getElementById("personSearch");
+    let pixelArtInput = document.getElementById("pixelArtSearch");
+
+    let content = document.getElementById("searchModal");
+    content.replaceChildren();
+
+    if(pixelArtInput.value === ""){
+        return;
+    }
+
+    for (let post of await getPostByTitleName(pixelArtInput.value)) {
+        console.log(post);
+        let pixelArt = document.createElement("div");
+        pixelArt.style.height = "7rem";
+        pixelArt.style.width = "7rem";
+        pixelArt.classList.add("pixelArt");
+
+        for (let pxl of post.pixelArtAsJSON.grid) {
+
+          let pixel = document.createElement("div");
+          pixel.classList.add("pixel");
+          pixel.style.backgroundColor = pxl.color;
+
+          pixelArt.appendChild(pixel);
+        }
+
+        let title = document.createElement("div");
+        title.classList.add("mb-2")
+        let img = newSmallPersonImage(post.person.photoLink);
+        img.classList.add("me-2");
+        title.appendChild(img);
+        title.appendChild(document.createTextNode(post.title))
+
+        let pixelArtPostCard = newSearchCard(pixelArt, title, "Go to post", hrefPost, post.id);
+        content.appendChild(pixelArtPostCard);
+    }
 }
 
 function logOut(){
@@ -46,9 +80,11 @@ function searchForm(){
 
     let personInput = newInput("personSearch","","Person name", "bi-person");
     personInput.oninput = personSearch;
+    personInput.querySelector("input").autocomplete = "off";
 
     let pixelArtInput = newInput("pixelArtSearch","","Title name", "bi-image");
     pixelArtInput.oninput = pixelArtSearch;
+    pixelArtInput.querySelector("input").autocomplete = "off";
 
     contentHeader.appendChild(personInput);
     contentHeader.appendChild(pixelArtInput);
