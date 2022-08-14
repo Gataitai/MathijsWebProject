@@ -9,7 +9,7 @@ async function selectPersonForm() {
         content.appendChild(personCard);
     }
 
-    let contentFooter = newButton("Create new person", "btn-success")
+    let contentFooter = newButton("Sign up", "btn-success")
     contentFooter.addEventListener('click', () => createNewPersonForm())
 
     openNonClosableModal(content, contentFooter, "Select person");
@@ -48,14 +48,14 @@ async function  sendPerson(person){
 
         let response = await postPerson(person);
         console.log(response);
-        sessionStorage.setItem("currentUserId", response.id)
+        sessionStorage.setItem("currentPersonId", response.id)
         window.location.href = "index.html";
         closeModal();
     }
 }
 
 function changeCurrentPerson(personJSON) {
-sessionStorage.setItem('currentUserId', personJSON.id);
+sessionStorage.setItem('currentPersonId', personJSON.id);
 window.location.href = "index.html";
 closeModal();
 }

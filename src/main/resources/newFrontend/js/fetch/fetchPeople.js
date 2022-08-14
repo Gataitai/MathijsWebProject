@@ -28,6 +28,36 @@ async function postPerson(person){
     }
 }
 
+async function putPerson(post, id){
+    const config = {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(post)
+    }
+    const response = await fetch(URL_PEOPLE + "/" + id, config);
+    if (response.ok) {
+        //return json
+        return response.json();
+    } else {
+        //
+    }
+}
+
+async function deletePerson(id){
+    const config = {
+        method: 'DELETE'
+    }
+    const response = await fetch(URL_PEOPLE + "/" + id, config);
+    if (response.ok) {
+        console.log(response)
+    } else {
+        //
+    }
+}
+
 function hrefPerson(id){
     return "person.html?person="+id;
 }

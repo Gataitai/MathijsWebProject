@@ -21,5 +21,13 @@ function newBigPersonImage(src, personId){
     return img;
 }
 
+function newNavIconImage(person){
+    let img = document.createElement("img");
+    img.classList.add("smallPersonImage");
+    img.src = person.photoLink;
+    img.addEventListener('click', () => accountOptionsForm(person.id));
+    return img;
+}
+
 
 

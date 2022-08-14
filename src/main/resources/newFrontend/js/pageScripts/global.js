@@ -1,79 +1,100 @@
+setPersonIcon();
+
 function logOut(){
-    sessionStorage.removeItem("currentUserId");
+    sessionStorage.removeItem("currentPersonId");
     window.location.href = "login.html"
 }
 
-function pixelArtPostOptionsForm(id){
-    let content = newOptionButtons(updatePixelArtPostForm, deletePixelArtPostForm, id)
-    openModal(content, "Pixelart options")
+async function setPersonIcon(){
+    let personId = sessionStorage.getItem("currentPersonId");
+
+    let person = await getPersonById(personId);
+
+    let personIcon = document.getElementById("personIcon");
+
+    personIcon.appendChild(newNavIconImage(person));
 }
 
-function PixelArtPostForm(){
-    let grid = {
-        grid: []
-    };
+function accountOptionsForm(id){
+    let content = document.createElement("div");
+    content.classList.add("d-grid");
+    content.classList.add("gap-3");
 
-    for (let i = 0; i < 256; i++){
-        let color = {
-            id: i,
-            color: "#cfcfcf"
-        }
+    let profileButton = newButton("My profile", "btn-primary");
+    profileButton.addEventListener('click', () => window.location.href = hrefPerson(id))
 
-        if(i % 2 === 0) {
-            color.color = "#e8e8e8";
-        }
+    let personOptionsButton = new newButton("Account options", "btn-warning");
+    personOptionsButton.addEventListener('click', () => personOptionsForm(id));
 
-        grid.grid.push(color);
-    }
+    let logOutButton = new newButton("Log out", "btn-danger");
+    logOutButton.addEventListener('click', () => logOut())
 
-    const post = {
-        title: "",
-        pixelArtAsJSON: grid,
-    }
-    openModal(newPostForm(sendPixelArtPost,post,"Create new post"), "New post")
+    content.appendChild(profileButton);
+    content.appendChild(personOptionsButton);
+    content.appendChild(logOutButton);
+
+    openModal(content, "Person options");
 }
 
-async function updatePixelArtPostForm(id){
+
+
+function personOptionsForm(id){
     closeModal();
-    let pixelartPost = await getPostById(id);
 
-    let content = newPostForm(updatePixelArtPost,pixelartPost,"Update post");
-    openModal(content, "Edit post")
+    let content = newOptionButtons(updatePersonForm, deletePersonForm, id);
+
+    openModal(content, "Person options");
 }
 
-function deletePixelArtPostForm(id){
+async function updatePersonForm(id){
+    closeModal();
+    let person = await getPersonById(id);
+
+    let content = newPersonForm(updatePerson,person,"Update person");
+    openModal(content, "Edit person")
+}
+
+
+function deletePersonForm(id){
     closeModal();
 
     let content = document.createElement("div");
     content.style.display = "grid";
 
-    let deleteButton = newButton("Click here to delete", "btn-danger")
-    deleteButton.addEventListener('click', () => deletePixelArtPost(id));
+    let deleteButton = newButton("Click here to delete account", "btn-danger")
+    deleteButton.addEventListener('click', () => deleteAccount(id));
     content.appendChild(deleteButton);
 
-    openModal(content, "Delete pixelart")
+    openModal(content, "Delete account")
 }
 
-async function  sendPixelArtPost(pst){
-    let input = document.getElementById("pixelArtPostTitle");
+async function updatePerson(person){
+    let personName = document.getElementById("personName");
+    let personPhotoLink = document.getElementById("personPhotoLink");
 
-    if (typeof input.value === 'string' && input.value.length === 0) {
-        input.classList.add("is-invalid");
-    } else {
-        input.classList.remove("is-invalid");
+    if (typeof personName.value === 'string' && personName.value.length === 0) {
+        personName.classList.add("is-invalid");
+    } else if (typeof personPhotoLink.value === 'string' && personPhotoLink.value.length === 0){
+        personPhotoLink.classList.add("is-invalid");
+    } else{
+        personName.classList.remove("is-invalid");
+        personPhotoLink.classList.remove("is-invalid");
 
-        pst.title = input.value;
-        for (let i = 0; i < 256; i++) {
-            let color = document.getElementById("pixel"+i).value;
-            pst.pixelArtAsJSON.grid[i].color = color;
-            pst.pixelArtAsJSON.grid[i].id = i;
-        }
-        let personId = sessionStorage.getItem("currentUserId");
+        person.name = personName.value;
+        person.photoLink = personPhotoLink.value;
 
-        let response = await postPost(pst, personId);
-        window.location.href = hrefPost(response.id);
+        let response = await putPerson(person, person.id);
+        console.log(response);
+        window.location.href = "index.html";
         closeModal();
     }
+}
+
+async function deleteAccount(id){
+    deletePerson(id);
+    sessionStorage.removeItem("currentPersonId")
+    window.location.href = "login.html";
+    closeModal();
 }
 
 function editPixel(id){
@@ -81,38 +102,4 @@ function editPixel(id){
     let value = document.getElementById("colorPicker").value;
     pixel.style.backgroundColor = value;
     pixel.value = value
-}
-
-async function updatePixelArtPost(pst){
-    let input = document.getElementById("pixelArtPostTitle");
-
-    if (typeof input.value === 'string' && input.value.length === 0) {
-        input.classList.add("is-invalid");
-    } else {
-        input.classList.remove("is-invalid");
-
-        pst.title = input.value;
-        for (let i = 0; i < 256; i++) {
-            let color = document.getElementById("pixel"+i).value;
-            pst.pixelArtAsJSON.grid[i].color = color;
-            pst.pixelArtAsJSON.grid[i].id = i;
-        }
-
-        let response = await putPost(pst, pst.id);
-        let pixelArt = document.getElementById("pixelArt");
-        pixelArt.replaceChildren();
-        for(let pxl of response.pixelArtAsJSON.grid){
-            let pixel = document.createElement("div");
-            pixel.classList.add("pixel");
-            pixel.style.backgroundColor = pxl.color;
-            pixelArt.appendChild(pixel);
-        }
-        closeModal();
-    }
-}
-
-async function deletePixelArtPost(id){
-    deletePost(id);
-    window.location.href = "index.html";
-    closeModal();
 }
