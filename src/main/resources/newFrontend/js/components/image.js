@@ -6,7 +6,7 @@ function newSmallPersonImage(src, personId){
     return img;
 }
 
-function newMediumPersonImage(src, personId){
+function newMediumPersonImage(src){
     let img = document.createElement("img");
     img.classList.add("mediumPersonImage");
     img.src = src;

@@ -48,7 +48,7 @@ async function pixelArtSearch(){
 
         let title = document.createElement("div");
         title.classList.add("mb-2")
-        let img = newSmallPersonImage(post.person.photoLink);
+        let img = newSmallPersonImage(post.person.photoLink, post.person.id);
         img.classList.add("me-2");
         title.appendChild(img);
         title.appendChild(document.createTextNode(post.title))
