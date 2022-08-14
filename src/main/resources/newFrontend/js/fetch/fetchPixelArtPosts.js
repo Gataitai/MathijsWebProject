@@ -2,20 +2,22 @@ const URL_POSTS = 'http://localhost:8080/posts';
 
 async function getAllPosts() {
     const response = await fetch(URL_POSTS);
-    const json = await response.json();
-    return json;
+    return await response.json();
 }
 
 async function getPostById(id) {
     const response = await fetch(URL_POSTS + "/" + id);
-    const json = await response.json();
-    return json;
+    return await response.json();
+}
+
+async function getPostByTitleName(title) {
+    const response = await fetch(URL_POSTS + "/title?title=" + title);
+    return await response.json();
 }
 
 async function getAllPostsByPersonId(id) {
     const response = await fetch(URL_POSTS + "/person/" + id);
-    const json = await response.json();
-    return json;
+    return await response.json();
 }
 
 async function postPost(post, personId){

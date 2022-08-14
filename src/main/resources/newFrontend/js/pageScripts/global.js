@@ -1,5 +1,29 @@
 setPersonIcon();
 
+async function personSearch(){
+    document.getElementById("pixelArtSearch").value = "";
+    let personInput = document.getElementById("personSearch");
+    let content = document.getElementById("searchModal");
+    content.replaceChildren();
+
+    if(personInput.value === ""){
+        return;
+    }
+
+    for (let person of await getPeopleByName(personInput.value)) {
+        console.log(person);
+        let img = newMediumPersonImage(person.photoLink);
+
+        let personCard = newSearchCard(img, document.createTextNode(person.name), "Go to profile", hrefPerson, person.id);
+        content.appendChild(personCard);
+    }
+}
+
+async function pixelArtSearch(){
+    document.getElementById("personSearch").value = "";
+    let pixelArtInput = document.getElementById("personSearch");
+}
+
 function logOut(){
     sessionStorage.removeItem("currentPersonId");
     window.location.href = "login.html"
@@ -13,6 +37,43 @@ async function setPersonIcon(){
     let personIcon = document.getElementById("personIcon");
 
     personIcon.appendChild(newNavIconImage(person));
+}
+
+function searchForm(){
+    let contentHeader = document.createElement("div");
+    contentHeader.classList.add("d-grid");
+    contentHeader.classList.add("gap-3");
+
+    let personInput = newInput("personSearch","","Person name", "bi-person");
+    personInput.oninput = personSearch;
+
+    let pixelArtInput = newInput("pixelArtSearch","","Title name", "bi-image");
+    pixelArtInput.oninput = pixelArtSearch;
+
+    contentHeader.appendChild(personInput);
+    contentHeader.appendChild(pixelArtInput);
+
+    let content = document.createElement("div");
+    // let pixelArt = document.createElement("div");
+    // pixelArt.style.height = "7rem";
+    // pixelArt.style.width = "7rem";
+    // pixelArt.classList.add("pixelArt");
+    //
+    // for (let pxl of post.pixelArtAsJSON.grid) {
+    //
+    //   let pixel = document.createElement("div");
+    //   pixel.classList.add("pixel");
+    //   pixel.style.backgroundColor = pxl.color;
+    //
+    //   pixelArt.appendChild(pixel);
+    // }
+
+    // for (let person of await getAllPosts()) {
+    //     let personCard = newSearchCard(person);
+    //     content.appendChild(personCard);
+    // }
+
+    openSearchModal(content,contentHeader);
 }
 
 function accountOptionsForm(id){

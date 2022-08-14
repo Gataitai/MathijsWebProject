@@ -24,7 +24,7 @@ public class PersonService {
     }
 
     public List<Person> getPeopleByName(String name){
-        return this.personRepository.findAllByName(name);
+        return this.personRepository.findPeopleByNameContains(name);
     }
 
     public Person savePerson(Person person){

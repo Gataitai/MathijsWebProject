@@ -13,6 +13,12 @@ function newCurrentPersonCard(personJSON) {
 
   let cardTitle = newTitle(personJSON.name);
 
+  let options = newOptionsButton();
+  options.style.float = "right";
+  options.style.lineHeight = "2rem";
+  options.addEventListener('click', () => personOptionsForm(personJSON.id));
+  cardTitle.appendChild(options);
+
   let newPostBtn = newButton("New pixelart", "btn-primary");
   newPostBtn.addEventListener('click', () => PixelArtPostForm())
 
@@ -60,6 +66,42 @@ function newPersonInfoCard(personJSON) {
   card.appendChild(img);
   card.appendChild(cardBody);
   card.appendChild(cardFooter);
+
+  return card;
+}
+
+function newSearchCard(imageContent, titleContent, buttonText, hrefAction, hrefId) {
+
+  let card = document.createElement("div");
+  card.classList.add("card");
+  card.classList.add("mb-3");
+
+  let row = document.createElement("div");
+  row.classList.add("row");
+
+  let col1 = document.createElement("div");
+  col1.classList.add("col-4");
+
+  let col2 = document.createElement("div");
+  col2.classList.add("col-8");
+
+  col1.appendChild(imageContent);
+
+  let cardBody = document.createElement("div");
+  cardBody.classList.add("card-body");
+
+  cardBody.appendChild(titleContent);
+
+  let btn = newButton(buttonText, "btn-primary")
+  btn.addEventListener('click', () => window.location.href = hrefAction(hrefId))
+  cardBody.appendChild(btn);
+
+  col2.appendChild(cardBody);
+
+  row.appendChild(col1);
+  row.appendChild(col2);
+
+  card.appendChild(row);
 
   return card;
 }

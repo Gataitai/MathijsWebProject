@@ -5,6 +5,11 @@ async function getAllPeople() {
     return await response.json();
 }
 
+async function getPeopleByName(name) {
+    const response = await fetch(URL_PEOPLE + "/name?name=" + name);
+    return await response.json();
+}
+
 async function getPersonById(id) {
     const response = await fetch(URL_PEOPLE + "/" + id);
     return await response.json();

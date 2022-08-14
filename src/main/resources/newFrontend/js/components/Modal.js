@@ -63,6 +63,28 @@ function newModalContentWithFooter(content, contentFooter, title){
   return modalContent;
 }
 
+function newSearchModalContent(content, contentHeader){
+  let modalContent = document.createElement("div")
+  modalContent.classList.add("modal-content");
+  modalContent.classList.add("modal-dialog");
+  modalContent.classList.add("modal-dialog-scrollable");
+
+  let modalHeader = document.createElement("div");
+  modalHeader.classList.add("modal-header");
+  modalHeader.style.display = "inline";
+  modalHeader.appendChild(contentHeader);
+
+  let modalBody = document.createElement("div");
+  modalBody.id = "searchModal";
+  modalBody.classList.add("modal-body");
+  modalBody.appendChild(content);
+
+  modalContent.appendChild(modalHeader);
+  modalContent.appendChild(modalBody);
+
+  return modalContent;
+}
+
 function newModalContentScrollable(content, contentFooter, title){
   let modalContent = document.createElement("div")
   modalContent.classList.add("modal-content");
@@ -93,6 +115,14 @@ function newModalContentScrollable(content, contentFooter, title){
 function openModal(content, title) {
   modal.replaceChildren();
   modal.appendChild(newModalContent(content, title));
+
+  modal.style.display = "block";
+  document.body.classList.add("stop-scrolling");
+}
+
+function openSearchModal(content, contentHeader) {
+  modal.replaceChildren();
+  modal.appendChild(newSearchModalContent(content, contentHeader));
 
   modal.style.display = "block";
   document.body.classList.add("stop-scrolling");
