@@ -61,7 +61,7 @@ public class PixelArtPostService {
     }
 
     public List<PixelArtPost> getPixelArtPostByPersonName(String name) {
-        return this.pixelArtPostRepository.findAllByPersonName(name);
+        return this.pixelArtPostRepository.findPixelArtPostByPersonNameContainsIgnoreCase(name);
     }
 
     public PixelArtPost getPixelArtPostById(Long id) {

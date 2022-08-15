@@ -2,6 +2,7 @@ setPersonIcon();
 
 async function personSearch(){
     document.getElementById("pixelArtSearch").value = "";
+    document.getElementById("pixelArtByPersonSearch").value = "";
     let personInput = document.getElementById("personSearch");
 
     let content = document.getElementById("searchModal");
@@ -19,8 +20,34 @@ async function personSearch(){
     }
 }
 
+async function pixelArtByPersonSearch(){
+    document.getElementById("personSearch").value = "";
+    document.getElementById("pixelArtSearch").value = "";
+    let pixelArtByPersonInput = document.getElementById("pixelArtByPersonSearch");
+
+    let content = document.getElementById("searchModal");
+    content.replaceChildren();
+
+    if(pixelArtByPersonInput.value === ""){
+        return;
+    }
+
+    for(let post of await getAllPostsByPersonName(pixelArtByPersonInput.value)){
+        let pixelArt = newMediumPixelArt(post.pixelArtAsJSON.grid);
+
+        let title = newTitle(post.title);
+        let img = newSmallPersonImage(post.person.photoLink, post.person.id);
+        img.classList.add("me-2");
+        title.insertBefore(img, title.firstChild);
+
+        let pixelArtPostCard = newSearchCard(pixelArt, title, "Go to post", hrefPost, post.id);
+        content.appendChild(pixelArtPostCard);
+    }
+}
+
 async function pixelArtSearch(){
     document.getElementById("personSearch").value = "";
+    document.getElementById("pixelArtByPersonSearch").value = "";
     let pixelArtInput = document.getElementById("pixelArtSearch");
 
     let content = document.getElementById("searchModal");
@@ -30,28 +57,14 @@ async function pixelArtSearch(){
         return;
     }
 
-    for (let post of await getPostByTitleName(pixelArtInput.value)) {
+    for (let post of await getAllPostsByTitle(pixelArtInput.value)) {
         console.log(post);
-        let pixelArt = document.createElement("div");
-        pixelArt.style.height = "7rem";
-        pixelArt.style.width = "7rem";
-        pixelArt.classList.add("pixelArt");
+        let pixelArt = newMediumPixelArt(post.pixelArtAsJSON.grid);
 
-        for (let pxl of post.pixelArtAsJSON.grid) {
-
-          let pixel = document.createElement("div");
-          pixel.classList.add("pixel");
-          pixel.style.backgroundColor = pxl.color;
-
-          pixelArt.appendChild(pixel);
-        }
-
-        let title = document.createElement("div");
-        title.classList.add("mb-2")
+        let title = newTitle(post.title);
         let img = newSmallPersonImage(post.person.photoLink, post.person.id);
         img.classList.add("me-2");
-        title.appendChild(img);
-        title.appendChild(document.createTextNode(post.title))
+        title.insertBefore(img, title.firstChild);
 
         let pixelArtPostCard = newSearchCard(pixelArt, title, "Go to post", hrefPost, post.id);
         content.appendChild(pixelArtPostCard);
@@ -78,15 +91,20 @@ function searchForm(){
     contentHeader.classList.add("d-grid");
     contentHeader.classList.add("gap-3");
 
-    let personInput = newInput("personSearch","","Person name", "bi-person");
+    let personInput = newInput("personSearch","","Person by name", "bi-at");
     personInput.oninput = personSearch;
     personInput.querySelector("input").autocomplete = "off";
 
-    let pixelArtInput = newInput("pixelArtSearch","","Title name", "bi-image");
+    let pixelArtByPersonInput = newInput("pixelArtByPersonSearch","","Pixelart by person", "bi-person");
+    pixelArtByPersonInput.oninput = pixelArtByPersonSearch;
+    pixelArtByPersonInput.querySelector("input").autocomplete = "off";
+
+    let pixelArtInput = newInput("pixelArtSearch","","Pixelart by title", "bi-image");
     pixelArtInput.oninput = pixelArtSearch;
     pixelArtInput.querySelector("input").autocomplete = "off";
 
     contentHeader.appendChild(personInput);
+    contentHeader.appendChild(pixelArtByPersonInput);
     contentHeader.appendChild(pixelArtInput);
 
     let content = document.createElement("div");
@@ -120,7 +138,7 @@ function accountOptionsForm(id){
     let profileButton = newButton("My profile", "btn-primary");
     profileButton.addEventListener('click', () => window.location.href = hrefPerson(id))
 
-    let personOptionsButton = new newButton("Account options", "btn-warning");
+    let personOptionsButton = new newButton("Person options", "btn-warning");
     personOptionsButton.addEventListener('click', () => personOptionsForm(id));
 
     let logOutButton = new newButton("Log out", "btn-danger");
@@ -130,7 +148,7 @@ function accountOptionsForm(id){
     content.appendChild(personOptionsButton);
     content.appendChild(logOutButton);
 
-    openModal(content, "Person options");
+    openModal(content, "Account options");
 }
 
 

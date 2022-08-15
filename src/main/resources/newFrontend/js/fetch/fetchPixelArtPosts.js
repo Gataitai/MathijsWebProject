@@ -10,8 +10,13 @@ async function getPostById(id) {
     return await response.json();
 }
 
-async function getPostByTitleName(title) {
+async function getAllPostsByTitle(title) {
     const response = await fetch(URL_POSTS + "/title?title=" + title);
+    return await response.json();
+}
+
+async function getAllPostsByPersonName(name) {
+    const response = await fetch(URL_POSTS + "/person?name=" + name);
     return await response.json();
 }
 
