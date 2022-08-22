@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import io.gate.mathijswebproject.views.Views;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

@@ -19,6 +19,10 @@ public class Cell{
         this.color = randomHexColor();
     }
 
+    /**
+     * Generates a random color in hexadecimal as a string
+     * @return string with random hex color.
+     */
     private String randomHexColor(){
         Random random = new Random();
         int nextInt = random.nextInt(0xffffff + 1);
