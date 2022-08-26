@@ -22,37 +22,65 @@ public class PersonController {
         this.personService = personService;
     }
 
+    /**
+     * gets list of all people
+     * @return json array of all people.
+     */
     @GetMapping()
     @JsonView(Views.Public.class)
     public List<Person> getPeople() {
         return personService.getPeople();
     }
 
+    /**
+     * Uses pathvariable of id to get person with personId
+     * @param id
+     * @return json of person.
+     */
     @GetMapping("/{id}")
     @JsonView(Views.Public.class)
     public Person getById(@PathVariable Long id) {
         return personService.getPersonById(id);
     }
 
+    /**
+     * Uses queryparam with name to get the person
+     * @param name
+     * @return json of person.
+     */
     @GetMapping("/name")
     @JsonView(Views.Public.class)
     public List<Person> getByName(@RequestParam String name) {
-        List<Person> ppl = personService.getPeopleByName(name);
         return personService.getPeopleByName(name);
     }
 
+    /**
+     * Uses requestbody with newPerson to post new person.
+     * @param newPerson
+     * @return json of new person.
+     */
     @PostMapping()
     @JsonView(Views.Public.class)
     public Person postPerson(@RequestBody Person newPerson) {
         return personService.savePerson(newPerson);
     }
 
+    /**
+     * Uses pathvariable of personId to update new person with updatedPerson in requestbody.
+     * @param id
+     * @param updatedPerson
+     * @return json of updated person.
+     */
     @PutMapping("/{id}")
     @JsonView(Views.Public.class)
     public Person update(@PathVariable Long id, @RequestBody Person updatedPerson) {
         return personService.updatePerson(id, updatedPerson);
     }
 
+    /**
+     * Uses pathvariable of personId to delete person
+     * @param id
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void Delete(@PathVariable Long id) {
