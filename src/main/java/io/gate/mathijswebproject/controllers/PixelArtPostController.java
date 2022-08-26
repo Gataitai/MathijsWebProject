@@ -58,7 +58,7 @@ public class PixelArtPostController {
     /**
      * Uses queryparam with title to get the pixelartpost
      * @param title
-     * @return json of pixelartpost.
+     * @return json array of pixelartposts.
      */
     @GetMapping("/title")
     @JsonView(Views.Public.class)
@@ -69,7 +69,7 @@ public class PixelArtPostController {
     /**
      * Uses queryparam with person name to get the pixelartpost
      * @param name
-     * @return json of pixelartpost.
+     * @return json array of pixelartposts.
      */
     @GetMapping("/person")
     @JsonView(Views.Public.class)

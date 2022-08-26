@@ -1,43 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/body.css">
-    <link rel="stylesheet" href="css/editor.css">
-    <link rel="stylesheet" href="css/modal.css">
-    <link rel="stylesheet" href="css/pixelArtSection.css">
-    <link rel="stylesheet" href="css/personSection.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/body.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/pixelArt.css">
+  <link rel="stylesheet" href="css/image.css">
+  <link rel="stylesheet" href="css/modal.css">
 
-    <script src="https://kit.fontawesome.com/224e08eb2a.js" crossorigin="anonymous" defer></script>
-    <script src="javascript/pixelArtPost.js" defer></script>
-    <script src="javascript/person.js" defer></script>
-    <script src="javascript/modal.js" defer></script>
-    <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
+  <script src="js/fetch/fetchPeople.js" defer></script>
+  <script src="js/fetch/fetchPixelArtPosts.js" defer></script>
+  <script src="js/components/modal.js" defer></script>
+  <script src="js/components/image.js" defer></script>
+  <script src="js/components/form.js" defer></script>
+  <script src="js/components/input.js" defer></script>
+  <script src="js/components/card.js" defer></script>
+  <script src="js/components/text.js" defer></script>
+  <script src="js/components/pixelArt.js" defer></script>
+  <script src="js/components/button.js" defer></script>
+  <script src="js/pageScripts/global.js" defer></script>
+  <script src="js/pageScripts/index.js" defer></script>
+
+
+  <title>Document</title>
 </head>
+
 <body>
-      <nav>
-        <h1> Pixel Art Gallery</h1>
-      </nav>
 
-      <section id="pixelArtPostsSection">
-      </section>
+  <nav id="nav" class="navbar fixed-top navbar-light bg-light">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">Pixel art gallery</a>
 
-      <section id="peopleSection">
-        <div id="stickyContainer" class="stickyContainer">
-
-        </div>
-      </section>
-
-      <footer>
-        <p>
-            &copy; Copyright Mathijs 2022
-        </p>
-      </footer>
-
-      <div id="modal">
-        <div id="modalContent">
-        </div>
+      <div class="d-flex">
+        <a href="index.html" class="btn btn-light me-2"><i class="bi bi-house"></i></a>
+        <button type="button" onclick="searchForm()" class="btn btn-light me-2"><i class="bi bi-search"></i></button>
+        <i id="personIcon"></i>
       </div>
+
+    </div>
+  </nav>
+
+  <section class="pixelArtPostSection" id="pixelArtPostSection">
+
+  </section>
+
+  <section class="personSection">
+    <div class="personSectionContainer" id="personSectionContainer">
+
+    </div>
+  </section>
+
+  <div id="modal">
+  </div>
 </body>
+
 </html>

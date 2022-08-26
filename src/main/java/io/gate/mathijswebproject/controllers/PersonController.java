@@ -46,7 +46,7 @@ public class PersonController {
     /**
      * Uses queryparam with name to get the person
      * @param name
-     * @return json of person.
+     * @return json array of people.
      */
     @GetMapping("/name")
     @JsonView(Views.Public.class)

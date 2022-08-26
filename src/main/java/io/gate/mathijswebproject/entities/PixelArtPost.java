@@ -104,6 +104,10 @@ public class PixelArtPost {
         }
     }
 
+    /**
+     * makes 10 new posts with 10 new people.
+     * @return list of pixelartpost with 10 posts.
+     */
     public static List<PixelArtPost> makePixelArtPosts() {
         List<String> links = new ArrayList<>();
         links.add("https://cdn.discordapp.com/attachments/1001277448329109666/1001277877247017001/1.png");
