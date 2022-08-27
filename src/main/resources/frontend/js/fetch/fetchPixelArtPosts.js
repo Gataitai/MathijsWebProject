@@ -2,27 +2,52 @@ const URL_POSTS = 'http://localhost:8080/posts';
 
 async function getAllPosts() {
     const response = await fetch(URL_POSTS);
-    return await response.json();
+    if (response.ok) {
+        //return json
+        return response.json();
+    } else {
+        console.log("Something went wrong with retrieving posts");
+    }
 }
 
 async function getPostById(id) {
     const response = await fetch(URL_POSTS + "/" + id);
-    return await response.json();
+    if (response.ok) {
+        //return json
+        return response.json();
+    } else {
+        console.log("Something went wrong with retrieving post by id");
+    }
 }
 
 async function getAllPostsByTitle(title) {
     const response = await fetch(URL_POSTS + "/title?title=" + title);
-    return await response.json();
+    if (response.ok) {
+        //return json
+        return response.json();
+    } else {
+        console.log("Something went wrong with retrieving posts by title");
+    }
 }
 
 async function getAllPostsByPersonName(name) {
     const response = await fetch(URL_POSTS + "/person?name=" + name);
-    return await response.json();
+    if (response.ok) {
+        //return json
+        return response.json();
+    } else {
+        console.log("Something went wrong with retrieving posts by person name");
+    }
 }
 
 async function getAllPostsByPersonId(id) {
     const response = await fetch(URL_POSTS + "/person/" + id);
-    return await response.json();
+    if (response.ok) {
+        //return json
+        return response.json();
+    } else {
+        console.log("Something went wrong with retrieving posts by person id");
+    }
 }
 
 async function postPost(post, personId){
@@ -39,7 +64,7 @@ async function postPost(post, personId){
         //return json
         return response.json();
     } else {
-        //
+        console.log("Something went wrong with posting post");
     }
 }
 
@@ -57,7 +82,7 @@ async function putPost(post, id){
         //return json
         return response.json();
     } else {
-        //
+        console.log("Something went wrong with updating post");
     }
 }
 
@@ -69,7 +94,7 @@ async function deletePost(id){
     if (response.ok) {
         console.log(response)
     } else {
-        //
+        console.log("Something went wrong with deleting post");
     }
 }
 

@@ -2,12 +2,22 @@ const URL_COMMENTS = 'http://localhost:8080/comments';
 
 async function getCommentById(id) {
     const response = await fetch(URL_COMMENTS + "/" + id);
-    return await response.json();
+    if (response.ok) {
+        //return json
+        return response.json();
+    } else {
+        console.log("Something went wrong with retrieving comment by id");
+    }
 }
 
 async function getCommentsFromPostById(id) {
     const response = await fetch(URL_COMMENTS + "/post/" + id);
-    return await response.json();
+    if (response.ok) {
+        //return json
+        return response.json();
+    } else {
+        console.log("Something went wrong with retrieving comment by post id");
+    }
 }
 
 async function postComment(comment, pixelArtPostId, personId){
@@ -24,7 +34,7 @@ async function postComment(comment, pixelArtPostId, personId){
         //return json
         return response.json();
     } else {
-        //
+        console.log("Something went wrong with posting comment");
     }
 }
 
@@ -42,7 +52,7 @@ async function putComment(comment, id){
         //return json
         return response.json();
     } else {
-        //
+        console.log("Something went wrong with updating comment");
     }
 }
 
@@ -54,7 +64,7 @@ async function deleteComment(id){
     if (response.ok) {
         console.log(response)
     } else {
-        //
+        console.log("Something went wrong with deleting comment");
     }
 }
 

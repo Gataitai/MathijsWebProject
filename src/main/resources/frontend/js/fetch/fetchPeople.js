@@ -2,17 +2,32 @@ const URL_PEOPLE = 'http://localhost:8080/people'
 
 async function getAllPeople() {
     const response = await fetch(URL_PEOPLE);
-    return await response.json();
+    if (response.ok) {
+        //return json
+        return response.json();
+    } else {
+        console.log("Something went wrong with retrieving people");
+    }
 }
 
 async function getPeopleByName(name) {
     const response = await fetch(URL_PEOPLE + "/name?name=" + name);
-    return await response.json();
+    if (response.ok) {
+        //return json
+        return response.json();
+    } else {
+        console.log("Something went wrong with retrieving people by name");
+    }
 }
 
 async function getPersonById(id) {
     const response = await fetch(URL_PEOPLE + "/" + id);
-    return await response.json();
+    if (response.ok) {
+        //return json
+        return response.json();
+    } else {
+        console.log("Something went wrong with retrieving person by id");
+    }
 }
 
 async function postPerson(person){
@@ -29,7 +44,7 @@ async function postPerson(person){
         //return json
         return response.json();
     } else {
-        //
+        console.log("Something went wrong with posting person");
     }
 }
 
@@ -47,7 +62,7 @@ async function putPerson(post, id){
         //return json
         return response.json();
     } else {
-        //
+        console.log("Something went wrong with updating person");
     }
 }
 
@@ -59,7 +74,7 @@ async function deletePerson(id){
     if (response.ok) {
         console.log(response)
     } else {
-        //
+        console.log("Something went wrong with deleting person");
     }
 }
 
